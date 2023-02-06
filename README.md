@@ -1,0 +1,1 @@
+# jfddr8-team-pandy-z-kosmosu
