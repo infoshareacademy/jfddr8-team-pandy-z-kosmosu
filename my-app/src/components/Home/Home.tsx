@@ -2,7 +2,8 @@ import { BookList } from '../BooksList/BooksList';
 import { SearchForm } from '../SearchForm/SearchForm';
 import classes from './Home.module.css';
 
-export const Home = () => {
+
+export const Home = (): JSX.Element => {
 	return (
 		<div>
 			<header className={classes.header}>
