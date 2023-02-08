@@ -16,13 +16,9 @@ export const Register = (): JSX.Element => {
       navigate("/");
     } catch ({ code, message }) {
       if (code === "auth/email-already-in-use") {
-        navigate("/login");
-        return;
+        console.log(message);
+        setError("There is already Panda with that login. Please try again ");
       }
-      console.log(message);
-      setError(
-        "Panda is not satisfied with your login or password. Please try again"
-      );
       setTimeout(() => {
         setError("");
       }, 3000);
