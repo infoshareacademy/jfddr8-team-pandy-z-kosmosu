@@ -5,8 +5,10 @@ import classes from './Home.module.css';
 export const Home = () => {
 	return (
 		<div>
-			<div className={classes}>You are in Home now</div>
+            <header>
+			<h1>find the book you need</h1>
 			<SearchForm />
+            </header>
 			<BookList />
 		</div>
 	);
