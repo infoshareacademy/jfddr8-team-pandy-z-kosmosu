@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
-import { Home } from "./components/Home/Home";
+import { Home } from "./pages/Home/Home";
 import { MyBooksList } from "./components/MyBooks/MyBooksList";
 import { Login } from "./components/Login/Login";
 import { Register } from "./components/Register/Register";

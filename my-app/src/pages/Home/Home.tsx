@@ -1,5 +1,5 @@
-import { BookList } from '../BooksList/BooksList';
-import { SearchForm } from '../SearchForm/SearchForm';
+import { BookList } from '../../components/BooksList/BooksList';
+import { SearchForm } from '../../components/SearchForm/SearchForm';
 import classes from './Home.module.css';
 
 export const Home = () => {
