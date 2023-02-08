@@ -1,12 +1,13 @@
-import { BookList } from "../BooksList/BooksList";
-import { Navbar } from "../Navbar/Navbar";
-import { SearchForm } from "../SearchForm/SearchForm";
+import { BookList } from '../BooksList/BooksList';
+import { SearchForm } from '../SearchForm/SearchForm';
+import classes from './Home.module.css';
 
 export const Home = () => {
-    return <div>
-        <div>You are in Home now</div>
-        <Navbar />
-        <SearchForm />
-        <BookList />
-    </div>
-}
+	return (
+		<div>
+			<div className={classes}>You are in Home now</div>
+			<SearchForm />
+			<BookList />
+		</div>
+	);
+};
