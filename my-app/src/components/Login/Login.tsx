@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { firebaseAuth } from "../../index";
+// import {handleSubmit} from "./Register/Register";
 
 export const Login = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
@@ -12,7 +12,8 @@ export const Login = (): JSX.Element => {
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
 
-  const signIn = async (): Promise<void> => {
+  const signIn = async (e: React.FormEvent): Promise<void> => {
+	e.preventDefault();
     try {
       await signInWithEmailAndPassword(firebaseAuth, username, password);
       navigate("/");
@@ -28,27 +29,7 @@ export const Login = (): JSX.Element => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
-    e.preventDefault();
-    try {
-      await createUserWithEmailAndPassword(firebaseAuth, username, password);
-      navigate("/");
-    } catch ({ code, message }) {
-      if (code === "auth/email-already-in-use") {
-        await signIn();
-        return;
-      }
-      console.log(message);
-      //setting error message to display under form
-      setError(
-        "Panda is not satisfied with your login or password. Please try again"
-      );
-      //clearing error message from screen after 3 seconds
-      setTimeout(() => {
-        setError("");
-      }, 3000);
-    }
-  };
+
 
   return (
     <>
@@ -72,7 +53,7 @@ export const Login = (): JSX.Element => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <br />
-        <button onClick={handleSubmit}>Log in</button>
+        <button onClick={signIn}>Log in</button>
         <p>{error}</p>
       </form>
     </>
