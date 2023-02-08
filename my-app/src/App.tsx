@@ -6,6 +6,7 @@ import { Login } from './components/Login/Login';
 import { Register } from './components/Register/Register';
 import { Navbar } from './components/Navbar/Navbar';
 import { Footer } from './components/Footer/Footer';
+import 'react-slideshow-image/dist/styles.css';
 
 function App() {
 	return (
