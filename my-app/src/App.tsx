@@ -10,6 +10,7 @@ import { Footer } from "./components/Footer/Footer";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDoc, doc } from "firebase/firestore";
 import { firebaseAuth, firebaseDb } from "./index";
+import { BookDetails } from "./components/BookDetails/BookDetails";
 import { AppContext} from './providers/AppProvider';
 
 
@@ -75,6 +76,7 @@ function App() {
         <Route path="/mybooks" element={<MyBooksList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path='/book' element={<BookDetails />} />
       </Routes>
       <Footer />
     </div>

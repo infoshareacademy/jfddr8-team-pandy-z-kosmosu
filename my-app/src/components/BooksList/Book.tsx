@@ -8,6 +8,7 @@ export const Book = (book: any) => {
 			</div>
 			<div>
 				<div>
+					<span>Title: </span>
 					<span>{book.title}</span>
 				</div>
 

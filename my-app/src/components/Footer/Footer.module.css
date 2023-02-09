@@ -1,0 +1,23 @@
+footer {
+    background-color: black;
+    color: white;
+    padding: 50px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    padding-bottom: .75em;
+}
+
+img.footer-small-logos {
+    height: 1em;
+    width: 1em;
+    padding-left: .5em;
+}
+
+img.footer-logo {
+    padding-bottom: 30px;
+}

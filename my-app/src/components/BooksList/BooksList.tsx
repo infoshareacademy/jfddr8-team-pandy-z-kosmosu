@@ -23,7 +23,7 @@ export const BookList = () => {
 		<section>
 			<div>
 				<div>
-					<h2>{resultTitle}</h2>
+					<h3>{resultTitle}</h3>
 				</div>
 				<div className={classes['books-list']}>
 					{booksWithCovers.slice(0, 30).map((item, index) => {

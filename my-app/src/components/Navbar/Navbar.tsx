@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
+import {useContext} from 'react' ;
 import classes from "./Navbar.module.css";
 import logoImg from "../../Graphics/Logo.png";
+import logoUser from '../../Graphics/User-icon.png';
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../../index";
+import { AppContext } from "../../providers/AppProvider";
 
 export const Navbar = (): JSX.Element => {
+  const {isLogged} = useContext(AppContext)
   const navigate = useNavigate();
 
   const handleLogout = async (): Promise<void> => {
@@ -25,18 +29,20 @@ export const Navbar = (): JSX.Element => {
         <Link className={classes.links} to="/">
           Home
         </Link>
-        <Link className={classes.links} to="login">
+        {!isLogged && <Link className={classes.links} to="login">
           Log in
-        </Link>
-        <Link className={classes.links} to="register">
+        </Link>}
+       {!isLogged && <Link className={classes.links} to="register">
           Sign in
-        </Link>
-        <Link className={classes.links} to="mybooks">
+        </Link>}
+       {isLogged && <Link className={classes.links} to="mybooks">
           MyBooks
-        </Link>
-        <Link className={classes.links} to="/" onClick={handleLogout}>
-          Sign out
-        </Link>
+        </Link>}
+       {isLogged && <Link className={classes.links} to="/" onClick={handleLogout}>
+          Log out
+        </Link>}
+        {isLogged && <img src={logoUser} className={classes['logo-user']}></img>}
+        {isLogged && <span>Hello, User!</span>}
       </div>
     </div>
   );

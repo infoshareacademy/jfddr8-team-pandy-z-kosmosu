@@ -1,16 +1,25 @@
 .navbar {
 	display: flex;
 	justify-content: space-between;
-    align-items: center;
+	align-items: center;
 	padding: 10px 20px;
 }
 
 .links {
-    padding: 0 5px;
-    color: black;
-    text-decoration: none;
+	padding: 0 5px;
+	color: black;
+	text-decoration: none;
 }
 
 img {
 	width: 200px;
+}
+
+.logo-user {
+	padding: 0 5px;
+	width: 20px;
+}
+
+span {
+    padding: 0 5px;
 }
