@@ -28,22 +28,22 @@ function App() {
         setIsLogged(true);
         console.log(userEmail);
 
-        try {
-          const docRef = doc(firebaseDb, "MyList", `${userEmail}`);
-          const listSumSnapshot = await getDoc(docRef);
-          console.log(listSumSnapshot);
-          if (listSumSnapshot.exists()) {
-            const {favBooksIDs} = listSumSnapshot.data();
-            if (books.length>0) {
-            console.log(books.filter((book) => favBooksIDs.includes(book.key)));
-            setmyBookList(books.filter((book) => favBooksIDs.includes(book.key)))}; 
-          //  trzeba zrobic konkatenacje array i wyciaganc id
+        // try {
+        //   const docRef = doc(firebaseDb, "MyList", `${userEmail}`);
+        //   const listSumSnapshot = await getDoc(docRef);
+        //   console.log(listSumSnapshot);
+        //   if (listSumSnapshot.exists()) {
+        //     const {favBooksIDs} = listSumSnapshot.data();
+        //     if (books.length>0) {
+        //     console.log(books.filter((book) => favBooksIDs.includes(book.id)));
+        //     setmyBookList(books.filter((book) => favBooksIDs.includes(book.id)))}; 
+        //   //  trzeba zrobic konkatenacje array i wyciaganc id
 
 
-          }
-        } catch (error) {
-          console.log(error);
-        }
+        //   }
+        // } catch (error) {
+        //   console.log(error);
+        // }
       } else {
         setUsername('');
         setmyBookList([]);
@@ -52,29 +52,16 @@ function App() {
   }, [setmyBookList, setUsername, books]);
 
 
-  // useEffect((): void => {
-  //   if (username) {
-  //     navigate('/mybooks');
-  //   } 
-  // }, [username, navigate]);
-
 
   return (
     <div>
       <Navbar />
       <Routes>
-      {/* <Route path="/" element={
-            username ? (
-              <Navigate to='/mybooks' />
-            ) : (
-              <Navigate to='/login' />
-            )} 
-        />          */}
         <Route path="/" element={<Home />} />
         <Route path="/mybooks" element={<MyBooksList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/book" element={<BookDetails />} />
+        <Route path="/book/:id" element={<BookDetails />} />
       </Routes>
       <Footer />
     </div>

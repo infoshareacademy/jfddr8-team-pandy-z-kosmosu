@@ -12,14 +12,14 @@
 	background-color: white;
 }
 
-input {
+.input {
 	font-size: 1.5rem;
 	padding: 0.6rem;
 	border: none;
 	outline: none;
 }
 
-button {
+.button {
 	border: none;
 	background: transparent;
 	cursor: pointer;
@@ -38,7 +38,7 @@ button {
 		min-width: 350px;
 	}
 
-	input {
+	.input {
 		padding: 0.6rem 0;
 		font-size: 1.2rem;
 	}

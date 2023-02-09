@@ -11,17 +11,6 @@ export type Book = {
 	title: string;
 };
 
-// type MyBookListContextState = {
-// 	username: string | null;
-// 	setUsername: (username: string | null) => void;
-// 	listSum: number;
-// 	setlistSum: (value: number) => void;
-// 	myBookList: Book[];
-// 	setmyBookList: (books: Book[]) => void;
-//   };
-    
-//   export const MyBookListContext = createContext<MyBookListContextState>({} as MyBookListContextState);
-
 type AppContextState = {
 	searchTerm: string | null;
 	setSearchTerm: (searchTerm: string) => void;
@@ -54,8 +43,8 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [resultTitle, setResultTitle] = useState('');
 
 	const [username, setUsername] = useState<string | null>('');
-  const [listSum, setlistSum] = useState<number>(0);
-  const [myBookList, setmyBookList] = useState([] as Book[]);
+	const [listSum, setlistSum] = useState<number>(0);
+	const [myBookList, setmyBookList] = useState([] as Book[]);
 
 	const [isLogged, setIsLogged] = useState(true);
 
@@ -65,7 +54,6 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 			const response = await fetch(`${URL}${searchTerm}`);
 			const data = await response.json();
 			const { docs } = data;
-			console.log(docs);
 
 			if (docs) {
 				const newBooks = docs
@@ -92,6 +80,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 					);
 
 				setBooks(newBooks);
+				console.log(newBooks);
 
 				if (newBooks.length > 1) {
 					setResultTitle('Your Search Result:');
@@ -116,7 +105,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	return (
 		<AppContext.Provider
 			value={{
-				username, 
+				username,
 				setUsername,
 				listSum,
 				setlistSum,

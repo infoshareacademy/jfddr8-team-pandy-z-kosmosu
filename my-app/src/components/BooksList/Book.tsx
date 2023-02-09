@@ -14,7 +14,7 @@ export const Book = (book: any) => {
 				</div>
 
 				<div>
-				<Link to = {`/${book.id}`} {...book}>
+				<Link to = {`/book/${book.id}`} {...book}>
 					<span>Author: </span>
 					<span>{book.author}</span>
 					</Link>

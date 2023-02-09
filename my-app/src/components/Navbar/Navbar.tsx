@@ -10,7 +10,7 @@ import { AppContext } from "../../providers/AppProvider";
 // import {App} from "../"
 
 export const Navbar = (): JSX.Element => {
-  const {isLogged, setIsLogged} = useContext(AppContext)
+  const {isLogged, setIsLogged, username} = useContext(AppContext)
   const navigate = useNavigate();
 
   const handleLogout = async (): Promise<void> => {
@@ -44,7 +44,7 @@ export const Navbar = (): JSX.Element => {
           Log out
         </Link>}
         {isLogged && <img src={logoUser} className={classes['logo-user']}></img>}
-        {isLogged && <span>Hello, User!</span>}
+        {isLogged && <span>Hello, {username}!</span>}
       </div>
     </div>
   );
