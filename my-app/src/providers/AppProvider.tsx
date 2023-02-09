@@ -20,6 +20,8 @@ type AppContextState = {
 	setLoading: (param: boolean) => void;
 	resultTitle: string | null;
 	setResultTitle: (param: string) => void;
+	isLogged: boolean;
+	setIsLogged: (param: boolean) => void;
 };
 
 type AppProviderProps = {
@@ -33,6 +35,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [books, setBooks] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [resultTitle, setResultTitle] = useState('');
+	const [isLogged, setIsLogged] = useState(false);
 
 	const fetchBooks = useCallback(async () => {
 		setLoading(true);
@@ -69,7 +72,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 				setBooks(newBooks);
 
 				if (newBooks.length > 1) {
-					setResultTitle('Your Search Result');
+					setResultTitle('Your Search Result:');
 				} else {
 					setResultTitle('No Search Result Found!');
 				}
@@ -99,6 +102,8 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 				setLoading,
 				resultTitle,
 				setResultTitle,
+				setIsLogged,
+				isLogged,
 			}}>
 			{children}
 		</AppContext.Provider>
