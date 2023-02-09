@@ -11,6 +11,17 @@ export type Book = {
 	title: string;
 };
 
+// type MyBookListContextState = {
+// 	username: string | null;
+// 	setUsername: (username: string | null) => void;
+// 	listSum: number;
+// 	setlistSum: (value: number) => void;
+// 	myBookList: Book[];
+// 	setmyBookList: (books: Book[]) => void;
+//   };
+    
+//   export const MyBookListContext = createContext<MyBookListContextState>({} as MyBookListContextState);
+
 type AppContextState = {
 	searchTerm: string | null;
 	setSearchTerm: (searchTerm: string) => void;
@@ -20,6 +31,12 @@ type AppContextState = {
 	setLoading: (param: boolean) => void;
 	resultTitle: string | null;
 	setResultTitle: (param: string) => void;
+	username: string | null;
+	setUsername: (username: string | null) => void;
+	listSum: number;
+	setlistSum: (value: number) => void;
+	myBookList: Book[];
+	setmyBookList: (books: Book[]) => void;
 	isLogged: boolean;
 	setIsLogged: (param: boolean) => void;
 };
@@ -35,6 +52,11 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [books, setBooks] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [resultTitle, setResultTitle] = useState('');
+
+	const [username, setUsername] = useState<string | null>('');
+  const [listSum, setlistSum] = useState<number>(0);
+  const [myBookList, setmyBookList] = useState([] as Book[]);
+
 	const [isLogged, setIsLogged] = useState(true);
 
 	const fetchBooks = useCallback(async () => {
@@ -94,6 +116,12 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	return (
 		<AppContext.Provider
 			value={{
+				username, 
+				setUsername,
+				listSum,
+				setlistSum,
+				myBookList,
+				setmyBookList,
 				searchTerm,
 				setSearchTerm,
 				books,
