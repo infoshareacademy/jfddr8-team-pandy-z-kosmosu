@@ -16,7 +16,7 @@ import { AppContext} from './providers/AppProvider';
 
 function App() {
 
-  const { username, setUsername, setmyBookList, books} = useContext(AppContext);
+  const { username, setUsername, setmyBookList, setIsLogged, books} = useContext(AppContext);
   const navigate = useNavigate();
   
 
@@ -25,6 +25,7 @@ function App() {
       if (user) {
         const userEmail = user.email;
         setUsername(userEmail);
+        setIsLogged(true);
         console.log(userEmail);
 
         try {
@@ -33,13 +34,10 @@ function App() {
           console.log(listSumSnapshot);
           if (listSumSnapshot.exists()) {
             const {favBooksIDs} = listSumSnapshot.data();
-            // setmyBookList(data.filter((books) => books.id === id)); 
-            // wyfiltrowac: wyszukac ksiazki konkretnie z favbooks ids
-            // if () {
-            //   ssetmyBookList('Your Search Result');
-            // } else {
-            //   ssetmyBookList('No Search Result Found!');
-            // }
+            if (books.length>0) {
+            console.log(books.filter((book) => favBooksIDs.includes(book.key)));
+            setmyBookList(books.filter((book) => favBooksIDs.includes(book.key)))}; 
+          //  trzeba zrobic konkatenacje array i wyciaganc id
 
 
           }
@@ -51,7 +49,7 @@ function App() {
         setmyBookList([]);
       }
     });
-  }, [setmyBookList, setUsername]);
+  }, [setmyBookList, setUsername, books]);
 
 
   // useEffect((): void => {
