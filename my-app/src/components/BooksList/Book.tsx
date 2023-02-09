@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
 
 export const Book = (book: any) => {
@@ -13,8 +14,10 @@ export const Book = (book: any) => {
 				</div>
 
 				<div>
+				<Link to = {`/${book.id}`} {...book}>
 					<span>Author: </span>
 					<span>{book.author}</span>
+					</Link>
 				</div>
 
 				<div>

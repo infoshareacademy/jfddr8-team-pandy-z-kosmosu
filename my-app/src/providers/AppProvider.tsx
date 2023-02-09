@@ -35,7 +35,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [books, setBooks] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [resultTitle, setResultTitle] = useState('');
-	const [isLogged, setIsLogged] = useState(false);
+	const [isLogged, setIsLogged] = useState(true);
 
 	const fetchBooks = useCallback(async () => {
 		setLoading(true);
