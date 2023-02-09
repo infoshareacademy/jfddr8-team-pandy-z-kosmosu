@@ -1,5 +1,36 @@
+import { useContext } from 'react';
+import { AppContext } from '../../providers/AppProvider';
+import coverImg from '../../Graphics/cover_not_found.jpg';
+import { Book } from './Book';
+import { Loader } from '../Loader/Loader';
+import classes from './BooksList.module.css';
+
 export const BookList = () => {
-    return (
-        <div>Books list from API</div>
-    )
-}
+	const { books, loading, resultTitle } = useContext(AppContext);
+	const booksWithCovers = books.map((singleBook) => {
+		return {
+			...singleBook,
+			id: singleBook.id.replace('/works/', ''),
+			cover_img: singleBook.cover_id
+				? `https://covers.openlibrary.org/b/id/${singleBook.cover_id}-L.jpg`
+				: coverImg,
+		};
+	});
+
+	if (loading) return <Loader />;
+
+	return (
+		<section>
+			<div>
+				<div>
+					<h3>{resultTitle}</h3>
+				</div>
+				<div className={classes['books-list']}>
+					{booksWithCovers.slice(0, 30).map((item, index) => {
+						return <Book key={index} {...item} />;
+					})}
+				</div>
+			</div>
+		</section>
+	);
+};

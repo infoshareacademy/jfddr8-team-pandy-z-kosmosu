@@ -1,19 +1,40 @@
-import { useRef } from 'react';
+import { useRef, useContext, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import classes from './SearchForm.module.css'
+import { AppContext } from '../../providers/AppProvider';
+import classes from './SearchForm.module.css';
 
 export const SearchForm = () => {
+	const { setSearchTerm, setResultTitle } = useContext(AppContext);
+	const searchText = useRef<HTMLInputElement>(null);
 
-    const searchText = useRef('')
+	useEffect(() => {
+		if (searchText.current) {
+			searchText.current.focus();
+		}
+	}, []);
+	const handleSubmit = (e: React.FormEvent) => {
+		if (searchText.current) {
+			e.preventDefault();
+			let tempSearchTerm = searchText.current?.value.trim();
+			if (tempSearchTerm?.replace(/[^\w\s]/gi, '').length === 0) {
+				setSearchTerm('Harry Potter');
+				setResultTitle('Please Enter Something ...');
+			} else {
+				setSearchTerm(searchText.current.value);
+			}
+		}
+	};
 
-    return (
-        <div className={classes['search-form']}>
-            <form >
-                <input type='text' placeholder="ex. The Paul Street Boys..."/>
-                <button type='submit'>
-                <FaSearch size={32} />
-                </button>
-            </form>
-        </div>
-    )
-}
+	return (
+		<div className={classes['search-form']}>
+			<form onSubmit={handleSubmit}>
+				<div className={classes['search-form-elem']}>
+					<input type='text' placeholder='ex. Harry Potter' ref={searchText} />
+					<button type='submit'>
+						<FaSearch className={classes['search-loop']} size={32} />
+					</button>
+				</div>
+			</form>
+		</div>
+	);
+};
