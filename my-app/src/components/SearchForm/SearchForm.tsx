@@ -13,13 +13,15 @@ export const SearchForm = () => {
 		}
 	}, []);
 	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		let tempSearchTerm = searchText.current.value.trim();
-		if (tempSearchTerm.replace(/[^\w\s]/gi, '').length === 0) {
-			setSearchTerm('Harry Potter');
-			setResultTitle('Please Enter Something ...');
-		} else {
-			setSearchTerm(searchText.current.value);
+		if (searchText.current) {
+			e.preventDefault();
+			let tempSearchTerm = searchText.current?.value.trim();
+			if (tempSearchTerm?.replace(/[^\w\s]/gi, '').length === 0) {
+				setSearchTerm('Harry Potter');
+				setResultTitle('Please Enter Something ...');
+			} else {
+				setSearchTerm(searchText.current.value);
+			}
 		}
 	};
 
@@ -27,11 +29,7 @@ export const SearchForm = () => {
 		<div className={classes['search-form']}>
 			<form onSubmit={handleSubmit}>
 				<div className={classes['search-form-elem']}>
-					<input
-						type='text'
-						placeholder='ex. Harry Potter'
-						ref={searchText}
-					/>
+					<input type='text' placeholder='ex. Harry Potter' ref={searchText} />
 					<button type='submit'>
 						<FaSearch className={classes['search-loop']} size={32} />
 					</button>

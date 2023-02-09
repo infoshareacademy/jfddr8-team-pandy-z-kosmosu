@@ -49,7 +49,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 						(bookSingle: {
 							key: string;
 							author_name: string;
-							cover_i: string;
+							cover_i: number;
 							first_publish_year: number;
 							title: string;
 						}) => {
