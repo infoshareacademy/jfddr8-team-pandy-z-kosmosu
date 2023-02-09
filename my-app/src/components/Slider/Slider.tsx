@@ -22,12 +22,12 @@ const Slider = () => {
           </div>
           <div className="each-slide-effect">
           <div>
-          <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={images[1]} alt=""/>
+          <img className={classes.sliderImage} src={images[1]} alt=""/>
               </div>
           </div>
           <div className="each-slide-effect">
           <div>
-              <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={images[2]} alt=""/>
+              <img className={classes.sliderImage} src={images[2]} alt=""/>
               </div>
           </div>
       </Slide>
