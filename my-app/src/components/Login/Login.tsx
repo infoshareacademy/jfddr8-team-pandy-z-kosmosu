@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import {signInWithEmailAndPassword} from "firebase/auth";
 import { firebaseAuth } from "../../index";
-// import {handleSubmit} from "./Register/Register";
+
 
 export const Login = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
@@ -22,10 +20,9 @@ export const Login = (): JSX.Element => {
       setError(
         "Panda is not satisfied with your login or password. Please try again"
       );
-      //clearing error message from screen after 3 seconds
       setTimeout(() => {
         setError("");
-      }, 3000);
+      }, 6000);
     }
   };
 
