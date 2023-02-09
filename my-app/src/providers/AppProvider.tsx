@@ -52,9 +52,11 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [books, setBooks] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [resultTitle, setResultTitle] = useState('');
+
 	const [username, setUsername] = useState<string | null>('');
   const [listSum, setlistSum] = useState<number>(0);
   const [myBookList, setmyBookList] = useState([] as Book[]);
+
 	const [isLogged, setIsLogged] = useState(true);
 
 	const fetchBooks = useCallback(async () => {
