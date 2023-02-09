@@ -1,33 +1,38 @@
-import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
+import SliderImg1 from '../../Graphics/slider-desktop-photo-1.jpg'
+import SliderImg2 from '../../Graphics/slider-desktop-photo-2.jpg'
+import SliderImg3 from '../../Graphics/slider-desktop-photo-3.jpg'
+import classes from './Slider.module.css'
 
-const Example = () => {
+const Slider = () => {
   const images = [
-      "https://images.unsplash.com/photo-1509721434272-b79147e0e708?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
-      "https://images.unsplash.com/photo-1506710507565-203b9f24669b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1536&q=80",
-      "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80",
+    SliderImg1,
+    SliderImg2,
+    SliderImg3
   ];
 
   return (
-      <Slide>
+    <div className={classes.sliderWrapper}>
+      <Slide arrows={false}>
           <div className="each-slide-effect">
-              <div style={{ 'backgroundImage': `url(${images[0]})` }}>
-                  <span>Slide 1</span>
+              <div>
+              <img className={classes.sliderImage} src={images[0]} alt=""/>
               </div>
           </div>
           <div className="each-slide-effect">
-              <div style={{ 'backgroundImage': `url(${images[1]})` }}>
-                  <span>Slide 2</span>
+          <div>
+          <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={images[1]} alt=""/>
               </div>
           </div>
           <div className="each-slide-effect">
-              <div style={{ 'backgroundImage': `url(${images[2]})` }}>
-                  <span>Slide 3</span>
+          <div>
+              <img style={{width: '100%', height: '100%', objectFit: 'cover'}} src={images[2]} alt=""/>
               </div>
           </div>
       </Slide>
+    </div>
   );
 };
 
-export default Example;
+export default Slider;
