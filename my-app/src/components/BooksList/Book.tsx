@@ -5,19 +5,19 @@ export const Book = (book: any) => {
 	return (
 		<div className={classes.book}>
 			<div>
-				<img src={book.cover_img} alt='cover' />
+				<img className={classes.cover} src={book.cover_img} alt='cover' />
 			</div>
 			<div>
 				<div>
-					<span>Title: </span>
-					<span>{book.title}</span>
+					<Link to={`/book/${book.id}`} {...book}>
+						<span>Title: </span>
+						<span>{book.title}</span>
+					</Link>
 				</div>
 
 				<div>
-				<Link to = {`/book/${book.id}`} {...book}>
 					<span>Author: </span>
 					<span>{book.author}</span>
-					</Link>
 				</div>
 
 				<div>
