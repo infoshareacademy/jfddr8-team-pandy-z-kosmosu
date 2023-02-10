@@ -10,24 +10,24 @@ export const Register = (): JSX.Element => {
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
   const [repeatPassword, setRepeatPassword] = useState<string>("");
+  const [isPasswordError, setIsPasswordError] = useState<boolean>(false)
+  const [isUsernameError, setIsUsernameError] = useState<boolean>(false)
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (username === '') {
       setError("Please enter your email");
+      setIsUsernameError(true);
       return
     }
     if (password !== repeatPassword) {
       setError("Password is not repeated correctly.");
-      const passwordInputs = document.querySelectorAll('input[type="password"]');
-      passwordInputs.forEach((passwordInput) => {
-      console.log(passwordInput);
-      passwordInput.classList.add(classes.wrongPassword);
-      });
+      setIsPasswordError(true);
       return
     };
     if (password.length < 6) {
       setError("Your password is too short.")
+      setIsPasswordError(true);
       return
     }
     try {
@@ -36,10 +36,12 @@ export const Register = (): JSX.Element => {
     } catch ({ code, message, password, repeatPassword }) {
       if (code === "auth/email-already-in-use") {
         console.log(message);
+        setIsUsernameError(true);
         setError("There is already Panda with that login. Please try again.");
       }
       if (code === "auth/invalid-email") {
         console.log(message);
+        setIsUsernameError(true);
         setError("Your email is invalid. Please type a correct email address.");
       }
       setTimeout(() => {
@@ -55,33 +57,39 @@ export const Register = (): JSX.Element => {
         <label>Login:</label>
         <br />
         <input
+          className={isUsernameError ? classes.wrongInput : ''}
           name="login"
           type="email"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => {
+            setUsername(e.target.value)
+            setIsUsernameError(false)
+          }}
         />
         <br />
         <label>Password:</label>
         <br />
         <input
+          className={isPasswordError ? classes.wrongInput : ''}
           name="password"
           type="password"
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            e.target.classList.remove(classes.wrongPassword)
+            setIsPasswordError(false);
           }}
         />
         <br />
         <label>Repeat password:</label>
         <br />
         <input
+          className={isPasswordError ? classes.wrongInput : ''}
           name="Repeat password"
           type="password"
           value={repeatPassword}
           onChange={(e) => {
             setRepeatPassword(e.target.value);
-            e.target.classList.remove(classes.wrongPassword)
+            setIsPasswordError(false)
           }}
         />
         <br />
