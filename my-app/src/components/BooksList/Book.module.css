@@ -1,3 +1,7 @@
 .book {
     margin: 1.5rem;
 }
+
+.cover {
+    width: 200px;
+}
