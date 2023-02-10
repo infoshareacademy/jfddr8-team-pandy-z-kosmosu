@@ -46,7 +46,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [listSum, setlistSum] = useState<number>(0);
 	const [myBookList, setmyBookList] = useState([] as Book[]);
 
-	const [isLogged, setIsLogged] = useState(true);
+	const [isLogged, setIsLogged] = useState(false);
 
 	const fetchBooks = useCallback(async () => {
 		setLoading(true);

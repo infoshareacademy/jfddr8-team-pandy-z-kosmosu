@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, } from 'react';
 import { useParams } from 'react-router-dom';
 import classes from './BookDetails.module.css';
 import { Loader } from '../Loader/Loader';
@@ -15,6 +15,7 @@ export const BookDetails = () => {
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
+	
 
 	useEffect(() => {
 		setLoading(true);
@@ -101,14 +102,14 @@ export const BookDetails = () => {
 					{!isLogged && (
 						<div>
 							<div>
-								<Link className={classes.links} to='login'>
+								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
 								<span>to add to favorites :)</span>
 							</div>
 							<div>
 								<span>See comments or </span>
-								<Link className={classes.links} to='login'>
+								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
 								<span>to add one!</span>
