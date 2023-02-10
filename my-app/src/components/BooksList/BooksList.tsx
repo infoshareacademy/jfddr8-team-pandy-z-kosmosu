@@ -1,13 +1,18 @@
 import { useContext } from 'react';
-import { AppContext } from '../../providers/AppProvider';
+import { AppContext, BookToFav } from '../../providers/AppProvider';
 import coverImg from '../../Graphics/cover_not_found.jpg';
 import { Book } from './Book';
 import { Loader } from '../Loader/Loader';
 import classes from './BooksList.module.css';
 
-export const BookList = () => {
+type BookListProps = {
+	addToFav: (product: BookToFav) => void;
+}
+
+export const BookList = ({addToFav}: BookListProps) => {
 	const { books, loading, resultTitle } = useContext(AppContext);
 	const booksWithCovers = books.map((singleBook) => {
+
 		return {
 			...singleBook,
 			id: singleBook.id.replace('/works/', ''),
@@ -27,7 +32,7 @@ export const BookList = () => {
 				</div>
 				<div className={classes['books-list']}>
 					{booksWithCovers.slice(0, 30).map((item, index) => {
-						return <Book key={index} {...item} />;
+						return <Book key={index} {...item} addToFav={addToFav}/>;
 					})}
 				</div>
 			</div>

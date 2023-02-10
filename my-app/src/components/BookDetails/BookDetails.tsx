@@ -15,6 +15,9 @@ export const BookDetails = () => {
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
+
+
+	
 	
 
 	useEffect(() => {

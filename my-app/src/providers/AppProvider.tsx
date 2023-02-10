@@ -1,7 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { useCallback } from 'react';
+import { getDoc, doc, setDoc } from 'firebase/firestore';
+import { firebaseAuth, firebaseDb } from '../index';
 
 const URL = 'http://openlibrary.org/search.json?title=';
+
+export type BookToFav = {
+	id: number;
+	title: string;
+};
 
 export type Book = {
 	id: string;
@@ -24,10 +31,11 @@ type AppContextState = {
 	setUsername: (username: string | null) => void;
 	listSum: number;
 	setlistSum: (value: number) => void;
-	myBookList: Book[];
-	setmyBookList: (books: Book[]) => void;
+	myBookList: BookToFav[];
+	setmyBookList: (books: BookToFav[]) => void;
 	isLogged: boolean;
 	setIsLogged: (param: boolean) => void;
+	addToFav: (product: BookToFav) => void;
 };
 
 type AppProviderProps = {
@@ -44,9 +52,22 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 
 	const [username, setUsername] = useState<string | null>('');
 	const [listSum, setlistSum] = useState<number>(0);
-	const [myBookList, setmyBookList] = useState([] as Book[]);
+	const [myBookList, setmyBookList] = useState([] as BookToFav[]);
 
 	const [isLogged, setIsLogged] = useState(false);
+
+	const addToFav = async (product: BookToFav): Promise<void> => {
+		try {
+			await setDoc(doc(firebaseDb, 'MyList', `${username}`), {
+				products: [...myBookList, product],
+			});
+			setmyBookList([...myBookList, product]);
+			console.log('Dodałam');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	console.log(myBookList);
 
 	const fetchBooks = useCallback(async () => {
 		setLoading(true);
@@ -121,6 +142,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 				setResultTitle,
 				setIsLogged,
 				isLogged,
+				addToFav,
 			}}>
 			{children}
 		</AppContext.Provider>
