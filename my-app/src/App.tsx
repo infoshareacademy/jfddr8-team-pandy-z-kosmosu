@@ -12,6 +12,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { firebaseAuth, firebaseDb } from "./index";
 import { BookDetails } from "./components/BookDetails/BookDetails";
 import { AppContext} from './providers/AppProvider';
+import { Logout } from "./components/Logout/Logout";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
       <Footer />
     </div>

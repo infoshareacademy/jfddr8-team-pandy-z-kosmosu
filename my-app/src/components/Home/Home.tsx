@@ -1,8 +1,11 @@
 import { BookDetails } from '../BookDetails/BookDetails';
 import { BookList } from '../BooksList/BooksList';
+import { Logout } from '../Logout/Logout';
 import { SearchForm } from '../SearchForm/SearchForm';
 import Slider from '../Slider/Slider';
 import classes from './Home.module.css';
+import { useContext } from 'react';
+import { AppContext } from '../../providers/AppProvider';
 
 export const Home = (): JSX.Element => {
 	return (

@@ -22,6 +22,7 @@ export const Navbar = (): JSX.Element => {
       console.log(error);
     }
     setIsLogged(false);
+    navigate('/logout')
   };
 
   return (
