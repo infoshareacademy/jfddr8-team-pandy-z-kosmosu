@@ -11,9 +11,12 @@ export const Register = (): JSX.Element => {
   const navigate = useNavigate();
   const [repeatPassword, setRepeatPassword] = useState<string>("");
 
-
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
+    if (username === '') {
+      setError("Please enter your email");
+      return
+    }
     if (password !== repeatPassword) {
       setError("Password is not repeated correctly.");
       const passwordInputs = document.querySelectorAll('input[type="password"]');
@@ -23,6 +26,10 @@ export const Register = (): JSX.Element => {
       });
       return
     };
+    if (password.length < 6) {
+      setError("Your password is too short.")
+      return
+    }
     try {
       await createUserWithEmailAndPassword(firebaseAuth, username, password);
       navigate("/");
@@ -30,6 +37,10 @@ export const Register = (): JSX.Element => {
       if (code === "auth/email-already-in-use") {
         console.log(message);
         setError("There is already Panda with that login. Please try again.");
+      }
+      if (code === "auth/invalid-email") {
+        console.log(message);
+        setError("Your email is invalid. Please type a correct email address.");
       }
       setTimeout(() => {
         setError("");
@@ -56,7 +67,10 @@ export const Register = (): JSX.Element => {
           name="password"
           type="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            e.target.classList.remove(classes.wrongPassword)
+          }}
         />
         <br />
         <label>Repeat password:</label>
@@ -65,7 +79,10 @@ export const Register = (): JSX.Element => {
           name="Repeat password"
           type="password"
           value={repeatPassword}
-          onChange={(e) => setRepeatPassword(e.target.value)}
+          onChange={(e) => {
+            setRepeatPassword(e.target.value);
+            e.target.classList.remove(classes.wrongPassword)
+          }}
         />
         <br />
         <br />
