@@ -29,8 +29,8 @@ export const SearchForm = () => {
 		<div className={classes['search-form']}>
 			<form onSubmit={handleSubmit}>
 				<div className={classes['search-form-elem']}>
-					<input type='text' placeholder='ex. Harry Potter' ref={searchText} />
-					<button type='submit'>
+					<input className={classes.input} type='text' placeholder='ex. Harry Potter' ref={searchText} />
+					<button className={classes.button} type='submit'>
 						<FaSearch className={classes['search-loop']} size={32} />
 					</button>
 				</div>

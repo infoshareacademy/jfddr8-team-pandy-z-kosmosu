@@ -21,7 +21,7 @@ export const Register = (): JSX.Element => {
       }
       setTimeout(() => {
         setError("");
-      }, 3000);
+      }, 6000);
     }
   };
 

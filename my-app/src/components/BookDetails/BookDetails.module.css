@@ -1,0 +1,16 @@
+.card-book {
+	display: flex;
+	padding: 2rem 2rem;
+}
+
+.cover-img {
+	padding-right: 1rem;
+}
+
+.panda-img {
+    width: 30px;
+}
+
+.box-panda {
+    padding: 0.8rem 0;
+}

@@ -7,9 +7,10 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../../index";
 import { AppContext } from "../../providers/AppProvider";
+// import {App} from "../"
 
 export const Navbar = (): JSX.Element => {
-  const {isLogged} = useContext(AppContext)
+  const {isLogged, setIsLogged, username} = useContext(AppContext)
   const navigate = useNavigate();
 
   const handleLogout = async (): Promise<void> => {
@@ -20,6 +21,7 @@ export const Navbar = (): JSX.Element => {
     } catch (error) {
       console.log(error);
     }
+    setIsLogged(false);
   };
 
   return (
@@ -42,7 +44,7 @@ export const Navbar = (): JSX.Element => {
           Log out
         </Link>}
         {isLogged && <img src={logoUser} className={classes['logo-user']}></img>}
-        {isLogged && <span>Hello, User!</span>}
+        {isLogged && <span>Hello, {username}!</span>}
       </div>
     </div>
   );
