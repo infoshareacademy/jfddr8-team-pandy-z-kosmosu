@@ -1,7 +1,14 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useCallback } from "react";
+import { getDoc, doc, setDoc } from "firebase/firestore";
+import { firebaseAuth, firebaseDb } from "../index";
 
 const URL = "http://openlibrary.org/search.json?title=";
+
+export type BookToFav = {
+  id: number;
+  title: string;
+};
 
 export type Book = {
   id: string;
