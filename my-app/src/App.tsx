@@ -1,6 +1,5 @@
-import React from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { Routes, Route} from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 import { Home } from './components/Home/Home';
 import { MyBookList } from './components/MyBooks/MyBooksList';
 import { Login } from './components/Login/Login';
@@ -15,14 +14,12 @@ import { AppContext } from './providers/AppProvider';
 
 function App() {
 	const {
-		username,
 		setUsername,
 		myBookList,
 		setmyBookList,
 		setIsLogged,
 		books,
 	} = useContext(AppContext);
-	const navigate = useNavigate();
 
 	useEffect((): void => {
 		onAuthStateChanged(firebaseAuth, async (user) => {
@@ -30,24 +27,18 @@ function App() {
 				const userEmail = user.email;
 				setUsername(userEmail);
 				setIsLogged(true);
-				console.log(userEmail);
 				const docRef = doc(firebaseDb, 'MyList', `${user.email}`);
 				const docSnap = await getDoc(docRef);
 				if (docSnap.exists()) {
 					const data = docSnap.data();
-					console.log(data);
-					setmyBookList(data.products);
+					setmyBookList(data.books);
 				}
 			} else {
 				setUsername('');
 				// setmyBookList([]);
 			}
 		});
-	}, [setmyBookList, setUsername, books]);
-
-	const removeFromFav = (bookId: number) => {
-		console.log('usunięta');
-	};
+	}, [setmyBookList, setUsername, setIsLogged, books]);
 
 	return (
 		<div>
@@ -56,12 +47,7 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route
 					path='/mybooks'
-					element={
-						<MyBookList
-							myBooksList={myBookList}
-							removeFromFav={removeFromFav}
-						/>
-					}
+					element={<MyBookList myBooksList={myBookList} />}
 				/>
 				<Route path='/login' element={<Login />} />
 				<Route path='/register' element={<Register />} />

@@ -7,21 +7,27 @@ import { MyBook } from './MyBook';
 
 type MyBooksProps = {
 	myBooksList: BookToFav[];
-	removeFromFav: (bookId: number) => void;
 };
 
-export const MyBookList = ({
-	removeFromFav,
-	myBooksList,
-}: MyBooksProps): JSX.Element => {
-	console.log(myBooksList);
+export const MyBookList = ({ myBooksList }: MyBooksProps): JSX.Element => {
+	const { resultMyBooks } = useContext(AppContext);
 
 	return (
 		<>
-			<h2>MyBookList</h2>
-			{myBooksList.map((item) => (
-				<MyBook key={item.id} item={item} removeFromFav={removeFromFav} />
-			))}
+			<div className={styles.pic}>
+				<h1>MY BOOKS</h1>
+			</div>
+			<div className={styles.searching}>
+				<SearchForm />
+			</div>
+			<div className={styles.title}>
+				<h3>{resultMyBooks}</h3>
+			</div>
+			<div className={styles['fav-container']}>
+				{myBooksList.map((item) => (
+					<MyBook key={item.id} item={item} />
+				))}
+			</div>
 		</>
 	);
 };

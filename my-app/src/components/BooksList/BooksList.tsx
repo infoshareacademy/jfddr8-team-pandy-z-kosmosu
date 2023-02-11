@@ -7,12 +7,11 @@ import classes from './BooksList.module.css';
 
 type BookListProps = {
 	addToFav: (product: BookToFav) => void;
-}
+};
 
-export const BookList = ({addToFav}: BookListProps) => {
+export const BookList = ({ addToFav }: BookListProps) => {
 	const { books, loading, resultTitle } = useContext(AppContext);
 	const booksWithCovers = books.map((singleBook) => {
-
 		return {
 			...singleBook,
 			id: singleBook.id.replace('/works/', ''),
@@ -32,7 +31,7 @@ export const BookList = ({addToFav}: BookListProps) => {
 				</div>
 				<div className={classes['books-list']}>
 					{booksWithCovers.slice(0, 30).map((item, index) => {
-						return <Book key={index} {...item} addToFav={addToFav}/>;
+						return <Book key={index} {...item} addToFav={addToFav} />;
 					})}
 				</div>
 			</div>

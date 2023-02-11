@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
 import { useContext } from 'react';
-import { AppContext, BookToFav } from '../../providers/AppProvider';
+import { AppContext } from '../../providers/AppProvider';
 
 export const Book = (book: any) => {
-	const { myBookList, addToFav, isLogged } = useContext(AppContext);
+	const { addToFav, isLogged } = useContext(AppContext);
 
 	return (
 		<div className={classes.book}>
@@ -31,7 +31,11 @@ export const Book = (book: any) => {
 				{isLogged && (
 					<button
 						onClick={() =>
-							addToFav({ title: book.title, id: myBookList.length + 1 })
+							addToFav({
+								title: book.title,
+								cover_img: book.cover_img,
+								id: book.id,
+							})
 						}>
 						Add to favorite
 					</button>
