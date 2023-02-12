@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
 import { useContext } from 'react';
-import { AppContext } from '../../providers/AppProvider';
+import { AppContext} from '../../providers/AppProvider';
 
 export const Book = (book: any) => {
 	const { addToFav, isLogged } = useContext(AppContext);

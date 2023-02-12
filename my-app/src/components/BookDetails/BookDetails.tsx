@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const URL = 'https://openlibrary.org/works/';
 
 export const BookDetails = () => {
-	const { isLogged, addToFav, myBookList } = useContext(AppContext);
+	const { isLogged, addToFav } = useContext(AppContext);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
@@ -60,8 +60,6 @@ export const BookDetails = () => {
 		getBookDetails();
 	}, [id]);
 
-	console.log(book)
-
 	if (loading) return <Loader />;
 
 	return (
@@ -91,17 +89,21 @@ export const BookDetails = () => {
 						<div>
 							<button
 								onClick={() =>
-									addToFav({ title: book.title, cover_img: book.cover_img, id:book.id })
+									addToFav({
+										title: book.title,
+										cover_img: book.cover_img,
+										id: book.id,
+									})
 								}>
 								Add to favorites
 							</button>
 							<button>Go to comments...</button>
 							<div className={classes['box-panda']}>
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaHalf} />
+								<img className={classes['panda-img']} src={pandaFull} alt=''/>
+								<img className={classes['panda-img']} src={pandaFull} alt=''/>
+								<img className={classes['panda-img']} src={pandaFull} alt=''/>
+								<img className={classes['panda-img']} src={pandaFull} alt=''/>
+								<img className={classes['panda-img']} src={pandaHalf} alt=''/>
 							</div>
 						</div>
 					)}

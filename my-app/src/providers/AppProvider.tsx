@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useCallback } from 'react';
 import { doc, setDoc } from 'firebase/firestore';
 import { firebaseDb } from '../index';
+import { Book } from '../components/BooksList/Book';
 
 const URL = 'http://openlibrary.org/search.json?title=';
 
