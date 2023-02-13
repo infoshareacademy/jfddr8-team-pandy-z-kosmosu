@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const URL = 'https://openlibrary.org/works/';
 
 export const BookDetails = () => {
-	const { isLogged, addToFav } = useContext(AppContext);
+	const { isLogged, addToFav, myBookList } = useContext(AppContext);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
@@ -87,7 +87,7 @@ export const BookDetails = () => {
 					</div>
 					{isLogged && (
 						<div>
-							<button
+							<button disabled={myBookList.some(singleBook => singleBook.id === book.id)}
 								onClick={() =>
 									addToFav({
 										title: book.title,
