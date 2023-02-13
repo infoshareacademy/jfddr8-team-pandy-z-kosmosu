@@ -11,7 +11,7 @@ export function Conversation() {
   const [messages, setMessages] = useState([]);
   
   useEffect(() => {
-    const messagesCollection = collection(firebaseDb, "conversations", id, 'messages');
+    const messagesCollection = collection (firebaseDb, "conversations", id, 'messages');
     const orderedQuery = query(messagesCollection, orderBy('createdAt'));
     const unsubscribe = onSnapshot(orderedQuery, data => {
       const newMessages = data.docs.map(doc => {

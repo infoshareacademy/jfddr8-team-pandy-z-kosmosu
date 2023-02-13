@@ -4,14 +4,19 @@ import { useRef } from "react";
 import { firebaseDb } from "../../index";
 import { Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
+import {MyComment} from '../../providers/AppProvider';
 
-export function NewMessage({ id }) {
+type NewMessageProps = {
+  id: MyComment [];
+}
+
+export const NewMessage =({ id}: NewMessageProps): JSX.Element => {
   const firstInputRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const { user, message } = event.currentTarget.elements;
-    addDoc(collection(firebaseDb, "conversations", id, "messages"), {
+    addDoc(collection(firebaseDb, "conversations", `${id}`, "messages"), {
       createdAt: Date.now(),
       message: message.value,
       user: user.value,

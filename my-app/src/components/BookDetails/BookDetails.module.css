@@ -22,3 +22,7 @@
 .btn-add-to-fav::after {
 	content: 'Add to favourite';
 }
+
+.comment-box {
+	border: 1px solid black;
+}

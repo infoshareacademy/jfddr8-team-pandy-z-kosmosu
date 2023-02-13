@@ -26,6 +26,8 @@ export function ConversationList() {
       )
     );
 
+
+    
     return unsubscribe;
   }, []);
 
@@ -51,7 +53,7 @@ export function ConversationList() {
             alignItems: "center",
           }}
         >
-          Konwersacje <NewConversation />
+          Comments list<NewConversation />
         </ListSubheader>
         {conversations.map((conversation) => (
           <ListItem
