@@ -92,7 +92,7 @@ export const Footer = () => {
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/olga-kaca%C5%82a-7b402b140/">
+          <a href="https://www.linkedin.com/in/olga-kacala/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
