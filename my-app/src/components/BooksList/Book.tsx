@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../../providers/AppProvider';
 
 export const Book = (book: any) => {
@@ -39,9 +39,7 @@ export const Book = (book: any) => {
 								cover_img: book.cover_img,
 								id: book.id,
 							})
-						}>
-						Add to favorite
-					</button>
+						}></button>
 				)}
 			</div>
 		</div>

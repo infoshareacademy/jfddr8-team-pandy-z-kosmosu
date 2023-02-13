@@ -14,3 +14,11 @@
 .box-panda {
     padding: 0.8rem 0;
 }
+
+.btn-add-to-fav:disabled::after {
+	content: 'Already added';
+}
+
+.btn-add-to-fav::after {
+	content: 'Add to favourite';
+}
