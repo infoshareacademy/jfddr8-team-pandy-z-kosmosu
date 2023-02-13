@@ -87,23 +87,25 @@ export const BookDetails = () => {
 					</div>
 					{isLogged && (
 						<div>
-							<button disabled={myBookList.some(singleBook => singleBook.id === book.id)}
+							<button
+								className={classes['btn-add-to-fav']}
+								disabled={myBookList.some(
+									(singleBook) => singleBook.id === book.id
+								)}
 								onClick={() =>
 									addToFav({
 										title: book.title,
 										cover_img: book.cover_img,
 										id: book.id,
 									})
-								}>
-								Add to favorites
-							</button>
+								}></button>
 							<button>Go to comments...</button>
 							<div className={classes['box-panda']}>
-								<img className={classes['panda-img']} src={pandaFull} alt=''/>
-								<img className={classes['panda-img']} src={pandaFull} alt=''/>
-								<img className={classes['panda-img']} src={pandaFull} alt=''/>
-								<img className={classes['panda-img']} src={pandaFull} alt=''/>
-								<img className={classes['panda-img']} src={pandaHalf} alt=''/>
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaHalf} alt='' />
 							</div>
 						</div>
 					)}
