@@ -1,20 +1,19 @@
-import { BookToFav } from '../../providers/AppProvider';
+import { AppContext, BookToFav } from '../../providers/AppProvider';
+import { useContext } from 'react';
+import classes from './MyBook.module.css';
 
 type MyBookProps = {
 	item: BookToFav;
-	removeFromFav: (bookId: number) => void;
 };
 
-export const MyBook = ({ item, removeFromFav }: MyBookProps): JSX.Element => {
-	console.log(item);
+export const MyBook = ({ item }: MyBookProps): JSX.Element => {
+	const { removeFromFav } = useContext(AppContext);
 
 	return (
-		<div>
-			<h2>MyBook</h2>
-			<h3>{item.title}</h3>
-			<button onClick={() => removeFromFav(item.id)}>
-				Remove from favorite
-			</button>
+		<div className={classes['single-book']}>
+			<img className={classes['cover-img']} src={item.cover_img} alt='' />
+			<p>{item.title}</p>
+			<button onClick={() => removeFromFav(item.id)}>Delete X</button>
 		</div>
 	);
 };

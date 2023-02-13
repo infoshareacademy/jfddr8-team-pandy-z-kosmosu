@@ -1,7 +1,37 @@
 .book {
-    margin: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-direction: column;
+	margin: 1.5rem;
+	padding: 0.8rem 1rem;
+	width: 200px;
+	height: 450px;
+	border: 2px solid gray;
+	border-radius: 10px;
+	box-shadow: 0 0 3px 3px rgba(155, 155, 155, 0.279);
+	transition: 0.2s;
+}
+
+.book:hover {
+	box-shadow: 0 0 3px 3px rgba(82, 81, 81, 0.279);
+	transform: scale(1.05);
+}
+
+.book button {
+	margin-top: 0.3rem;
+	padding: 0.3rem 0.6rem;
+	width: 120px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.book button:hover {
+	background-color: rgb(189, 184, 184);
 }
 
 .cover {
-    width: 200px;
+	width: 200px;
+	height: 300px;
 }
