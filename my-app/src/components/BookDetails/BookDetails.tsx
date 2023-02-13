@@ -8,6 +8,12 @@ import pandaHalf from '../../Graphics/panda-half-mark.jpg';
 import { AppContext } from '../../providers/AppProvider';
 import { Link } from 'react-router-dom';
 
+import { Typography } from "@mui/material";
+import { Box, Stack } from "@mui/system";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Conversation } from "../Conversation/index";
+import { ConversationList } from "../Conversation-list/index";
+
 const URL = 'https://openlibrary.org/works/';
 
 export const BookDetails = () => {
@@ -97,13 +103,25 @@ export const BookDetails = () => {
 								}>
 								Add to favorites
 							</button>
-							<button>Go to comments...</button>
+							<button>Leave a comment...</button>
 							<div className={classes['box-panda']}>
 								<img className={classes['panda-img']} src={pandaFull} alt=''/>
 								<img className={classes['panda-img']} src={pandaFull} alt=''/>
 								<img className={classes['panda-img']} src={pandaFull} alt=''/>
 								<img className={classes['panda-img']} src={pandaFull} alt=''/>
 								<img className={classes['panda-img']} src={pandaHalf} alt=''/>
+							</div>
+							<div>
+								Did you like this book? 
+								<Stack sx={{ height: "calc(100% - 48px)", gap: "24px", padding: "24px" }} direction="row">
+        <Box sx={{ flexGrow: 1 }}>
+          <Routes>
+            <Route element={<Typography variant="h4">Select a conversation :)</Typography>} path="/" />
+            <Route element={<Conversation />} path=":id" />
+          </Routes>
+          </Box>
+        <ConversationList />
+      </Stack>
 							</div>
 						</div>
 					)}
