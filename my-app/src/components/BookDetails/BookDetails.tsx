@@ -78,42 +78,42 @@ export const BookDetails = () => {
                 alt="cover img"
               />
             </div>
-            <div className={classes.content}>
+            <div className={styles.info}>
               <div>
                 <span>
-                  <b>Title:</b>{" "}
+                  <b>Title:</b>
                 </span>
-                <span>{book.title}</span>
+                <p>{book.title}</p>
               </div>
               <div>
                 <span>
                   <b>Author:</b>{" "}
                 </span>
-                <span>{book.author}</span>
+                <p>{book.author}</p>
               </div>
               <div>
                 <span>
                   <b>First Publish Year:</b>{" "}
                 </span>
-                <span>{book.first_publish_year}</span>
+                <p>{book.first_publish_year}</p>
               </div>
               <div>
                 <span>
                   <b>Description:</b>{" "}
                 </span>
-                <span>{book.description}</span>
+                <p>{book.description}</p>
               </div>
               <div>
                 <span>
                   <b>Subject Places:</b>{" "}
                 </span>
-                <span>{book.subject_places}</span>
+                <p>{book.subject_places}</p>
               </div>
               <div>
                 <span>
                   <b>Subject Times: </b>
                 </span>
-                <span>{book.subject_times}</span>
+                <p>{book.subject_times}</p>
               </div>
               {isLogged && (
                 <div className={styles.buttons}>
@@ -154,9 +154,9 @@ export const BookDetails = () => {
         </div>
       </section>
 
-      <p>
+      <span>
         <h2>Intrested in ....? See our recommendations</h2>
-      </p>
+      </span>
 
       <section className={styles.recommendations}>
         <div className={styles.booksproposition}>
@@ -165,6 +165,7 @@ export const BookDetails = () => {
             src="https://covers.openlibrary.org/b/id/10523466-L.jpg"
             alt="cover"
           ></img>
+
           <p>
             {" "}
             <b>Title:</b> Harry Potter and the Order of the Phoenix
@@ -216,13 +217,14 @@ export const BookDetails = () => {
 
       <section className={styles.commentsarea}>
         <div className={styles.comments}>
-          <p>
-            <h4>Comments:</h4>
-          </p>
+          <div className={styles.titlecomment}>
+            <h3>Comments:</h3>
+          </div>
 
           <div className={styles.typecomment}>
-            <img className={styles.pandacomment} src={userIcon}></img>type
-            comment here <button> add</button>
+            <img className={styles.pandacomment} src={userIcon}></img>
+            <div className={styles.typecomment}>type comment as User...</div>
+            <button className={styles.buttonadd}> ADD</button>
           </div>
           <div className={styles.comment}>
             <p>Panda wrote on 02.07.2022:</p>
@@ -232,7 +234,10 @@ export const BookDetails = () => {
             <p> DJ Pandex wrote on 02.07.2022:</p>
             <p> "I don't like book, is very sad :(" </p>
           </div>
-          <p> See more...</p>
+          <p>
+            {" "}
+            <h3>See more...</h3>
+          </p>
         </div>
       </section>
     </section>

@@ -54,15 +54,11 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [resultTitle, setResultTitle] = useState("");
-  const [searchTerm, setSearchTerm] = useState("Harry Potter");
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [resultTitle, setResultTitle] = useState("");
   const [resultMyBooks, setResultMyBooks] = useState("");
 
   const [username, setUsername] = useState<string | null>("");
   const [listSum, setlistSum] = useState<number>(0);
-  const [myBookList, setmyBookList] = useState([] as Book[]);
+  const [myBookList, setmyBookList] = useState([] as BookToFav[]);
 
   const [isLogged, setIsLogged] = useState(false);
 

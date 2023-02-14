@@ -107,8 +107,8 @@ div {
 }
 
 .pandacomment {
-  width: 30px;
-  height: 40px;
+  width: 20px;
+  height: 30px;
 }
 
 .comment {
@@ -119,6 +119,8 @@ div {
   margin-bottom: 10px;
   padding-bottom: 10px;
   box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.279);
+  margin-left: 60px;
+  text-align: start;
 }
 
 .buttons {
@@ -136,4 +138,42 @@ div {
   border: none;
   background: white;
   font-size: smaller;
+  font-style: italic;
+}
+
+p {
+  font-style: italic;
+  color: gray;
+  font-size: smaller;
+  text-align: start;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.info {
+  width: 500px;
+}
+
+.titlecomment {
+  margin-left: 20px;
+}
+
+.typecomment {
+  margin-left: 70px;
+  display: flex;
+  /* justify-content: space-around; */
+  width: 600px;
+  text-decoration: underline;
+}
+
+.buttonadd {
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  width: 150px;
+  height: 25px;
+  padding: 5px;
+  font-size: smaller;
+  font-style: italic;
+  margin-bottom: 20px;
 }
