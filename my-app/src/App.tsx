@@ -64,6 +64,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/book/:id" element={<BookDetails />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </div>
