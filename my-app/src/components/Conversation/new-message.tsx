@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { firebaseDb } from "../../index";
 import { Button, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
-import {MyComment} from '../../providers/AppProvider';
+import {MyComment} from '../BookDetails/BookDetails';
 
 type NewMessageProps = {
-  id: MyComment [];
+  id: MyComment [],
 }
 
 export const NewMessage =({ id}: NewMessageProps): JSX.Element => {

@@ -8,11 +8,10 @@ import pandaHalf from "../../Graphics/panda-half-mark.jpg";
 import { AppContext } from "../../providers/AppProvider";
 import { Link } from "react-router-dom";
 
-import { Typography } from "@mui/material";
-import { Box, Stack } from "@mui/system";
-import {Route, Routes } from "react-router-dom";
-import { Conversation } from "../Conversation/index";
-import { ConversationList } from "../Conversation-list/index";
+import { collection, addDoc } from "firebase/firestore";
+import { useRef } from "react";
+import { Button, TextField } from "@mui/material";
+import { Stack } from "@mui/system";
 import { firebaseDb } from '../../index';
 import { doc, setDoc } from 'firebase/firestore';
 import {Comment} from './Comment';
@@ -24,7 +23,10 @@ export type MyComment = {
 	CreatedAt: number,
 	message: string,
 	user: string,
+}
 
+export type NewMessageProps = {
+  id: MyComment [],
 }
 
 export const BookDetails = () => {
@@ -34,7 +36,6 @@ export const BookDetails = () => {
   const [book, setBook] = useState<any>("");
   const [myMessagesList, setmyMessagesList] = useState ([] as MyComment[]);
 
-  
   useEffect(() => {
     setLoading(true);
     async function getBookDetails() {
@@ -79,7 +80,7 @@ export const BookDetails = () => {
     getBookDetails();
   }, [id]);
 
-  const addToComment = async (product: MyComment): Promise<void> => {
+ const addToComment = async (product: MyComment): Promise<void> => {
     	try {
     		await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
     			messages: [...myMessagesList, product],
@@ -92,7 +93,32 @@ export const BookDetails = () => {
     	}
     };
     console.log(myMessagesList);
+
+    // export const NewMessage =({ id}: NewMessageProps): JSX.Element => {
+    //   const firstInputRef = useRef(null);
+
+    function NewMessage({ id }) {
+      const firstInputRef = useRef(null);
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        const { user, message } = event.currentTarget.elements;
+        addDoc(collection(firebaseDb, "conversations", `${id}`, "messages"), {
+          CreatedAt: Date.now(),
+          message: message.value,
+          user: user.value,
+        });
+        message.value = "";
+        firstInputRef.current.focus();
+      }}
+    
+
   if (loading) return <Loader />;
+
+  
+  
+      
+
 
   return (
     <section>
@@ -152,8 +178,29 @@ export const BookDetails = () => {
                     <Comment key={item.id} item={item} />
                 ))}
             </div>
+
+{/* <Stack sx={{ marginTop: "24px" }} component="form" onSubmit={handleSubmit}>
+      <TextField
+        autoFocus
+        inputRef={firstInputRef}
+        fullWidth
+        name="message"
+        required
+        label="Wiadomość"
+      />
+      <TextField
+        sx={{ margin: "24px 0" }}
+        fullWidth
+        name="author"
+        required
+        label="Autor"
+      />
+      <Button variant="outlined" type="submit">
+        Dodaj
+      </Button>
+    </Stack> */}
                 
-                <Stack
+                {/* <Stack
                   sx={{
                     height: "calc(100% - 48px)",
                     gap: "24px",
@@ -176,7 +223,7 @@ export const BookDetails = () => {
                     </Routes>
                   </Box>
                   <ConversationList />
-                </Stack>
+                </Stack> */}
               </div>
             </div>
           )}
