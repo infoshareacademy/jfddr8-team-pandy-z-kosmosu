@@ -13,15 +13,28 @@ import { Box, Stack } from "@mui/system";
 import {Route, Routes } from "react-router-dom";
 import { Conversation } from "../Conversation/index";
 import { ConversationList } from "../Conversation-list/index";
+import { firebaseDb } from '../../index';
+import { doc, setDoc } from 'firebase/firestore';
+import {Comment} from './Comment';
 
 const URL = "https://openlibrary.org/works/";
 
+export type MyComment = {
+	id: string,
+	CreatedAt: number,
+	message: string,
+	user: string,
+
+}
+
 export const BookDetails = () => {
-  const { isLogged, addToFav, myBookList } = useContext(AppContext);
+  const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState<any>("");
+  const [myMessagesList, setmyMessagesList] = useState ([] as MyComment[]);
 
+  
   useEffect(() => {
     setLoading(true);
     async function getBookDetails() {
@@ -66,6 +79,19 @@ export const BookDetails = () => {
     getBookDetails();
   }, [id]);
 
+  const addToComment = async (product: MyComment): Promise<void> => {
+    	try {
+    		await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
+    			messages: [...myMessagesList, product],
+    		});
+    		setmyMessagesList([...myMessagesList, product]);
+    		console.log('dodano kom');
+        
+    	} catch (error) {
+    		console.log(error);
+    	}
+    };
+    console.log(myMessagesList);
   if (loading) return <Loader />;
 
   return (
@@ -106,7 +132,13 @@ export const BookDetails = () => {
                   })
                 }
               ></button>
-              <button>Go to comments...</button>
+              <button onClick={() =>
+                            addToComment({
+      createdAt: Date.now(),
+      message: 'hejo',
+      user: username,
+      id: book.id,
+                            })}>Go to comments...</button>
               <div className={classes["box-panda"]}>
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
@@ -115,7 +147,12 @@ export const BookDetails = () => {
                 <img className={classes["panda-img"]} src={pandaHalf} alt="" />
               </div>
               <div className={classes["comment-box"]}>
-                Did you like this book?
+              <div>
+                {myMessagesList.map((item) => (
+                    <Comment key={item.id} item={item} />
+                ))}
+            </div>
+                
                 <Stack
                   sx={{
                     height: "calc(100% - 48px)",
@@ -129,12 +166,13 @@ export const BookDetails = () => {
                       <Route
                         element={
                           <Typography variant="h4">
-                            Select a conversation :)
+                            
                           </Typography>
                         }
                         path="/"
                       />
-                      <Route element={<Conversation />} path='/book/:id' />
+                      <Route element={<Conversation />} path='/book/:id/*' />
+                    
                     </Routes>
                   </Box>
                   <ConversationList />

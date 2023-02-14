@@ -3,16 +3,11 @@ import { useCallback } from 'react';
 import { doc, setDoc } from 'firebase/firestore';
 import { firebaseDb } from '../index';
 import { Book } from '../components/BooksList/Book';
+import { useParams } from 'react-router-dom';
 
 const URL = 'http://openlibrary.org/search.json?title=';
 
-export type MyComment = {
-	id: string,
-	createdAt: number,
-	message: string,
-	user: string,
 
-}
 
 export type BookToFav = {
 	id: string;
@@ -63,12 +58,14 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [loading, setLoading] = useState(true);
 	const [resultTitle, setResultTitle] = useState('');
 	const [resultMyBooks, setResultMyBooks] = useState('');
-
+	
 	const [username, setUsername] = useState<string | null>('');
 	const [listSum, setlistSum] = useState<number>(0);
 	const [myBookList, setmyBookList] = useState([] as BookToFav[]);
 
 	const [isLogged, setIsLogged] = useState(false);
+
+
 
 	const addToFav = async (product: BookToFav): Promise<void> => {
 		try {
