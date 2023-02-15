@@ -13,10 +13,12 @@ import userIcon from "../../Graphics/User-icon.png";
 const URL = "https://openlibrary.org/works/";
 
 export const BookDetails = () => {
-  const { isLogged } = useContext(AppContext);
-  const { id } = useParams();
-  const [loading, setLoading] = useState(false);
-  const [book, setBook] = useState<any>("");
+
+	const { isLogged, addToFav, myBookList } = useContext(AppContext);
+	const { id } = useParams();
+	const [loading, setLoading] = useState(false);
+	const [book, setBook] = useState<any>('');
+
 
   useEffect(() => {
     setLoading(true);
@@ -63,6 +65,7 @@ export const BookDetails = () => {
   }, [id]);
 
   if (loading) return <Loader />;
+
 
   return (
     <section className={styles.page}>
@@ -241,5 +244,5 @@ export const BookDetails = () => {
         </div>
       </section>
     </section>
-  );
+  );	
 };
