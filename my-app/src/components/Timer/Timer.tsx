@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const Timer = () => {
-  const [counter, setCounter] = useState(5);
+const Timer = ():JSX.Element => {
+  const [counter, setCounter] = useState<number>(5);
 
   useEffect(() => {
     const interval = setInterval(() => {
