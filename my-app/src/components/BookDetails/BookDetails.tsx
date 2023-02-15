@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import classes from "./BookDetails.module.css";
 import { Loader } from "../Loader/Loader";
@@ -8,33 +8,32 @@ import pandaHalf from "../../Graphics/panda-half-mark.jpg";
 import { AppContext } from "../../providers/AppProvider";
 import { Link } from "react-router-dom";
 
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, setDoc } from "firebase/firestore";
 import { useRef } from "react";
-import { Button, TextField } from "@mui/material";
-import { Stack } from "@mui/system";
+
 import { firebaseDb } from '../../index';
-import { doc, setDoc } from 'firebase/firestore';
 import {Comment} from './Comment';
 
 const URL = "https://openlibrary.org/works/";
 
 export type MyComment = {
-	id: string,
+	id: number,
 	CreatedAt: number,
 	message: string,
-	user: string,
+	user: string | null,
 }
 
 export type NewMessageProps = {
   id: MyComment [],
 }
 
-export const BookDetails = () => {
+export const BookDetails = (): JSX.Element => {
   const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState<any>("");
   const [myMessagesList, setmyMessagesList] = useState ([] as MyComment[]);
+  const [commentValue, setCommentValue] = useState('');
 
   useEffect(() => {
     setLoading(true);
@@ -80,46 +79,45 @@ export const BookDetails = () => {
     getBookDetails();
   }, [id]);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentValue(e.target.value);
+  }
+
  const addToComment = async (product: MyComment): Promise<void> => {
     	try {
     		await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
     			messages: [...myMessagesList, product],
     		});
     		setmyMessagesList([...myMessagesList, product]);
-    		console.log('dodano kom');
-        
     	} catch (error) {
     		console.log(error);
     	}
     };
-    console.log(myMessagesList);
 
-    // export const NewMessage =({ id}: NewMessageProps): JSX.Element => {
-    //   const firstInputRef = useRef(null);
+    const removeComment = async (commId: number): Promise <void> => {
+      const newArr = myMessagesList.filter((obj) => obj.id !== commId);
+      try {
+        await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
+    			messages: newArr,
+    		});
+        setmyMessagesList(newArr);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-    // id message jako date.now()
-    function NewMessage({ id }) {
-      const firstInputRef = useRef(null);
-    
-      const handleSubmit = (event) => {
-        event.preventDefault();
-        const { user, message } = event.currentTarget.elements;
-        addDoc(collection(firebaseDb, "conversations", `${id}`, "messages"), {
-          CreatedAt: Date.now(),
-          message: message.value,
-          user: user.value,
+    useEffect (()=> {
+      const docRef = doc(firebaseDb, 'conversations', `${book.id}`);
+      const unsubscribe = onSnapshot(docRef, (doc) => {
+        if (doc.exists()) {
+          const data = doc.data();
+          setmyMessagesList(data.messages);
+        }
         });
-        message.value = "";
-        firstInputRef.current.focus();
-      }}
-    
-
+        return () => unsubscribe ();
+      }, [book.id]);
+  
   if (loading) return <Loader />;
-
-  
-  
-      
-
 
   return (
     <section>
@@ -159,13 +157,13 @@ export const BookDetails = () => {
                   })
                 }
               ></button>
-              {/* <button onClick={() =>
+              <button onClick={() =>
                             addToComment({
       createdAt: Date.now(),
-      message: 'hejo',
+      message: commentValue,
       user: username,
-      id: book.id,
-                            })}>Add comment</button> */}
+      id: Date.now(),
+                            })}>Add comment</button>
               <div className={classes["box-panda"]}>
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
@@ -176,56 +174,10 @@ export const BookDetails = () => {
               <div className={classes["comment-box"]}>
               <div>
                 {myMessagesList.map((item) => (
-                    <Comment key={item.id} item={item} />
+                    <Comment key={item.id} item={item} removeComment={removeComment}/>
                 ))}
             </div>
-<Stack sx={{ marginTop: "24px" }} component="form">
-  <p>You are commenting as: {username}</p>
-  <p>Created at: {new Intl.DateTimeFormat("pl-PL").format(new Date(Date.now()))}</p>
-      <TextField
-      defaultValue="Please leave a panda nice comment here..." 
-      multiline
-        autoFocus
-        
-        fullWidth
-        name="message"
-        required
-        // label="Comment section"
-      />
-      <Button variant="outlined" type="submit" onClick={() => addToComment({
-      createdAt: Date.now(),
-      message: 'hejka',
-      user: username,
-      id: book.id,
-    })}>
-        Add comment
-      </Button>
-    </Stack>
-                
-                {/* <Stack
-                  sx={{
-                    height: "calc(100% - 48px)",
-                    gap: "24px",
-                    padding: "24px",
-                  }}
-                  direction="row"
-                >
-                  <Box sx={{ flexGrow: 1 }}>
-                    <Routes>
-                      <Route
-                        element={
-                          <Typography variant="h4">
-                            
-                          </Typography>
-                        }
-                        path="/"
-                      />
-                      <Route element={<Conversation />} path='/book/:id/*' />
-                    
-                    </Routes>
-                  </Box>
-                  <ConversationList />
-                </Stack> */}
+
               </div>
             </div>
           )}
