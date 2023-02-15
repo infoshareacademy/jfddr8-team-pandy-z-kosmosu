@@ -20,7 +20,7 @@
 .fav-container {
 	display: flex;
 	justify-content: center;
-  flex-wrap: wrap;
+	flex-wrap: wrap;
 	align-items: center;
 }
 
@@ -35,4 +35,41 @@ p {
 
 .title {
 	margin: auto;
+}
+
+.search-loop {
+	color: black;
+}
+
+.search-form-elem {
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+	padding: 0.5rem 2.8rem;
+	max-width: 510px;
+	border-radius: 3.8rem;
+	background-color: white;
+}
+
+.input {
+	font-size: 1.5rem;
+	padding: 0.6rem;
+	border: none;
+	outline: none;
+}
+
+.search-form-elem input::placeholder {
+	opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+	.input {
+		padding: 0.6rem 0;
+		font-size: 1.2rem;
+	}
+
+	.search-form-elem {
+		margin: 0 1rem;
+		padding: 0.5rem 1.5rem;
+	}
 }
