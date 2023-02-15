@@ -30,8 +30,6 @@ export const Login = (): JSX.Element => {
     }
   };
 
-
-
   return (
     <>
       <h1><img className={classes.userIcon} src={userIcon}></img>Log in:</h1>

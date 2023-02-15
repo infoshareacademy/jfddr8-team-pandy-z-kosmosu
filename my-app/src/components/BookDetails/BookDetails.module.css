@@ -1,185 +1,183 @@
 .card-book {
-  display: flex;
-  padding: 2rem 2rem;
+	display: flex;
+	padding: 2rem 2rem;
 }
 
 .cover-img {
-  padding-right: 1rem;
+	padding-right: 1rem;
 }
 
 .panda-img {
-  width: 30px;
+	width: 30px;
 }
 
 .box-panda {
-
-  padding: 0.8rem 0;
+	padding: 0.8rem 0;
 }
 
 .page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-  flex-direction: column;
-  background-color: rgb(234, 236, 239);
+	flex-direction: column;
+	background-color: rgb(234, 236, 239);
 }
 
 .bookdetalis {
-  width: 800px;
-  background-color: white;
-  border: none;
-  border-radius: 20px;
-  margin-bottom: 50px;
-  font-size: small;
-  margin-top: 50px;
-  box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
+	width: 800px;
+	background-color: white;
+	border: none;
+	border-radius: 20px;
+	margin-bottom: 50px;
+	font-size: small;
+	margin-top: 50px;
+	box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
 }
 
 .pic {
-  width: 200px;
-  height: 320px;
-  margin-right: 40px;
+	width: 200px;
+	height: 320px;
+	margin-right: 40px;
 }
 
 div {
-  line-height: 20px;
+	line-height: 20px;
 }
 
 .backtobrowse {
-  margin-right: 40px;
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
-  background-color: white;
+	margin-right: 40px;
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	border: none;
+	box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
+	background-color: white;
 }
 
 .backplusdescription {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .recommendations {
-  display: flex;
-  justify-content: space-around;
-  width: 800px;
-  align-content: center;
+	display: flex;
+	justify-content: space-around;
+	width: 800px;
+	align-content: center;
 }
 
 .imgbook {
-  height: 150px;
-  width: 100px;
-  padding-bottom: 10px;
+	height: 150px;
+	width: 100px;
+	padding-bottom: 10px;
 }
 
 .booksproposition {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-top: 10px;
-  width: 200px;
-  height: 300px;
-  border: 2px solid gray;
-  background-color: white;
-  border-radius: 10%;
-  align-items: center;
-  margin-top: 50px;
-  margin-bottom: 60px;
-  box-shadow: 0 0 4px 3px rgba(128, 128, 128, 0.279);
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding-top: 10px;
+	width: 200px;
+	height: 300px;
+	border: 2px solid gray;
+	background-color: white;
+	border-radius: 10%;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 60px;
+	box-shadow: 0 0 4px 3px rgba(128, 128, 128, 0.279);
 }
 
 .commentsarea {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .comments {
-  width: 800px;
-  background-color: white;
-  border: none;
-  border-radius: 20px;
-  margin-bottom: 50px;
-  font-size: small;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
+	width: 800px;
+	background-color: white;
+	border: none;
+	border-radius: 20px;
+	margin-bottom: 50px;
+	font-size: small;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
 }
 
 .pandacomment {
-  width: 20px;
-  height: 30px;
+	width: 20px;
+	height: 30px;
 }
 
 .comment {
-  width: 650px;
-  height: 50px;
-  border: 2px solid gray;
-  border-radius: 20px;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.279);
-  margin-left: 60px;
-  text-align: start;
+	width: 650px;
+	height: 50px;
+	border: 2px solid gray;
+	border-radius: 20px;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.279);
+	margin-left: 60px;
+	text-align: start;
 }
 
 .buttons {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
 }
 .addtofavorites {
-  border: none;
-  background: white;
-  font-size: smaller;
+	border: none;
+	background: white;
+	font-size: smaller;
 }
 
 .gotocomments {
-  border: none;
-  background: white;
-  font-size: smaller;
-  font-style: italic;
+	border: none;
+	background: white;
+	font-size: smaller;
+	font-style: italic;
 }
 
 p {
-  font-style: italic;
-  color: gray;
-  font-size: smaller;
-  text-align: start;
-  display: flex;
-  justify-content: flex-start;
+	font-style: italic;
+	color: gray;
+	font-size: smaller;
+	text-align: start;
+	display: flex;
+	justify-content: flex-start;
 }
 
 .info {
-  width: 500px;
+	width: 500px;
 }
 
 .titlecomment {
-  margin-left: 20px;
+	margin-left: 20px;
 }
 
 .typecomment {
-  margin-left: 70px;
-  display: flex;
-  /* justify-content: space-around; */
-  width: 600px;
-  text-decoration: underline;
+	margin-left: 70px;
+	display: flex;
+	/* justify-content: space-around; */
+	width: 600px;
+	text-decoration: underline;
 }
 
 .buttonadd {
-  background-color: black;
-  color: white;
-  border-radius: 20px;
-  width: 150px;
-  height: 25px;
-  padding: 5px;
-  font-size: smaller;
-  font-style: italic;
-  margin-bottom: 20px;
-}
+	background-color: black;
+	color: white;
+	border-radius: 20px;
+	width: 150px;
+	height: 25px;
+	padding: 5px;
+	font-size: smaller;
+	font-style: italic;
+	margin-bottom: 20px;
 
-    padding: 0.8rem 0;
+	padding: 0.8rem 0;
 }
 
 .btn-add-to-fav:disabled::after {
@@ -189,4 +187,3 @@ p {
 .btn-add-to-fav::after {
 	content: 'Add to favourite';
 }
-
