@@ -30,8 +30,6 @@ export const Login = (): JSX.Element => {
     }
   };
 
-
-
   return (
     <>
       <h1><img className={classes.userIcon} src={userIcon}></img>Log in:</h1>
@@ -70,7 +68,7 @@ export const Login = (): JSX.Element => {
           <button className={classes.logBtn} onClick={signIn}>Log in</button>
         </div>
         <div className={classes.positionBtn}>
-          <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><i className={classes.arrow}></i></button>
+          <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>
         </div>
         <p>{error}</p>
       </form>

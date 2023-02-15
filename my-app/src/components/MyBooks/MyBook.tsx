@@ -17,7 +17,7 @@ export const MyBook = ({ item }: MyBookProps): JSX.Element => {
 						<span>Title: </span>
 						<span>{item.title}</span>
 					</Link>
-			<button onClick={() => removeFromFav(item.id)}>Delete X</button>
+			<button onClick={() => removeFromFav(item.id)}>Delete ❌</button>
 		</div>
 	);
 };

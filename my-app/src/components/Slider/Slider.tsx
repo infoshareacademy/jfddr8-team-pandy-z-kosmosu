@@ -5,8 +5,8 @@ import SliderImg2 from '../../Graphics/slider-desktop-photo-2.jpg'
 import SliderImg3 from '../../Graphics/slider-desktop-photo-3.jpg'
 import classes from './Slider.module.css'
 
-const Slider = () => {
-  const images = [
+const Slider = ():JSX.Element => {
+  const images:string[] = [
     SliderImg1,
     SliderImg2,
     SliderImg3

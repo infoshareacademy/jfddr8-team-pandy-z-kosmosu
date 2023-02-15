@@ -13,7 +13,7 @@ export const Footer = () => {
           alt="Pandoteka"
         />
       </a>
-      <div>Pandoteka is a project created at Infoshare Acacemy by:</div>
+      <div>Pandoteka is a project created at Infoshare Academy by:</div>
       <ul>
         <li>
           <span>Maja Karwacka-Frank</span>

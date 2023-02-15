@@ -10,39 +10,42 @@ import { AppContext } from '../../providers/AppProvider';
 import bar from '../../Graphics/Hamburger-icon.png';
 
 export const Navbar = (): JSX.Element => {
-	const { isLogged, setIsLogged, username, myBookList } = useContext(AppContext);
+	const { isLogged, setIsLogged, username, myBookList } =
+		useContext(AppContext);
 	const [toggleMenu, setToggleMenu] = useState(false);
-	const [pandaAnime, setPandaAnime] = useState(false)
+	const [pandaAnime, setPandaAnime] = useState(false);
 
 	const navigate = useNavigate();
 
 	const handleLogout = async (): Promise<void> => {
-		setToggleMenu(!toggleMenu)
+		setToggleMenu(!toggleMenu);
 		try {
 			await signOut(firebaseAuth);
-			navigate('/');
 			console.log('Logged out');
 		} catch (error) {
 			console.log(error);
 		}
 		setIsLogged(false);
+		navigate('/logout');
 	};
 
 	useEffect(() => {
 		if (myBookList.length === 0) {
-			return
+			return;
 		}
 		setPandaAnime(true);
 		const timer = setTimeout(() => {
-			setPandaAnime(false)
+			setPandaAnime(false);
 		}, 300);
 
 		return () => {
-			clearTimeout(timer)
-		}
+			clearTimeout(timer);
+		};
 	}, [myBookList]);
 
-	const pandaClasses = `${classes['logo-user']} ${pandaAnime ? classes.bump : ''}`;
+	const pandaClasses = `${classes['logo-user']} ${
+		pandaAnime ? classes.bump : ''
+	}`;
 
 	const contentIsLogged = (
 		<div className={classes['nav-link-container']}>
@@ -76,7 +79,13 @@ export const Navbar = (): JSX.Element => {
 
 	return (
 		<div className={classes.navbar}>
-			<img className={classes['logo-img']} src={logoImg} alt='' onClick={() => {navigate('/')}} ></img>
+			<img
+				className={classes['logo-img']}
+				src={logoImg}
+				alt=''
+				onClick={() => {
+					navigate('/');
+				}}></img>
 			<div>
 				{!isLogged && contentIsNotLogged}
 				{isLogged && contentIsLogged}
@@ -95,12 +104,18 @@ export const Navbar = (): JSX.Element => {
 					{isLogged && toggleMenu && (
 						<ul className={classes['navbar-nav']}>
 							<li className={classes['nav-item']}>
-								<Link className={classes.links} to='/' onClick={() => setToggleMenu(!toggleMenu)}>
+								<Link
+									className={classes.links}
+									to='/'
+									onClick={() => setToggleMenu(!toggleMenu)}>
 									Home
 								</Link>
 							</li>
 							<li>
-								<Link className={classes.links} to='mybooks' onClick={() => setToggleMenu(!toggleMenu)}>
+								<Link
+									className={classes.links}
+									to='mybooks'
+									onClick={() => setToggleMenu(!toggleMenu)}>
 									MyBooks
 								</Link>
 							</li>
@@ -115,19 +130,28 @@ export const Navbar = (): JSX.Element => {
 					{!isLogged && toggleMenu && (
 						<ul className={classes['navbar-nav']}>
 							<li className={classes['nav-item']}>
-								<Link className={classes.links} to='/' onClick={() => setToggleMenu(!toggleMenu)}>
+								<Link
+									className={classes.links}
+									to='/'
+									onClick={() => setToggleMenu(!toggleMenu)}>
 									Home
 								</Link>
 							</li>
 
 							<li>
-								<Link className={classes.links} to='login' onClick={() => setToggleMenu(!toggleMenu)}>
+								<Link
+									className={classes.links}
+									to='login'
+									onClick={() => setToggleMenu(!toggleMenu)}>
 									Log in
 								</Link>
 							</li>
 
 							<li>
-								<Link className={classes.links} to='register' onClick={() => setToggleMenu(!toggleMenu)}>
+								<Link
+									className={classes.links}
+									to='register'
+									onClick={() => setToggleMenu(!toggleMenu)}>
 									Sign in
 								</Link>
 							</li>

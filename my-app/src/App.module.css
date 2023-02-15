@@ -1,1 +1,36 @@
+h2, h3, h4 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    min-width: 100px;
+    height: 35px;
+    border-radius: 20px;
+    margin: auto;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-style: italic;
+    font-family: inherit;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+	padding: 0.3rem 0.8rem;
+    text-decoration: none;
+    border: none;
+    transition: background-color .2s;
+}
+
+a {
+    color: inherit;
+}
+
+button:hover {
+	background-color: rgb(189, 184, 184);
+}
+
+button:disabled:hover {
+    background-color: black;
+    cursor: default;
+}
 

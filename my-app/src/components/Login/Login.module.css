@@ -38,6 +38,7 @@ label {
     margin: auto;
     background-color: black;
     color: white;
+    border: black 2px solid;
 }
 
 .logBtn:hover {
@@ -47,9 +48,9 @@ label {
     cursor: pointer;
 }
 
-p {
+/* p {
     margin-bottom: 200px;
-}
+} */
 
 .backBtn {
     width: 75px;
@@ -58,6 +59,7 @@ p {
     margin: auto;
     background-color: white;
     color: black;
+    border: black 2px solid;
 }
 
 .backBtn:hover {
@@ -74,12 +76,7 @@ p {
 }
 
 .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+    font-size: 1.35em;
 }
 
 .userIcon {
