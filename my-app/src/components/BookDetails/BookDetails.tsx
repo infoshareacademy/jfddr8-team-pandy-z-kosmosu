@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import classes from './BookDetails.module.css';
 import { Loader } from '../Loader/Loader';
@@ -11,11 +11,10 @@ import { Link } from 'react-router-dom';
 const URL = 'https://openlibrary.org/works/';
 
 export const BookDetails = () => {
-	const { isLogged } = useContext(AppContext);
+	const { isLogged, addToFav, myBookList } = useContext(AppContext);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
-	
 
 	useEffect(() => {
 		setLoading(true);
@@ -88,14 +87,25 @@ export const BookDetails = () => {
 					</div>
 					{isLogged && (
 						<div>
-							<button>Add to favorites</button>
+							<button
+								className={classes['btn-add-to-fav']}
+								disabled={myBookList.some(
+									(singleBook) => singleBook.id === book.id
+								)}
+								onClick={() =>
+									addToFav({
+										title: book.title,
+										cover_img: book.cover_img,
+										id: book.id,
+									})
+								}></button>
 							<button>Go to comments...</button>
 							<div className={classes['box-panda']}>
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaFull} />
-								<img className={classes['panda-img']} src={pandaHalf} />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaFull} alt='' />
+								<img className={classes['panda-img']} src={pandaHalf} alt='' />
 							</div>
 						</div>
 					)}

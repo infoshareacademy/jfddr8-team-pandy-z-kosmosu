@@ -1,4 +1,3 @@
-import { BookDetails } from '../BookDetails/BookDetails';
 import { BookList } from '../BooksList/BooksList';
 import { SearchForm } from '../SearchForm/SearchForm';
 import Slider from '../Slider/Slider';

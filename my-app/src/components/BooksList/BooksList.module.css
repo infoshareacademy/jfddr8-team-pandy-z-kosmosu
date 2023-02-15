@@ -1,8 +1,11 @@
 .books-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	text-align: center;
 }
 
 h3 {
-    padding: 0 1.5rem;
+	padding: 0 1.5rem;
 }

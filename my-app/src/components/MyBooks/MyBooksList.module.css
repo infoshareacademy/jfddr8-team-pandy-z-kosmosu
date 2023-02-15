@@ -1,64 +1,38 @@
-.input {
-  border-radius: 10px;
-  border: 1px solid black;
-  height: 20px;
-  width: 250px;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-}
 .searching {
-  display: flex;
-  justify-content: center;
-  padding: 5px;
+	display: flex;
+	justify-content: center;
+	padding: 5px;
 }
+
 .pic {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 75vh;
-  background: url(../../Graphics/my_books.jpg);
-  background-position: center;
-  background-size: cover;
-  color: white;
-  margin-bottom: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 50px;
+	min-height: 75vh;
+	color: white;
+	background: url(../../Graphics/my_books.jpg);
+	background-position: center;
+	background-size: cover;
 }
-.booksSection {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.singleBook {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  padding-top: 10px;
-  width: 200px;
-  height: 300px;
-  border: 2px solid gray;
-  border-radius: 10%;
-  align-items: center;
-  margin-bottom: 60px;
-  box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.279);
+
+.fav-container {
+	display: flex;
+	justify-content: center;
+  flex-wrap: wrap;
+	align-items: center;
 }
 
 p {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin: 3px;
-  font-size: small;
-  padding: 3px 20px 3px 20px;
-}
-
-.imgbk {
-  height: 150px;
-  width: 100px;
-  padding-bottom: 10px;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	margin: 3px;
+	font-size: small;
+	padding: 3px 20px 3px 20px;
 }
 
 .title {
-  margin-left: 210px;
-  margin-bottom: 50px;
+	margin: auto;
 }

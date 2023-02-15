@@ -1,29 +1,46 @@
 import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
+import { useContext, useState } from 'react';
+import { AppContext } from '../../providers/AppProvider';
 
 export const Book = (book: any) => {
+	const { addToFav, isLogged, myBookList } = useContext(AppContext);
+
 	return (
 		<div className={classes.book}>
 			<div>
-				<img src={book.cover_img} alt='cover' />
+				<img className={classes.cover} src={book.cover_img} alt='cover' />
 			</div>
 			<div>
 				<div>
-					<span>Title: </span>
-					<span>{book.title}</span>
+					<Link to={`/book/${book.id}`} {...book}>
+						<span>Title: </span>
+						<span>{book.title}</span>
+					</Link>
 				</div>
 
 				<div>
-				<Link to = {`/book/${book.id}`} {...book}>
 					<span>Author: </span>
 					<span>{book.author}</span>
-					</Link>
 				</div>
 
 				<div>
 					<span>First Publish Year: </span>
 					<span>{book.first_publish_year}</span>
 				</div>
+				{isLogged && (
+					<button
+						disabled={myBookList.some(
+							(singleBook) => singleBook.id === book.id
+						)}
+						onClick={() =>
+							addToFav({
+								title: book.title,
+								cover_img: book.cover_img,
+								id: book.id,
+							})
+						}></button>
+				)}
 			</div>
 		</div>
 	);
