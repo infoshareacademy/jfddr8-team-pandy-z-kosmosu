@@ -23,14 +23,6 @@
 }
 
 .single-book button {
-	padding: 0.3rem 0.6rem;
-	width: 80px;
 	color: red;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.single-book button:hover {
-	background-color: rgb(189, 184, 184);
+	background-color: unset;
 }

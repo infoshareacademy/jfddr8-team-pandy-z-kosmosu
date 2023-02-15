@@ -176,7 +176,6 @@ p {
 	font-size: smaller;
 	font-style: italic;
 	margin-bottom: 20px;
-
 	padding: 0.8rem 0;
 }
 
@@ -186,4 +185,7 @@ p {
 
 .btn-add-to-fav::after {
 	content: 'Add to favourite';
+}
+.btn-add-to-fav {
+	margin-right: 5px;
 }

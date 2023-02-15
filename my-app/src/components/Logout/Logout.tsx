@@ -13,22 +13,20 @@ export const Logout = (): JSX.Element => {
     })
 
   return (
-    <>
     <div className={classes.logout}>
-      <img src={logoutPanda} alt="" />
-      <div>
+      <img src={logoutPanda} height='250' width='250' alt='' />
+      <div className={classes.textcontent}>
         <h2>You've been logged out</h2>
         <div className={classes.remember}>
-          <h4>Please remember about me or</h4>
-          <button className={classes.login}>
+          <h4>Please remember about me or&nbsp;</h4>
+          <button className={classes.logoutbutton}>
             <Link to="/login">
               Log in
             </Link>
           </button>
         </div>
+        <p className={classes.redirect}>Redirecting in&nbsp;<Timer/>&nbsp;seconds</p>
       </div>
     </div>
-    <p>Redirecting in <Timer/> seconds</p>
-    </>
   );
 };

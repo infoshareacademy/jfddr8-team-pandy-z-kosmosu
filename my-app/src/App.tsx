@@ -12,6 +12,7 @@ import { firebaseAuth, firebaseDb } from './index';
 import { BookDetails } from './components/BookDetails/BookDetails';
 import { AppContext } from './providers/AppProvider';
 import { Logout } from './components/Logout/Logout';
+import './App.module.css'
 
 function App() {
 	const { setUsername, myBookList, setmyBookList, setIsLogged, books } =

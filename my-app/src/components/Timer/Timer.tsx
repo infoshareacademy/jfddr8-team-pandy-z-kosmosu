@@ -12,7 +12,7 @@ const Timer = () => {
   }, []);
 
   return (
-    <span>{counter}</span>
+    <span> {counter} </span>
   );
 }
 
