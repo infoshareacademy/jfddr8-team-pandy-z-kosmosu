@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import classes from "./BookDetails.module.css";
 import { Loader } from "../Loader/Loader";
 import coverImg from "../../Graphics/cover_not_found.jpg";
@@ -17,6 +17,7 @@ export const BookDetails = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState<any>("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -65,64 +66,79 @@ export const BookDetails = () => {
   if (loading) return <Loader />;
 
   return (
-    <section className={styles.page}>
-      <section className={styles.backplusdescription}>
-        <button className={styles.backtobrowse}>Back to browse</button>
+    <section className={classes.page}>
+      <section className={classes.backplusdescription}>
+        <button className={classes.backBtn2} onClick={() => navigate("/")}>
+          Back to Home
+          <br />
+          <span className={classes.arrow}>⟻</span>
+        </button>
 
-        <div className={styles.bookdetalis}>
+        <div className={classes.bookdetalis}>
           <div className={classes["card-book"]}>
             <div className={classes["cover-img"]}>
               <img
-                className={styles.pic}
+                className={classes.pic}
                 src={book.cover_img}
                 alt="cover img"
               />
             </div>
-            <div className={styles.info}>
+            <div className={classes.info}>
               <div>
                 <span>
                   <b>Title:</b>
                 </span>
-                <p>{book.title}</p>
+                <div className={classes.par}>{book.title}</div>
               </div>
               <div>
                 <span>
                   <b>Author:</b>{" "}
                 </span>
-                <p>{book.author}</p>
+                <div className={classes.par}>{book.author}</div>
               </div>
               <div>
                 <span>
                   <b>First Publish Year:</b>{" "}
                 </span>
-                <p>{book.first_publish_year}</p>
+                <div className={classes.par}>{book.first_publish_year}</div>
               </div>
               <div>
                 <span>
                   <b>Description:</b>{" "}
                 </span>
-                <p>{book.description}</p>
+                <div className={classes.par}>{book.description}</div>
               </div>
               <div>
                 <span>
                   <b>Subject Places:</b>{" "}
                 </span>
-                <p>{book.subject_places}</p>
+                <div className={classes.par}>{book.subject_places}</div>
               </div>
               <div>
                 <span>
                   <b>Subject Times: </b>
                 </span>
-                <p>{book.subject_times}</p>
+                <div className={classes.par}>{book.subject_times}</div>
               </div>
               {isLogged && (
-                <div className={styles.buttons}>
-                  <button className={styles.addtofavorites}>
-                    <b>Add to favorites</b>
+                <div className={classes.buttons}>
+                  <button
+                    className={classes.favBtn}
+                    disabled={myBookList.some(
+                      (singleBook) => singleBook.id === book.id
+                    )}
+                    onClick={() =>
+                      addToFav({
+                        title: book.title,
+                        cover_img: book.cover_img,
+                        id: book.id,
+                      })
+                    }
+                  >
+                    {" "}
+                    <b>Add to favorite</b>
                   </button>
-                  <button className={styles.gotocomments}>
-                    Go to comments...
-                  </button>
+
                   <div className={classes["box-panda"]}>
                     <img className={classes["panda-img"]} src={pandaFull} />
                     <img className={classes["panda-img"]} src={pandaFull} />
@@ -154,89 +170,36 @@ export const BookDetails = () => {
         </div>
       </section>
 
-      <span>
-        <h2>Intrested in ....? See our recommendations</h2>
-      </span>
-
-      <section className={styles.recommendations}>
-        <div className={styles.booksproposition}>
-          <img
-            className={styles.imgbook}
-            src="https://covers.openlibrary.org/b/id/10523466-L.jpg"
-            alt="cover"
-          ></img>
-
-          <p>
-            {" "}
-            <b>Title:</b> Harry Potter and the Order of the Phoenix
-          </p>
-          <p>
-            <b>Author:</b> J. K. Rowling
-          </p>
-          <p>
-            <b>First Publish Year:</b> 2000{" "}
-          </p>
-        </div>
-
-        <div className={styles.booksproposition}>
-          <img
-            className={styles.imgbook}
-            src="https://covers.openlibrary.org/b/id/10523466-L.jpg"
-            alt="cover"
-          ></img>
-          <p>
-            {" "}
-            <b>Title:</b> Harry Potter and the Order of the Phoenix
-          </p>
-          <p>
-            <b>Author:</b> J. K. Rowling
-          </p>
-          <p>
-            <b>First Publish Year:</b> 2000{" "}
-          </p>
-        </div>
-
-        <div className={styles.booksproposition}>
-          <img
-            className={styles.imgbook}
-            src="https://covers.openlibrary.org/b/id/10523466-L.jpg"
-            alt="cover"
-          ></img>
-          <p>
-            {" "}
-            <b>Title:</b> Harry Potter and the Order of the Phoenix
-          </p>
-          <p>
-            <b>Author:</b> J. K. Rowling
-          </p>
-          <p>
-            <b>First Publish Year:</b> 2000{" "}
-          </p>
-        </div>
-      </section>
-
-      <section className={styles.commentsarea}>
-        <div className={styles.comments}>
-          <div className={styles.titlecomment}>
+      <section className={classes.commentsarea}>
+        <div className={classes.comments}>
+          <div className={classes.titlecomment}>
             <h3>Comments:</h3>
           </div>
 
-          <div className={styles.typecomment}>
-            <img className={styles.pandacomment} src={userIcon}></img>
-            <div className={styles.typecomment}>type comment as User...</div>
-            <button className={styles.buttonadd}> ADD</button>
+          <div className={classes.typecomment}>
+            <img className={classes.pandacomment} src={userIcon}></img>
+            <div className={classes.typecomment}>Type comment as User...</div>
+            <button className={classes.buttonadd}> ADD</button>
           </div>
-          <div className={styles.comment}>
-            <p>Panda wrote on 02.07.2022:</p>
-            <p> "I like book, better than bamboo c:"</p>
+          <div className={classes.comment}>
+            <p className={classes.pComment}>Panda wrote on 02.07.2022:</p>
+            <p className={classes.pComment}>
+              {" "}
+              "I like book, better than bamboo c:"
+            </p>
           </div>
-          <div className={styles.comment}>
-            <p> DJ Pandex wrote on 02.07.2022:</p>
-            <p> "I don't like book, is very sad :(" </p>
+          <div className={classes.comment}>
+            <p className={classes.pComment}> DJ Pandex wrote on 02.07.2022:</p>
+            <p className={classes.pComment}>
+              {" "}
+              "I don't like book, is very sad :("{" "}
+            </p>
           </div>
-          <p>
+          <p className={classes.par}>
             {" "}
-            <h3>See more...</h3>
+            <button className={classes.seemore}>
+              <b>See more</b>{" "}
+            </button>
           </p>
         </div>
       </section>

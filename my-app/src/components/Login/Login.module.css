@@ -1,88 +1,83 @@
-
 .wrongInput {
-    background-color: #e62b2b7a;
+  background-color: #e62b2b7a;
 }
 
 .login {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-shadow: 0 0 10px #ccc;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0 0 10px #ccc;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .item {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 input.login {
-    margin-right: 200px;
-    background-color: #eee;
-    border-style: hidden;
-  }
+  margin-right: 200px;
+  background-color: #eee;
+  border-style: hidden;
+}
 
 label {
-    margin-left: 250px;
+  margin-left: 250px;
 }
 
 .logBtn {
-    width: 100px;
-    height: 35px;
-    border-radius: 20px;
-    margin: auto;
-    background-color: black;
-    color: white;
+  width: 100px;
+  height: 35px;
+  border-radius: 20px;
+  margin: auto;
+  background-color: black;
+  color: white;
 }
 
 .logBtn:hover {
-    background-color: white;
-    color: black;
-    transition: 10;
-    cursor: pointer;
-}
-
-p {
-    margin-bottom: 200px;
+  background-color: white;
+  color: black;
+  transition: 10;
+  cursor: pointer;
 }
 
 .backBtn {
-    width: 75px;
-    height: 75px;
-    border-radius: 20px;
-    margin: auto;
-    background-color: white;
-    color: black;
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  margin: auto;
+  background-color: white;
+  color: black;
 }
 
 .backBtn:hover {
-    background-color: black;
-    color: white;
-    transition: 10;
-    cursor: pointer;
+  background-color: black;
+  color: white;
+  transition: 10;
+  cursor: pointer;
 }
 
 .positionBtn {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .arrow {
-    border: solid black;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 3px;
-    transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
 
 .userIcon {
-    width: 45px;
-    height: 60px;
+  width: 45px;
+  height: 60px;
 }
