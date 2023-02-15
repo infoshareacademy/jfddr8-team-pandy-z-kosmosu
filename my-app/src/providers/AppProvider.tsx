@@ -68,7 +68,6 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
         books: [...myBookList, product],
       });
       setmyBookList([...myBookList, product]);
-      console.log("Dodałam");
     } catch (error) {
       console.log(error);
     }
