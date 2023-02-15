@@ -76,6 +76,7 @@ export const BookDetails = (): JSX.Element => {
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setCommentValue(e.target.value);
+
 	};
 
 	const addToComment = async (product: MyComment): Promise<void> => {
@@ -84,6 +85,7 @@ export const BookDetails = (): JSX.Element => {
 				messages: [...myMessagesList, product],
 			});
 			setmyMessagesList([...myMessagesList, product]);
+			// setCommentValue("");
 		} catch (error) {
 			console.log(error);
 		}
@@ -150,10 +152,11 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
+								<div>
 							<textarea
 								onChange={handleInputChange}
 								placeholder='Your comment...'></textarea>
-							<button
+							<div><button
 								onClick={() => {
 									addToComment({
 										CreatedAt: Date.now(),
@@ -163,7 +166,8 @@ export const BookDetails = (): JSX.Element => {
 									});
 								}}>
 								Add comment
-							</button>
+							</button></div>
+							</div>
 							<div className={classes['box-panda']}>
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
