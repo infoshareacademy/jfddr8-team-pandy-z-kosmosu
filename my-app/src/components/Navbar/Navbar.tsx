@@ -45,7 +45,7 @@ export const Navbar = (): JSX.Element => {
 	const pandaClasses = `${classes['logo-user']} ${pandaAnime ? classes.bump : ''}`;
 
 	const contentIsLogged = (
-		<div>
+		<div className={classes['nav-link-container']}>
 			<Link className={classes['links-desktop']} to='/'>
 				Home
 			</Link>
@@ -76,7 +76,7 @@ export const Navbar = (): JSX.Element => {
 
 	return (
 		<div className={classes.navbar}>
-			<img className={classes['logo-img']} src={logoImg} alt=''></img>
+			<img className={classes['logo-img']} src={logoImg} alt='' onClick={() => {navigate('/')}} ></img>
 			<div>
 				{!isLogged && contentIsNotLogged}
 				{isLogged && contentIsLogged}

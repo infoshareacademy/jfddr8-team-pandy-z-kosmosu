@@ -31,7 +31,20 @@
 	background-color: rgb(189, 184, 184);
 }
 
+.book button::after {
+	content: 'Add to favorite';
+}
+
 .cover {
 	width: 200px;
 	height: 300px;
+}
+
+.book button:disabled::after {
+	cursor: default;
+	content: 'Already added';
+}
+
+.book button:disabled:hover {
+	background-color: #fafafa;
 }

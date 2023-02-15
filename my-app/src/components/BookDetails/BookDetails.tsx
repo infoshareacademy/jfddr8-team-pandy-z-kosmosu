@@ -13,7 +13,7 @@ import userIcon from "../../Graphics/User-icon.png";
 const URL = "https://openlibrary.org/works/";
 
 export const BookDetails = () => {
-  const { isLogged } = useContext(AppContext);
+  const { isLogged, addToFav, myBookList } = useContext(AppContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState<any>("");
