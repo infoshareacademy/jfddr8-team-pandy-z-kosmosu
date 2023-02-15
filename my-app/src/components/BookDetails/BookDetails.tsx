@@ -97,6 +97,7 @@ export const BookDetails = () => {
     // export const NewMessage =({ id}: NewMessageProps): JSX.Element => {
     //   const firstInputRef = useRef(null);
 
+    // id message jako date.now()
     function NewMessage({ id }) {
       const firstInputRef = useRef(null);
     
@@ -158,13 +159,13 @@ export const BookDetails = () => {
                   })
                 }
               ></button>
-              <button onClick={() =>
+              {/* <button onClick={() =>
                             addToComment({
       createdAt: Date.now(),
       message: 'hejo',
       user: username,
       id: book.id,
-                            })}>Go to comments...</button>
+                            })}>Add comment</button> */}
               <div className={classes["box-panda"]}>
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
@@ -178,27 +179,28 @@ export const BookDetails = () => {
                     <Comment key={item.id} item={item} />
                 ))}
             </div>
-
-{/* <Stack sx={{ marginTop: "24px" }} component="form" onSubmit={handleSubmit}>
+<Stack sx={{ marginTop: "24px" }} component="form">
+  <p>You are commenting as: {username}</p>
+  <p>Created at: {new Intl.DateTimeFormat("pl-PL").format(new Date(Date.now()))}</p>
       <TextField
+      defaultValue="Please leave a panda nice comment here..." 
+      multiline
         autoFocus
-        inputRef={firstInputRef}
+        
         fullWidth
         name="message"
         required
-        label="Wiadomość"
+        // label="Comment section"
       />
-      <TextField
-        sx={{ margin: "24px 0" }}
-        fullWidth
-        name="author"
-        required
-        label="Autor"
-      />
-      <Button variant="outlined" type="submit">
-        Dodaj
+      <Button variant="outlined" type="submit" onClick={() => addToComment({
+      createdAt: Date.now(),
+      message: 'hejka',
+      user: username,
+      id: book.id,
+    })}>
+        Add comment
       </Button>
-    </Stack> */}
+    </Stack>
                 
                 {/* <Stack
                   sx={{

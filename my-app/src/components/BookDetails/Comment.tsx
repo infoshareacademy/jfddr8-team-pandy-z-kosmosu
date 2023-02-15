@@ -9,11 +9,11 @@ export const Comment = ({ item }: MyCommentProps): JSX.Element => {
 
 	return (
 		<div>
-			 <p> 
+			 {/* <p> 
              Created at:
               {new Intl.DateTimeFormat("pl-PL").format(new Date(Date.now()))}
-             </p>
-             <p>User:{item.user}</p>
+             </p> */}
+             {/* <p>User:{item.user}</p> */}
              <p>Comment:{item.message}</p>
              <p>ID:{item.id}</p>
 		</div>
