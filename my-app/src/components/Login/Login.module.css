@@ -1,6 +1,17 @@
 
 .wrongInput {
     background-color: #e62b2b7a;
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: 200px;
+    gap: 10px;
 }
 
 .login {
@@ -14,6 +25,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    gap: 30px;
 }
 .item {
    display: flex;
@@ -48,10 +60,6 @@ label {
     cursor: pointer;
 }
 
-/* p {
-    margin-bottom: 200px;
-} */
-
 .backBtn {
     width: 75px;
     height: 75px;
@@ -82,4 +90,9 @@ label {
 .userIcon {
     width: 45px;
     height: 60px;
+}
+
+.error {
+    display: flex;
+    align-self: center;
 }

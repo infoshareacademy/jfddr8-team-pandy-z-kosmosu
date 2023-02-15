@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "../../index";
 import classes from './Register.module.css';
+import userIcon from '../../Graphics/User-icon.png';
 
 export const Register = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
@@ -51,13 +52,18 @@ export const Register = (): JSX.Element => {
   };
 
   return (
+  
     <>
-      <h1>Please register:</h1>
+    <br />
+    <br />
+      <h1><img className={classes.userIcon} src={userIcon}></img>Please register:</h1>
       <form>
-        <label>Login:</label>
+      <div className={classes.login}>
+        <div className={classes.item}>
+        <label><b>E-mail:</b></label>
         <br />
         <input
-          className={isUsernameError ? classes.wrongInput : ''}
+          className={isUsernameError ? classes.wrongInput : classes.login}
           name="login"
           type="email"
           value={username}
@@ -66,11 +72,14 @@ export const Register = (): JSX.Element => {
             setIsUsernameError(false)
           }}
         />
+        </div>
+
         <br />
-        <label>Password:</label>
+        <div className={classes.item}>
+        <label><b>Password:</b></label>
         <br />
         <input
-          className={isPasswordError ? classes.wrongInput : ''}
+          className={isPasswordError ? classes.wrongInput : classes.login}
           name="password"
           type="password"
           value={password}
@@ -79,11 +88,13 @@ export const Register = (): JSX.Element => {
             setIsPasswordError(false);
           }}
         />
+        </div>
         <br />
-        <label>Repeat password:</label>
+        <div className={classes.item}>
+        <label><b>Repeat password:</b></label>
         <br />
         <input
-          className={isPasswordError ? classes.wrongInput : ''}
+          className={isPasswordError ? classes.wrongInput : classes.login}
           name="Repeat password"
           type="password"
           value={repeatPassword}
@@ -92,10 +103,15 @@ export const Register = (): JSX.Element => {
             setIsPasswordError(false)
           }}
         />
+        </div>
         <br />
+        <p className={classes.error}>{error}</p>
+        <button className={classes.regBtn} onClick={handleSubmit}>Register</button>
+        </div>
+        <div className={classes.positionBtn}>
+          <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>
+        </div>
         <br />
-        <button onClick={handleSubmit}>Register</button>
-        <p>{error}</p>
       </form>
     </>
   );
