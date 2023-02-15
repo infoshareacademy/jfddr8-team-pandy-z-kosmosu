@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import { firebaseAuth } from "../../index";
 import classes from './Login.module.css';
+import userIcon from '../../Graphics/User-icon.png';
 
 
 export const Login = (): JSX.Element => {
@@ -33,35 +34,44 @@ export const Login = (): JSX.Element => {
 
   return (
     <>
-      <h1>Please log in:</h1>
+      <h1><img className={classes.userIcon} src={userIcon}></img>Log in:</h1>
       <form>
-        <label>Login:</label>
-        <br />
-        <input
-          className={isInputError ? classes.wrongInput : classes.login}
-          name="login"
-          type="email"
-          value={username}
-          onChange={(e) => {
-            setUsername(e.target.value);
-            setIsInputError(false)
-          }}
-        />
-        <br />
-        <label>Password:</label>
-        <br />
-        <input
-          className={isInputError ? classes.wrongInput : classes.login}
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setIsInputError(false)
-          }}
-        />
-        <br />
-        <button onClick={signIn}>Log in</button>
+        <div className={classes.login}>
+        <div className={classes.item}>
+        <label><b>Login:</b></label>
+            
+            <input
+              className={isInputError ? classes.wrongInput : classes.login}
+              name="login"
+              type="email"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+                setIsInputError(false)
+              }}
+            />
+        </div>
+        
+        <div className={classes.item}>
+            <label><b>Password:</b></label>
+            
+            <input
+              className={isInputError ? classes.wrongInput : classes.login}
+              name="password"
+              type="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setIsInputError(false)
+              }}
+            />
+          </div>
+          <br />
+          <button className={classes.logBtn} onClick={signIn}>Log in</button>
+        </div>
+        <div className={classes.positionBtn}>
+          <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><i className={classes.arrow}></i></button>
+        </div>
         <p>{error}</p>
       </form>
     </>
