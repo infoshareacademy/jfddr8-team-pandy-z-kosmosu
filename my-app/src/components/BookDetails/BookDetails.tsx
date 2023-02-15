@@ -15,7 +15,7 @@ import { Comment } from './Comment';
 const URL = 'https://openlibrary.org/works/';
 
 export type MyComment = {
-	id: string;
+	id: number;
 	CreatedAt: number;
 	message: string;
 	user: string | null;
@@ -23,12 +23,14 @@ export type MyComment = {
 export type NewMessageProps = {
 	id: MyComment[];
 };
-export const BookDetails = () => {
+export const BookDetails = (): JSX.Element => {
 	const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
 	const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
+	const [commentValue, setCommentValue] = useState('');
+
 	useEffect(() => {
 		setLoading(true);
 		async function getBookDetails() {
@@ -71,34 +73,34 @@ export const BookDetails = () => {
 		}
 		getBookDetails();
 	}, [id]);
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setCommentValue(e.target.value);
+	};
+
 	const addToComment = async (product: MyComment): Promise<void> => {
 		try {
 			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
 				messages: [...myMessagesList, product],
 			});
 			setmyMessagesList([...myMessagesList, product]);
-			console.log('dodano kom');
 		} catch (error) {
 			console.log(error);
 		}
 	};
-	console.log(myMessagesList);
-	// export const NewMessage =({ id}: NewMessageProps): JSX.Element => {
-	//   const firstInputRef = useRef(null);
-	// id message jako date.now()
-	// function NewMessage({ id }) {
-	//   const firstInputRef = useRef(null);
-	//   const handleSubmit = (event) => {
-	//     event.preventDefault();
-	//     const { user, message } = event.currentTarget.elements;
-	//     addDoc(collection(firebaseDb, "conversations", `${id}`, "messages"), {
-	//       CreatedAt: Date.now(),
-	//       message: message.value,
-	//       user: user.value,
-	//     });
-	//     message.value = "";
-	//     firstInputRef.current.focus();
-	//   }}
+
+	const removeComment = async (commId: number): Promise<void> => {
+		const newArr = myMessagesList.filter((obj) => obj.id !== commId);
+		try {
+			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
+				messages: newArr,
+			});
+			setmyMessagesList(newArr);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	if (loading) return <Loader />;
 	return (
 		<section>
@@ -137,15 +139,18 @@ export const BookDetails = () => {
 										id: book.id,
 									})
 								}></button>
+							<textarea
+								onChange={handleInputChange}
+								placeholder='Your comment...'></textarea>
 							<button
-								onClick={() =>
+								onClick={() => {
 									addToComment({
 										CreatedAt: Date.now(),
-										message: 'hejo',
+										message: commentValue,
 										user: username,
-										id: book.id,
-									})
-								}>
+										id: Date.now(),
+									});
+								}}>
 								Add comment
 							</button>
 							<div className={classes['box-panda']}>
@@ -158,7 +163,11 @@ export const BookDetails = () => {
 							<div className={classes['comment-box']}>
 								<div>
 									{myMessagesList.map((item) => (
-										<Comment key={item.id} item={item} />
+										<Comment
+											key={item.id}
+											item={item}
+											removeComment={removeComment}
+										/>
 									))}
 								</div>
 							</div>

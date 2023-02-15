@@ -1,18 +1,27 @@
-import {MyComment} from './BookDetails';
+import { MyComment } from './BookDetails';
 type MyCommentProps = {
-    item: MyComment;
+	item: MyComment;
+	removeComment: (commId: number) => void;
 };
-export const Comment = ({ item }: MyCommentProps): JSX.Element => {
-    // const { removeFromFav } = useContext(AppContext);
-    return (
-        <div>
-             <p>
-             Created at:
-              {new Intl.DateTimeFormat("pl-PL").format(new Date(Date.now()))}
-             </p>
-             <p>User:{item.user}</p>
-             <p>Comment:{item.message}</p>
-             <p>ID:{item.id}</p>
-        </div>
-    );
+export const Comment = ({
+	item,
+	removeComment,
+}: MyCommentProps): JSX.Element => {
+	return (
+		<div>
+			<span>
+				Created at:
+				{new Intl.DateTimeFormat('pl-PL').format(new Date(Date.now()))}
+			</span>
+			<span>User:{item.user}</span>
+			<p>Comment:{item.message}</p>
+			{/* <span>ID:{item.id}</span> */}
+			<button
+				onClick={() => {
+					removeComment(item.id);
+				}}>
+				Remove
+			</button>
+		</div>
+	);
 };
