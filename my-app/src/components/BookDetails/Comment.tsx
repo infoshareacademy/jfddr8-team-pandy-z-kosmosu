@@ -1,6 +1,7 @@
 import { AppContext } from '../../providers/AppProvider';
 import { MyComment } from './BookDetails';
 import { useContext } from 'react';
+
 type MyCommentProps = {
 	item: MyComment;
 	removeComment: (commId: number) => void;
@@ -19,12 +20,10 @@ export const Comment = ({
 			</div>
 			<div>You are commenting as:{item.user}</div>
 			<p>Comment:{item.message}</p>
-			<button
-				onClick={() => {if (username ===item.user){
-					removeComment(item.id)} else {alert("You can't delete some other Panda comment!")} }
-				}>
-				Remove
-			</button>
+			{username === item.user && (
+                <button onClick={() => removeComment(item.id)}>Remove</button>
+            )}
+
 		</div>
 	);
 };

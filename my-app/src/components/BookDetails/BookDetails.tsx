@@ -7,8 +7,6 @@ import pandaFull from '../../Graphics/panda-full-mark.jpg';
 import pandaHalf from '../../Graphics/panda-half-mark.jpg';
 import { AppContext } from '../../providers/AppProvider';
 import { Link } from 'react-router-dom';
-import { collection, addDoc, getDoc } from 'firebase/firestore';
-import { useRef } from 'react';
 import { firebaseDb } from '../../index';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
