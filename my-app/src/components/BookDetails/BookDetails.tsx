@@ -12,6 +12,7 @@ import { useRef } from 'react';
 import { firebaseDb } from '../../index';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
+import { Description } from '@mui/icons-material';
 const URL = 'https://openlibrary.org/works/';
 
 export type MyComment = {
@@ -22,6 +23,21 @@ export type MyComment = {
 };
 export type NewMessageProps = {
 	id: MyComment[];
+};
+
+export type DescriptionOne = {
+	description: string;
+};
+
+export type DescriptionTwo = {
+	description: {
+		type: string;
+		value: string;
+	};
+};
+
+type DescriptionSum = {
+	data: DescriptionOne | DescriptionTwo;
 };
 export const BookDetails = (): JSX.Element => {
 	const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
@@ -47,17 +63,17 @@ export const BookDetails = (): JSX.Element => {
 						subjects,
 					} = data;
 					const newBook = {
-						description: description ? description : 'No description found',
+						description: description?.value || description ? description.value || description : 'No description found',
 						title: title,
 						cover_img: covers
-							? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
-							: coverImg,
+						? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
+						: coverImg,
 						subject_places: subject_places
-							? subject_places.join(', ')
-							: 'No subject places found',
+						? subject_places.join(', ')
+						: 'No subject places found',
 						subject_times: subject_times
-							? subject_times.join(', ')
-							: 'No subject times found',
+						? subject_times.join(', ')
+						: 'No subject times found',
 						subjects: subjects ? subjects.join(', ') : 'No subjects found',
 						id: id,
 					};
@@ -128,7 +144,7 @@ export const BookDetails = (): JSX.Element => {
 					</div>
 					<div>
 						<span>Description: </span>
-						<span>{book.description}</span>
+						<span>{book.description || book.description}</span>
 					</div>
 					<div>
 						<span>Subject Places: </span>

@@ -3,8 +3,9 @@
 	padding: 2rem 2rem;
 }
 
-.cover-img {
+.cover-img img {
 	padding-right: 1rem;
+	max-height:500px ;
 }
 
 img.panda-img {
