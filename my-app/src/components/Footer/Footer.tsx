@@ -51,14 +51,14 @@ export const Footer = () => {
         </li>
         <li>
           <span>Szymon Chiczewski</span>
-          <a href="https://github.com/olga-kacala">
+          <a href="https://github.com/szymon-chiczewski">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/olga-kaca%C5%82a-7b402b140/">
+          <a href="https://www.linkedin.com/in/szymon-chiczewski/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
@@ -68,14 +68,14 @@ export const Footer = () => {
         </li>
         <li>
           <span>Weronika Niekludow</span>
-          <a href="https://github.com/olga-kacala">
+          <a href="https://github.com/weronika-niekludow">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/olga-kaca%C5%82a-7b402b140/">
+          <a href="https://www.linkedin.com/in/weronika-niekludow/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
