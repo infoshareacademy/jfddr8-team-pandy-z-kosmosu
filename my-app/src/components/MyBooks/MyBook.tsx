@@ -13,11 +13,13 @@ export const MyBook = ({ item }: MyBookProps): JSX.Element => {
 	return (
 		<div className={classes['single-book']}>
 			<img className={classes['cover-img']} src={item.cover_img} alt='' />
-			<Link to={`/book/${item.id}`} {...item}>
-						<span>Title: </span>
+			<div className={classes.content}>
+			<Link className={classes.link} to={`/book/${item.id}`} {...item}>
+						<span className={classes.title}>Title: </span>
 						<span>{item.title}</span>
 					</Link>
 			<button onClick={() => removeFromFav(item.id)}>Delete ❌</button>
+			</div>
 		</div>
 	);
 };

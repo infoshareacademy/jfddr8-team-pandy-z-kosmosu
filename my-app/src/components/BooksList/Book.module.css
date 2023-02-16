@@ -36,6 +36,10 @@
 	content: 'Already added';
 }
 
+.book button:disabled {
+	background-color: rgb(189, 184, 184);
+}
+
 .book button:disabled:hover {
-	background-color: black;
+	background-color: rgb(189, 184, 184);
 }
