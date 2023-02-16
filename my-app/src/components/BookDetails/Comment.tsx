@@ -1,6 +1,7 @@
 import { AppContext } from '../../providers/AppProvider';
 import { useContext } from 'react';
 import { MyComment } from './BookDetails';
+
 type MyCommentProps = {
 	item: MyComment;
 	removeComment: (commId: number) => void;
