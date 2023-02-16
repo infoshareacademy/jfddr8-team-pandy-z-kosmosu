@@ -76,7 +76,6 @@ export const BookDetails = (): JSX.Element => {
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setCommentValue(e.target.value);
-
 	};
 
 	const addToComment = async (product: MyComment): Promise<void> => {
@@ -85,7 +84,7 @@ export const BookDetails = (): JSX.Element => {
 				messages: [...myMessagesList, product],
 			});
 			setmyMessagesList([...myMessagesList, product]);
-			// setCommentValue("");
+			setCommentValue('');
 		} catch (error) {
 			console.log(error);
 		}
@@ -93,6 +92,7 @@ export const BookDetails = (): JSX.Element => {
 
 	const removeComment = async (commId: number): Promise<void> => {
 		const newArr = myMessagesList.filter((obj) => obj.id !== commId);
+
 		try {
 			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
 				messages: newArr,
@@ -152,21 +152,24 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
+							<div>
+								<textarea
+									onChange={handleInputChange}
+									placeholder='Your comment...'
+									value={commentValue}></textarea>
 								<div>
-							<textarea
-								onChange={handleInputChange}
-								placeholder='Your comment...'></textarea>
-							<div><button
-								onClick={() => {
-									addToComment({
-										CreatedAt: Date.now(),
-										message: commentValue,
-										user: username,
-										id: Date.now(),
-									});
-								}}>
-								Add comment
-							</button></div>
+									<button
+										onClick={() => {
+											addToComment({
+												CreatedAt: Date.now(),
+												message: commentValue,
+												user: username,
+												id: Date.now(),
+											});
+										}}>
+										Add comment
+									</button>
+								</div>
 							</div>
 							<div className={classes['box-panda']}>
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
