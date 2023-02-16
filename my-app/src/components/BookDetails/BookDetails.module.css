@@ -179,13 +179,22 @@ p {
 	padding: 0.8rem 0;
 }
 
-.btn-add-to-fav:disabled::after {
-	content: 'Already added';
-}
-
 .btn-add-to-fav::after {
 	content: 'Add to favourite';
 }
 .btn-add-to-fav {
 	margin-right: 5px;
+}
+
+.btn-add-to-fav:disabled::after {
+	cursor: default;
+	content: 'Already added';
+}
+
+.btn-add-to-fav:disabled {
+	background-color: rgb(189, 184, 184);
+}
+
+.btn-add-to-fav:disabled:hover {
+	background-color: rgb(189, 184, 184);
 }
