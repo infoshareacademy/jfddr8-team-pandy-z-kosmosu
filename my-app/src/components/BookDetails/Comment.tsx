@@ -1,6 +1,6 @@
 import { AppContext } from '../../providers/AppProvider';
-import { MyComment } from './BookDetails';
 import { useContext } from 'react';
+import { MyComment } from './BookDetails';
 
 type MyCommentProps = {
 	item: MyComment;
@@ -10,8 +10,8 @@ export const Comment = ({
 	item,
 	removeComment,
 }: MyCommentProps): JSX.Element => {
+	const { username } = useContext(AppContext);
 
-	const { username } = useContext(AppContext)
 	return (
 		<div>
 			<div>
@@ -21,9 +21,8 @@ export const Comment = ({
 			<div>You are commenting as:{item.user}</div>
 			<p>Comment:{item.message}</p>
 			{username === item.user && (
-                <button onClick={() => removeComment(item.id)}>Remove</button>
-            )}
-
+				<button onClick={() => removeComment(item.id)}>Remove</button>
+			)}
 		</div>
 	);
 };

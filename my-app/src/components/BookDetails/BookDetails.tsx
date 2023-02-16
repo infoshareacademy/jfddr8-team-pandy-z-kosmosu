@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { firebaseDb } from '../../index';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
+
 const URL = 'https://openlibrary.org/works/';
 
 export type MyComment = {
@@ -21,6 +22,7 @@ export type MyComment = {
 export type NewMessageProps = {
 	id: MyComment[];
 };
+
 export const BookDetails = (): JSX.Element => {
 	const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
 	const { id } = useParams();
@@ -45,7 +47,10 @@ export const BookDetails = (): JSX.Element => {
 						subjects,
 					} = data;
 					const newBook = {
-						description: description ? description : 'No description found',
+						description:
+							description?.value || description
+								? description.value || description
+								: 'No description found',
 						title: title,
 						cover_img: covers
 							? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
@@ -74,7 +79,6 @@ export const BookDetails = (): JSX.Element => {
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setCommentValue(e.target.value);
-
 	};
 
 	const addToComment = async (product: MyComment): Promise<void> => {
@@ -83,7 +87,7 @@ export const BookDetails = (): JSX.Element => {
 				messages: [...myMessagesList, product],
 			});
 			setmyMessagesList([...myMessagesList, product]);
-			setCommentValue("");
+			setCommentValue('');
 		} catch (error) {
 			console.log(error);
 		}
@@ -91,6 +95,7 @@ export const BookDetails = (): JSX.Element => {
 
 	const removeComment = async (commId: number): Promise<void> => {
 		const newArr = myMessagesList.filter((obj) => obj.id !== commId);
+
 		try {
 			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
 				messages: newArr,
@@ -126,7 +131,7 @@ export const BookDetails = (): JSX.Element => {
 					</div>
 					<div>
 						<span>Description: </span>
-						<span>{book.description}</span>
+						<span>{book.description || book.description}</span>
 					</div>
 					<div>
 						<span>Subject Places: </span>
@@ -150,22 +155,24 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
+							<div>
+								<textarea
+									onChange={handleInputChange}
+									placeholder='Your comment...'
+									value={commentValue}></textarea>
 								<div>
-							<textarea
-								onChange={handleInputChange}
-								placeholder='Your comment...'
-								value={commentValue}></textarea>
-							<div><button
-								onClick={() => {
-									addToComment({
-										CreatedAt: Date.now(),
-										message: commentValue,
-										user: username,
-										id: Date.now(),
-									});
-								}}>
-								Add comment
-							</button></div>
+									<button
+										onClick={() => {
+											addToComment({
+												CreatedAt: Date.now(),
+												message: commentValue,
+												user: username,
+												id: Date.now(),
+											});
+										}}>
+										Add comment
+									</button>
+								</div>
 							</div>
 							<div className={classes['box-panda']}>
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
