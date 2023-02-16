@@ -43,3 +43,11 @@
 .book button:disabled:hover {
 	background-color: rgb(189, 184, 184);
 }
+
+.overflowEllipsis {
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

@@ -15,13 +15,13 @@ export const Book = (book: any) => {
 				<div>
 					<Link to={`/book/${book.id}`} {...book}>
 						<span>Title: </span>
-						<span>{book.title}</span>
+						<span className={classes.overflowEllipsis}>{book.title}</span>
 					</Link>
 				</div>
 
 				<div>
 					<span>Author: </span>
-					<span>{book.author}</span>
+					<span className={classes.overflowEllipsis}>{book.author}</span>
 				</div>
 
 				<div>
