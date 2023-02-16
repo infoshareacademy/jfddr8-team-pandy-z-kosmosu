@@ -9,13 +9,12 @@ export const Comment = ({
 }: MyCommentProps): JSX.Element => {
 	return (
 		<div>
-			<span>
+			<div>
 				Created at:
 				{new Intl.DateTimeFormat('pl-PL').format(new Date(Date.now()))}
-			</span>
-			<span>User:{item.user}</span>
+			</div>
+			<div>You are commenting as:{item.user}</div>
 			<p>Comment:{item.message}</p>
-			{/* <span>ID:{item.id}</span> */}
 			<button
 				onClick={() => {
 					removeComment(item.id);
