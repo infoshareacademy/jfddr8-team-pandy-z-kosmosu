@@ -85,7 +85,7 @@ export const BookDetails = (): JSX.Element => {
 				messages: [...myMessagesList, product],
 			});
 			setmyMessagesList([...myMessagesList, product]);
-			// setCommentValue("");
+			setCommentValue("");
 		} catch (error) {
 			console.log(error);
 		}
@@ -155,7 +155,8 @@ export const BookDetails = (): JSX.Element => {
 								<div>
 							<textarea
 								onChange={handleInputChange}
-								placeholder='Your comment...'></textarea>
+								placeholder='Your comment...'
+								value={commentValue}></textarea>
 							<div><button
 								onClick={() => {
 									addToComment({
