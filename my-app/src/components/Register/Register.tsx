@@ -56,7 +56,7 @@ export const Register = (): JSX.Element => {
     <>
     <br />
     <br />
-      <h1><img className={classes.userIcon} src={userIcon}></img>Please register:</h1>
+      <h1><img className={classes.userIcon} src={userIcon}></img>Please Sign in:</h1>
       <form>
       <div className={classes.login}>
         <div className={classes.item}>
