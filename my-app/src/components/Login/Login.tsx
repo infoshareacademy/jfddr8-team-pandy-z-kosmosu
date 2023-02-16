@@ -32,11 +32,13 @@ export const Login = (): JSX.Element => {
 
   return (
     <>
+    <br />
+    <br />
       <h1><img className={classes.userIcon} src={userIcon}></img>Log in:</h1>
       <form>
         <div className={classes.login}>
         <div className={classes.item}>
-        <label><b>Login:</b></label>
+        <label><b>E-mail:</b></label>
             
             <input
               className={isInputError ? classes.wrongInput : classes.login}
@@ -64,13 +66,13 @@ export const Login = (): JSX.Element => {
               }}
             />
           </div>
-          <br />
+          <p className={classes.error}>{error}</p>
           <button className={classes.logBtn} onClick={signIn}>Log in</button>
         </div>
         <div className={classes.positionBtn}>
           <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>
         </div>
-        <p>{error}</p>
+        <br />
       </form>
     </>
   );
