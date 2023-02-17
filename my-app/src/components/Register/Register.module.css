@@ -96,3 +96,25 @@
     display: flex;
     align-self: center;
 }
+
+@media screen and (max-width: 768px) {
+
+    .item {
+        flex-direction: column; 
+        justify-content: center; 
+        gap: 10px;
+        margin: auto;
+    }
+    
+    input.login {
+        margin: auto;
+    }
+    
+    label {
+        margin: auto;
+    }
+
+    .wrongInput {
+        margin: auto;
+    }
+    }
