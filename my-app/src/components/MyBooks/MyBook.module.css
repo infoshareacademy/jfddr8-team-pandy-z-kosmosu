@@ -38,14 +38,6 @@
 	background-color: rgb(189, 184, 184);
 }
 
-/* .title {
-	font-weight: bold;
-} */
-
-/* .link {
-	text-decoration: none;
-} */
-
 .overflowEllipsis {
 	display: -webkit-box;
 	-webkit-line-clamp: 1;

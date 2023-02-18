@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseAuth } from "../../index";
+import { firebaseAuth } from "../../App";
 import classes from './Register.module.css';
 import userIcon from '../../Graphics/User-icon.png';
 
@@ -106,7 +106,7 @@ export const Register = (): JSX.Element => {
         </div>
         <br />
         <p className={classes.error}>{error}</p>
-        <button className={classes.regBtn} onClick={handleSubmit}>Register</button>
+        <button className={classes.regBtn} onClick={handleSubmit}>Sign in</button>
         </div>
         <div className={classes.positionBtn}>
           <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>

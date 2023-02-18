@@ -7,7 +7,7 @@ import pandaFull from '../../Graphics/panda-full-mark.jpg';
 import pandaHalf from '../../Graphics/panda-half-mark.jpg';
 import { AppContext } from '../../providers/AppProvider';
 import { Link } from 'react-router-dom';
-import { firebaseDb } from '../../index';
+import { firebaseDb } from '../../App';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
 
@@ -18,9 +18,6 @@ export type MyComment = {
 	CreatedAt: number;
 	message: string;
 	user: string | null;
-};
-export type NewMessageProps = {
-	id: MyComment[];
 };
 
 export const BookDetails = (): JSX.Element => {
@@ -186,7 +183,6 @@ export const BookDetails = (): JSX.Element => {
 				</div>
 			</div>
 
-			
 			{isLogged && (
 				<div>
 					<div>

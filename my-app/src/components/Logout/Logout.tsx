@@ -1,7 +1,6 @@
 import { Link, NavigateFunction, useNavigate } from "react-router-dom"
 import classes from "./Logout.module.css";
 import logoutPanda from "../../Graphics/logout-panda.png";
-import { MutableRefObject, useEffect, useRef } from 'react';
 import Timer from "../Timer/Timer";
 import useTimeout from "../useTimeout/useTimeout";
 

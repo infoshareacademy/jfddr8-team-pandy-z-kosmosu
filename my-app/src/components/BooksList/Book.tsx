@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import { AppContext } from '../../providers/AppProvider';
 
 export const Book = (book: any) => {
