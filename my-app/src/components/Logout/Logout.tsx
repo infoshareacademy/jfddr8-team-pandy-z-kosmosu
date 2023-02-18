@@ -1,16 +1,14 @@
 import { Link, NavigateFunction, useNavigate } from "react-router-dom"
 import classes from "./Logout.module.css";
 import logoutPanda from "../../Graphics/logout-panda.png";
-import { useEffect } from 'react';
+import { MutableRefObject, useEffect, useRef } from 'react';
 import Timer from "../Timer/Timer";
+import useTimeout from "../useTimeout/useTimeout";
 
 export const Logout = (): JSX.Element => {
-      const navigate:NavigateFunction = useNavigate();
-      useEffect(() => {
-        setTimeout(() => {
-          navigate('/');
-        }, 5000);
-    })
+
+      const navigate: NavigateFunction = useNavigate();
+      useTimeout(() => navigate('/'), 5000)
 
   return (
     <div className={classes.logout}>

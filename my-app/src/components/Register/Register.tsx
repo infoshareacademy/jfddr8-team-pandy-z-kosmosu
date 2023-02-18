@@ -62,7 +62,7 @@ export const Register = (): JSX.Element => {
         <div className={classes.item}>
         <label><b>E-mail:</b></label>
         <br />
-        <input
+        <input 
           className={isUsernameError ? classes.wrongInput : classes.login}
           name="login"
           type="email"
