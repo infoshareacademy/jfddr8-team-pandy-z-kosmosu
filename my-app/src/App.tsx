@@ -8,11 +8,18 @@ import { Navbar } from './components/Navbar/Navbar';
 import { Footer } from './components/Footer/Footer';
 import { onAuthStateChanged } from 'firebase/auth';
 import { getDoc, doc } from 'firebase/firestore';
-import { firebaseAuth, firebaseDb } from './index';
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { firebaseConfig } from './firebase';
 import { BookDetails } from './components/BookDetails/BookDetails';
 import { AppContext } from './providers/AppProvider';
 import { Logout } from './components/Logout/Logout';
 import './App.module.css'
+
+const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseAuth = getAuth(firebaseApp);
+export const firebaseDb = getFirestore(firebaseApp);
 
 function App() {
 	const { setUsername, myBookList, setmyBookList, setIsLogged, books } =
@@ -32,7 +39,7 @@ function App() {
 				}
 			} else {
 				setUsername('');
-				// setmyBookList([]);
+				setmyBookList([]);
 			}
 		});
 	}, [setmyBookList, setUsername, setIsLogged, books]);

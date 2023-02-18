@@ -7,7 +7,7 @@ import pandaFull from '../../Graphics/panda-full-mark.jpg';
 import pandaHalf from '../../Graphics/panda-half-mark.jpg';
 import { AppContext } from '../../providers/AppProvider';
 import { Link } from 'react-router-dom';
-import { firebaseDb } from '../../index';
+import { firebaseDb } from '../../App';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
 
@@ -18,9 +18,6 @@ export type MyComment = {
 	CreatedAt: number;
 	message: string;
 	user: string | null;
-};
-export type NewMessageProps = {
-	id: MyComment[];
 };
 
 export const BookDetails = (): JSX.Element => {
@@ -141,6 +138,7 @@ export const BookDetails = (): JSX.Element => {
 						<span>Subject Times: </span>
 						<span>{book.subject_times}</span>
 					</div>
+
 					{isLogged && (
 						<div>
 							<button
@@ -155,25 +153,6 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
-							<div>
-								<textarea
-									onChange={handleInputChange}
-									placeholder='Your comment...'
-									value={commentValue}></textarea>
-								<div>
-									<button
-										onClick={() => {
-											addToComment({
-												CreatedAt: Date.now(),
-												message: commentValue,
-												user: username,
-												id: Date.now(),
-											});
-										}}>
-										Add comment
-									</button>
-								</div>
-							</div>
 							<div className={classes['box-panda']}>
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
@@ -181,19 +160,9 @@ export const BookDetails = (): JSX.Element => {
 								<img className={classes['panda-img']} src={pandaFull} alt='' />
 								<img className={classes['panda-img']} src={pandaHalf} alt='' />
 							</div>
-							<div className={classes['comment-box']}>
-								<div>
-									{myMessagesList.map((item) => (
-										<Comment
-											key={item.id}
-											item={item}
-											removeComment={removeComment}
-										/>
-									))}
-								</div>
-							</div>
 						</div>
 					)}
+
 					{!isLogged && (
 						<div>
 							<div>
@@ -213,6 +182,42 @@ export const BookDetails = (): JSX.Element => {
 					)}
 				</div>
 			</div>
+
+			{isLogged && (
+				<div>
+					<div>
+						<textarea
+							onChange={handleInputChange}
+							placeholder='Your comment...'
+							value={commentValue}></textarea>
+						<div>
+							<button
+								onClick={() => {
+									addToComment({
+										CreatedAt: Date.now(),
+										message: commentValue,
+										user: username,
+										id: Date.now(),
+									});
+								}}>
+								Add comment
+							</button>
+						</div>
+					</div>
+
+					<div className={classes['comment-box']}>
+						<div>
+							{myMessagesList.map((item) => (
+								<Comment
+									key={item.id}
+									item={item}
+									removeComment={removeComment}
+								/>
+							))}
+						</div>
+					</div>
+				</div>
+			)}
 		</section>
 	);
 };
