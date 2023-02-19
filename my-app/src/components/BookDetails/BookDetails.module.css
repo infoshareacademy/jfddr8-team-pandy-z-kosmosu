@@ -12,6 +12,10 @@
 	text-align: left;
 }
 
+.content-title {
+	margin: 0.5rem 0;
+}
+
 .title {
 	font-weight: bold;
 }
@@ -60,6 +64,10 @@ img.panda-img {
 	width: 90%;
 	max-width: 800px;
 	max-height: 90px;
+}
+
+.notlogged {
+	margin-top: 1rem;
 }
 
 @media (max-width: 991px) {
