@@ -1,183 +1,19 @@
 .card-book {
 	display: flex;
-	padding: 2rem 2rem;
 }
 
-.cover-img img {
-	padding-right: 1rem;
-	max-height:500px ;
+.cover-img {
+	margin: 1rem;
 }
 
-img.panda-img {
-	width: 30px;
+.content {
+	padding: 1rem;
+	word-wrap: break-word;
+	text-align: left;
 }
 
-.box-panda {
-	padding: 0.8rem 0;
-}
-
-.page {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
-	flex-direction: column;
-	background-color: rgb(234, 236, 239);
-}
-
-.bookdetalis {
-	width: 800px;
-	background-color: white;
-	border: none;
-	border-radius: 20px;
-	margin-bottom: 50px;
-	font-size: small;
-	margin-top: 50px;
-	box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
-}
-
-.pic {
-	width: 200px;
-	height: 320px;
-	margin-right: 40px;
-}
-
-/* div {
-	line-height: 20px;
-} */
-
-.backtobrowse {
-	margin-right: 40px;
-	width: 80px;
-	height: 80px;
-	border-radius: 10px;
-	border: none;
-	box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
-	background-color: white;
-}
-
-.backplusdescription {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.recommendations {
-	display: flex;
-	justify-content: space-around;
-	width: 800px;
-	align-content: center;
-}
-
-.imgbook {
-	height: 150px;
-	width: 100px;
-	padding-bottom: 10px;
-}
-
-.booksproposition {
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-	padding-top: 10px;
-	width: 200px;
-	height: 300px;
-	border: 2px solid gray;
-	background-color: white;
-	border-radius: 10%;
-	align-items: center;
-	margin-top: 50px;
-	margin-bottom: 60px;
-	box-shadow: 0 0 4px 3px rgba(128, 128, 128, 0.279);
-}
-
-.commentsarea {
-	display: flex;
-	justify-content: center;
-}
-.comments {
-	width: 800px;
-	background-color: white;
-	border: none;
-	border-radius: 20px;
-	margin-bottom: 50px;
-	font-size: small;
-	display: flex;
-	flex-direction: column;
-	box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
-}
-
-.pandacomment {
-	width: 20px;
-	height: 30px;
-}
-
-.comment {
-	width: 650px;
-	height: 50px;
-	border: 2px solid gray;
-	border-radius: 20px;
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	box-shadow: 0 0 3px 3px rgba(128, 128, 128, 0.279);
-	margin-left: 60px;
-	text-align: start;
-}
-
-.buttons {
-	display: flex;
-	flex-direction: column;
-	align-items: start;
-}
-.addtofavorites {
-	border: none;
-	background: white;
-	font-size: smaller;
-}
-
-.gotocomments {
-	border: none;
-	background: white;
-	font-size: smaller;
-	font-style: italic;
-}
-
-p {
-	font-style: italic;
-	color: gray;
-	font-size: smaller;
-	text-align: start;
-	display: flex;
-	justify-content: flex-start;
-}
-
-.info {
-	width: 500px;
-}
-
-.titlecomment {
-	margin-left: 20px;
-}
-
-.typecomment {
-	margin-left: 70px;
-	display: flex;
-	/* justify-content: space-around; */
-	width: 600px;
-	text-decoration: underline;
-}
-
-.buttonadd {
-	background-color: black;
-	color: white;
-	border-radius: 20px;
-	width: 150px;
-	height: 25px;
-	padding: 5px;
-	font-size: smaller;
-	font-style: italic;
-	margin-bottom: 20px;
-	padding: 0.8rem 0;
+.title {
+	font-weight: bold;
 }
 
 .btn-add-to-fav::after {
@@ -198,4 +34,47 @@ p {
 
 .btn-add-to-fav:disabled:hover {
 	background-color: rgb(189, 184, 184);
+}
+
+img.panda-img {
+	margin-top: 1rem;
+	width: 30px;
+}
+
+.comment-card {
+	margin: 1rem;
+}
+
+.comment-box {
+	display: flex;
+	justify-content: center;
+}
+
+.textarea-box {
+	display: flex;
+	justify-content: center;
+}
+
+.textarea {
+	padding: 0 1rem;
+	width: 90%;
+	max-width: 800px;
+	max-height: 90px;
+}
+
+@media (max-width: 991px) {
+	.card-book {
+		display: block;
+		text-align: center;
+	}
+	.textarea-box {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+@media (min-width: 992px) {
+	.textarea {
+		margin-right: 0.5rem;
+	}
 }

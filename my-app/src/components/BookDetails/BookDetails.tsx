@@ -116,26 +116,24 @@ export const BookDetails = (): JSX.Element => {
 
 	if (loading) return <Loader />;
 	return (
-		<section>
+		<section className={classes['book-section']}>
 			<div className={classes['card-book']}>
-				<div className={classes['cover-img']}>
-					<img src={book.cover_img} alt='cover img' />
-				</div>
+				<img className={classes['cover-img']} src={book.cover_img} alt='cover img' />
 				<div className={classes.content}>
 					<div>
-						<span>Title: </span>
+						<span className={classes.title}>Title: </span>
 						<span>{book.title}</span>
 					</div>
-					<div>
-						<span>Description: </span>
+					<div className={classes.description}>
+						<span className={classes.title}>Description: </span>
 						<span>{book.description || book.description}</span>
 					</div>
 					<div>
-						<span>Subject Places: </span>
+						<span className={classes.title}>Subject Places: </span>
 						<span>{book.subject_places}</span>
 					</div>
 					<div>
-						<span>Subject Times: </span>
+						<span className={classes.title}>Subject Times: </span>
 						<span>{book.subject_times}</span>
 					</div>
 
@@ -184,9 +182,9 @@ export const BookDetails = (): JSX.Element => {
 			</div>
 
 			{isLogged && (
-				<div>
-					<div>
-						<textarea
+				<div className={classes['comment-card']}>
+					<div className={classes['textarea-box']}>
+						<textarea className={classes.textarea}
 							onChange={handleInputChange}
 							placeholder='Your comment...'
 							value={commentValue}></textarea>
