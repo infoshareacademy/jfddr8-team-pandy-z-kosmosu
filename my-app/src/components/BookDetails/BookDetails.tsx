@@ -116,31 +116,33 @@ export const BookDetails = (): JSX.Element => {
 
 	if (loading) return <Loader />;
 	return (
-		<section>
+		<section className={classes['book-section']}>
 			<div className={classes['card-book']}>
-				<div className={classes['cover-img']}>
-					<img src={book.cover_img} alt='cover img' />
-				</div>
+				<img
+					className={classes['cover-img']}
+					src={book.cover_img}
+					alt='cover img'
+				/>
 				<div className={classes.content}>
-					<div>
-						<span>Title: </span>
+					<div className={classes['content-title']}>
+						<span className={classes.title}>Title: </span>
 						<span>{book.title}</span>
 					</div>
-					<div>
-						<span>Description: </span>
+					<div className={classes['content-title']}>
+						<span className={classes.title}>Description: </span>
 						<span>{book.description || book.description}</span>
 					</div>
-					<div>
-						<span>Subject Places: </span>
+					<div className={classes['content-title']}>
+						<span className={classes.title}>Subject Places: </span>
 						<span>{book.subject_places}</span>
 					</div>
-					<div>
-						<span>Subject Times: </span>
+					<div className={classes['content-title']}>
+						<span className={classes.title}>Subject Times: </span>
 						<span>{book.subject_times}</span>
 					</div>
 
-					{isLogged && (
-						<div>
+					<div>
+						{isLogged && (
 							<button
 								className={classes['btn-add-to-fav']}
 								disabled={myBookList.some(
@@ -153,40 +155,41 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
-							<div className={classes['box-panda']}>
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaHalf} alt='' />
-							</div>
+						)}
+						<div className={classes['box-panda']}>
+							<img className={classes['panda-img']} src={pandaFull} alt='' />
+							<img className={classes['panda-img']} src={pandaFull} alt='' />
+							<img className={classes['panda-img']} src={pandaFull} alt='' />
+							<img className={classes['panda-img']} src={pandaFull} alt='' />
+							<img className={classes['panda-img']} src={pandaHalf} alt='' />
 						</div>
-					)}
+					</div>
 
 					{!isLogged && (
-						<div>
+						<div className={classes.notlogged}>
 							<div>
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span>to add to favorites :)</span>
+								<span> to add to favorites :)</span>
 							</div>
 							<div>
 								<span>See comments or </span>
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span>to add one!</span>
+								<span> to add one!</span>
 							</div>
 						</div>
 					)}
 				</div>
 			</div>
 
-			{isLogged && (
-				<div>
-					<div>
+			<div className={classes['comment-card']}>
+				{isLogged && (
+					<div className={classes['textarea-box']}>
 						<textarea
+							className={classes.textarea}
 							onChange={handleInputChange}
 							placeholder='Your comment...'
 							value={commentValue}></textarea>
@@ -204,20 +207,20 @@ export const BookDetails = (): JSX.Element => {
 							</button>
 						</div>
 					</div>
+				)}
 
-					<div className={classes['comment-box']}>
-						<div>
-							{myMessagesList.map((item) => (
-								<Comment
-									key={item.id}
-									item={item}
-									removeComment={removeComment}
-								/>
-							))}
-						</div>
+				<div className={classes['comment-box']}>
+					<div>
+						{myMessagesList.map((item) => (
+							<Comment
+								key={item.id}
+								item={item}
+								removeComment={removeComment}
+							/>
+						))}
 					</div>
 				</div>
-			)}
+			</div>
 		</section>
 	);
 };
