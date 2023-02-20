@@ -16,7 +16,6 @@ export const BookList = () => {
 				: coverImg,
 		};
 	});
-
 	if (loading) return <Loader />;
 
 	return (
