@@ -16,7 +16,7 @@ export const MyBook = ({ item }: MyBookProps): JSX.Element => {
 			<div className={classes.content}>
 			<Link className={classes.link} to={`/book/${item.id}`} {...item}>
 						<span className={classes.title}>Title: </span>
-						<span>{item.title}</span>
+						<span className={classes.overflowEllipsis}>{item.title}</span>
 					</Link>
 			<button onClick={() => removeFromFav(item.id)}>Delete ❌</button>
 			</div>

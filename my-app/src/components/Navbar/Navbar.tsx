@@ -5,7 +5,7 @@ import logoImg from '../../Graphics/Logo.png';
 import logoUser from '../../Graphics/User-icon.png';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { firebaseAuth } from '../../index';
+import { firebaseAuth } from '../../App';
 import { AppContext } from '../../providers/AppProvider';
 import bar from '../../Graphics/Hamburger-icon.png';
 
@@ -21,7 +21,6 @@ export const Navbar = (): JSX.Element => {
 		setToggleMenu(!toggleMenu);
 		try {
 			await signOut(firebaseAuth);
-			console.log('Logged out');
 		} catch (error) {
 			console.log(error);
 		}
