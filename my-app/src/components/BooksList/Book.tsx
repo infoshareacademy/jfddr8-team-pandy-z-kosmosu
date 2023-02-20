@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import classes from './Book.module.css';
-import { useContext, useState } from 'react';
+import { useContext} from 'react';
 import { AppContext } from '../../providers/AppProvider';
 
 export const Book = (book: any) => {
@@ -15,13 +15,13 @@ export const Book = (book: any) => {
 				<div>
 					<Link to={`/book/${book.id}`} {...book}>
 						<span>Title: </span>
-						<span>{book.title}</span>
+						<span className={classes.overflowEllipsis}>{book.title}</span>
 					</Link>
 				</div>
 
 				<div>
 					<span>Author: </span>
-					<span>{book.author}</span>
+					<span className={classes.overflowEllipsis}>{book.author}</span>
 				</div>
 
 				<div>

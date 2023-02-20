@@ -12,6 +12,7 @@ import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { Comment } from "./Comment";
 import icon from "../../Graphics/User-icon.png";
 
+
 const URL = "https://openlibrary.org/works/";
 
 export type MyComment = {
@@ -20,9 +21,7 @@ export type MyComment = {
   message: string;
   user: string | null;
 };
-export type NewMessageProps = {
-  id: MyComment[];
-};
+
 
 export const BookDetails = (): JSX.Element => {
   const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
@@ -245,4 +244,5 @@ export const BookDetails = (): JSX.Element => {
       </section>
     </section>
   );
+
 };
