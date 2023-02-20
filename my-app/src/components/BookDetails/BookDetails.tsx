@@ -7,7 +7,7 @@ import pandaFull from "../../Graphics/panda-full-mark.jpg";
 import pandaHalf from "../../Graphics/panda-half-mark.jpg";
 import { AppContext } from "../../providers/AppProvider";
 import { Link } from "react-router-dom";
-import { firebaseDb } from "../../index";
+import { firebaseDb } from "../../App";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { Comment } from "./Comment";
 import icon from "../../Graphics/User-icon.png";

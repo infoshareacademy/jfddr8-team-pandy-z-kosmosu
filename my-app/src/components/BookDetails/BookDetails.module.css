@@ -9,6 +9,7 @@
   font-size: revert;
   /* margin-left: 100px; */
   box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
+  margin-top: 2rem;
 }
 
 .cover-img img {
@@ -206,7 +207,6 @@ img.panda-img {
 
 .btn-add-to-fav:disabled:hover {
   background-color: rgb(189, 184, 184);
-
 }
 .booksection {
   background-color: aquamarine;
@@ -257,10 +257,9 @@ img.panda-img {
   margin-left: 7px;
   display: flex;
   width: 700px;
-  /* justify-content: space-around; */
-  text-decoration: underline;
   border: none;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
+  border-bottom: solid 1px;
 }
 
 .typecomment {
@@ -278,4 +277,8 @@ img.panda-img {
   text-align: start;
   display: flex;
   justify-content: flex-start;
+} */
+
+/* description-book {
+  font-style: italic;
 } */
