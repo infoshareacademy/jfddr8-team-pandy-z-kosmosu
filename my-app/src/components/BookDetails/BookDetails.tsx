@@ -24,13 +24,16 @@ export type MyComment = {
 };
 
 export const BookDetails = (): JSX.Element => {
-  const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
-  const { id } = useParams();
-  const [loading, setLoading] = useState(false);
-  const [book, setBook] = useState<any>("");
-  const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
-  const [commentValue, setCommentValue] = useState("");
+	const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
+	const { id } = useParams();
+	const [loading, setLoading] = useState(false);
+	const [book, setBook] = useState<any>('');
+	const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
+	const [commentValue, setCommentValue] = useState('');
+	const [ratesList, setRatesList] = useState<number[]>([]);
+	const [ratesListAverage, setRatesListAverage] = useState(0)
   const [rating, setRating] = useState(0);
+
 
   // Catch Rating value
   const handleRating = (rate: number) => {
@@ -43,6 +46,7 @@ export const BookDetails = (): JSX.Element => {
   const onPointerLeave = () => console.log("Leave");
   const onPointerMove = (value: number, index: number) =>
     console.log(value, index);
+
 
   useEffect(() => {
     setLoading(true);
@@ -90,26 +94,39 @@ export const BookDetails = (): JSX.Element => {
     getBookDetails();
   }, [id]);
 
+	const addToRate = async (index: number): Promise<void> => {
+		try {
+			await setDoc(doc(firebaseDb, 'Rating', `${book.id}`), {
+				values: [...ratesList, index],
+			});
+			setRatesList([...ratesList, index]);
+			
+			console.log(ratesList)
+			console.log(ratesListAverage)
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	
+	const addToComment = async (product: MyComment): Promise<void> => {
+		try {
+			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
+				messages: [...myMessagesList, product],
+			});
+			setmyMessagesList([...myMessagesList, product]);
+			setCommentValue('');
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentValue(e.target.value);
   };
 
-  const addToComment = async (product: MyComment): Promise<void> => {
-    try {
-      await setDoc(doc(firebaseDb, "conversations", `${book.id}`), {
-        messages: [...myMessagesList, product],
-      });
-      setmyMessagesList([...myMessagesList, product]);
-      setCommentValue("");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const removeComment = async (commId: number): Promise<void> => {
     const newArr = myMessagesList.filter((obj) => obj.id !== commId);
-
-    try {
+     try {
       await setDoc(doc(firebaseDb, "conversations", `${book.id}`), {
         messages: newArr,
       });
@@ -118,6 +135,34 @@ export const BookDetails = (): JSX.Element => {
       console.log(error);
     }
   };
+
+	useEffect(() => {
+		const docRef = doc(firebaseDb, 'Rating', `${book.id}`);
+		const unsubscribe = onSnapshot(docRef, (doc) => {
+			if (doc.exists()) {
+				const data = doc.data();
+				setRatesList(data.values);
+				// console.log(data.values)
+				const sumOfRates = ratesList.reduce((a, b) => (a + b))
+				setRatesListAverage(sumOfRates / ratesList.length)
+
+				// console.log(ratesList.length)
+				console.log(ratesListAverage)
+			}
+		});
+		return () => unsubscribe();
+	}, [book.id, ratesList.length]);
+
+	useEffect(() => {
+		const docRef = doc(firebaseDb, 'conversations', `${book.id}`);
+		const unsubscribe = onSnapshot(docRef, (doc) => {
+			if (doc.exists()) {
+				const data = doc.data();
+				setmyMessagesList(data.messages);
+			}
+		});
+		return () => unsubscribe();
+	}, [book.id]);
 
   useEffect(() => {
     const docRef = doc(firebaseDb, "conversations", `${book.id}`);
@@ -184,11 +229,14 @@ export const BookDetails = (): JSX.Element => {
                 }
               ></button>
               {/* <div className={classes["box-panda"]}>
-                <img className={classes["panda-img"]} src={pandaFull} alt="" />
+                <img className={classes["panda-img"]} src={pandaFull} alt="" onClick={() => {
+										addToRate(1);
+									}}/>
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
                 <img className={classes["panda-img"]} src={pandaFull} alt="" />
                 <img className={classes["panda-img"]} src={pandaHalf} alt="" />
+                <span>{ratesListAverage}</span>
               </div> */}
               <div className={classes.ratingContainer}>
                 <Rating
