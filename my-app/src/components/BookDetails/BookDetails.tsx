@@ -28,6 +28,8 @@ export const BookDetails = (): JSX.Element => {
 	const [book, setBook] = useState<any>('');
 	const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
 	const [commentValue, setCommentValue] = useState('');
+	const [ratesList, setRatesList] = useState<number[]>([]);
+	const [ratesListAverage, setRatesListAverage] = useState(0)
 
 	useEffect(() => {
 		setLoading(true);
@@ -79,6 +81,20 @@ export const BookDetails = (): JSX.Element => {
 		setCommentValue(e.target.value);
 	};
 
+	const addToRate = async (index: number): Promise<void> => {
+		try {
+			await setDoc(doc(firebaseDb, 'Rating', `${book.id}`), {
+				values: [...ratesList, index],
+			});
+			setRatesList([...ratesList, index]);
+			
+			console.log(ratesList)
+			console.log(ratesListAverage)
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	
 	const addToComment = async (product: MyComment): Promise<void> => {
 		try {
 			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
@@ -103,6 +119,23 @@ export const BookDetails = (): JSX.Element => {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		const docRef = doc(firebaseDb, 'Rating', `${book.id}`);
+		const unsubscribe = onSnapshot(docRef, (doc) => {
+			if (doc.exists()) {
+				const data = doc.data();
+				setRatesList(data.values);
+				// console.log(data.values)
+				const sumOfRates = ratesList.reduce((a, b) => (a + b))
+				setRatesListAverage(sumOfRates / ratesList.length)
+
+				// console.log(ratesList.length)
+				console.log(ratesListAverage)
+			}
+		});
+		return () => unsubscribe();
+	}, [book.id, ratesList.length]);
 
 	useEffect(() => {
 		const docRef = doc(firebaseDb, 'conversations', `${book.id}`);
@@ -168,11 +201,47 @@ export const BookDetails = (): JSX.Element => {
 									})
 								}></button>
 							<div className={classes['box-panda']}>
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaHalf} alt='' />
+								<img
+									className={classes['panda-img']}
+									src={pandaFull}
+									alt=''
+									onClick={() => {
+										addToRate(1);
+									}}
+								/>
+								<img
+									className={classes['panda-img']}
+									src={pandaFull}
+									alt=''
+									onClick={() => {
+										addToRate(2);
+									}}
+								/>
+								<img
+									className={classes['panda-img']}
+									src={pandaFull}
+									alt=''
+									onClick={() => {
+										addToRate(3);
+									}}
+								/>
+								<img
+									className={classes['panda-img']}
+									src={pandaFull}
+									alt=''
+									onClick={() => {
+										addToRate(4);
+									}}
+								/>
+								<img
+									className={classes['panda-img']}
+									src={pandaHalf}
+									alt=''
+									onClick={() => {
+										addToRate(5);
+									}}
+								/>
+								<span>{ratesListAverage}</span>
 							</div>
 						</div>
 					)}
