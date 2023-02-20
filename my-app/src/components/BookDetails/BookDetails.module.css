@@ -86,3 +86,9 @@ img.panda-img {
 		margin-right: 0.5rem;
 	}
 }
+
+@media (max-width: 576px) {
+	.cover-img {
+		max-width: 340px;
+	}
+}
