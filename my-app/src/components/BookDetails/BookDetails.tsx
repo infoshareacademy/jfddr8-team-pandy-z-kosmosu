@@ -31,7 +31,6 @@ export const BookDetails = (): JSX.Element => {
   const [book, setBook] = useState<any>("");
   const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
   const [commentValue, setCommentValue] = useState("");
-  //   const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -188,22 +187,22 @@ export const BookDetails = (): JSX.Element => {
                 <Link className={classes.links} to="/login">
                   Log in
                 </Link>
-                <span>to add to favorites :)</span>
+                <span> to add to favorites :)</span>
               </div>
               <div>
                 <span>See comments or </span>
                 <Link className={classes.links} to="/login">
                   Log in
                 </Link>
-                <span>to add one!</span>
+                <span> to add one!</span>
               </div>
             </div>
           )}
         </div>
       </div>
       <section className={classes.commentsection}>
-        {isLogged && (
-          <div>
+        <div>
+          {isLogged && (
             <div className={classes["typecomment"]}>
               <img className={classes["pandacomment"]} src={icon} alt="" />
               <textarea
@@ -228,20 +227,19 @@ export const BookDetails = (): JSX.Element => {
                 </button>
               </div>
             </div>
-
-            <div className={classes["comment-box"]}>
-              <div>
-                {myMessagesList.map((item) => (
-                  <Comment
-                    key={item.id}
-                    item={item}
-                    removeComment={removeComment}
-                  />
-                ))}
-              </div>
+          )}
+          <div className={classes["comment-box"]}>
+            <div>
+              {myMessagesList.map((item) => (
+                <Comment
+                  key={item.id}
+                  item={item}
+                  removeComment={removeComment}
+                />
+              ))}
             </div>
           </div>
-        )}
+        </div>
       </section>
     </section>
   );
