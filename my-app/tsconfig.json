@@ -22,6 +22,8 @@
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": [
-    "src"
+    "src",
+    "src/components",
+    "src/custom.d.ts"
   ]
 }
