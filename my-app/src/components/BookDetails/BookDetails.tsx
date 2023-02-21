@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import classes from "./BookDetails.module.css";
 import { Loader } from "../Loader/Loader";
 import coverImg from "../../Graphics/cover_not_found.jpg";
-import pandaFull from "../../Graphics/panda-full-mark.jpg";
-import pandaHalf from "../../Graphics/panda-half-mark.jpg";
 import { AppContext } from "../../providers/AppProvider";
 import { Link } from "react-router-dom";
 import { firebaseDb } from "../../App";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { Comment } from "./Comment";
 import icon from "../../Graphics/User-icon.png";
+import { Rating } from "react-simple-star-rating";
+import { EmptyIcon, FillIcon } from "../Rating/FillIcon";
 
 const URL = "https://openlibrary.org/works/";
 
@@ -25,12 +25,25 @@ export type NewMessageProps = {
 };
 
 export const BookDetails = (): JSX.Element => {
-  const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
+  const { isLogged, addToFav, myBookList, username, ratesList, setRatesList } =
+    useContext(AppContext);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [book, setBook] = useState<any>("");
   const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
   const [commentValue, setCommentValue] = useState("");
+  const [ratesListAverage, setRatesListAverage] = useState(0);
+
+  const handleRating = async (rate: number) => {
+    try {
+      await setDoc(doc(firebaseDb, "Rating", `${book.id}`), {
+        values: [...ratesList, rate],
+      });
+      setRatesList([...ratesList, rate]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -94,9 +107,12 @@ export const BookDetails = (): JSX.Element => {
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setCommentValue(e.target.value);
+  };
+
   const removeComment = async (commId: number): Promise<void> => {
     const newArr = myMessagesList.filter((obj) => obj.id !== commId);
-
     try {
       await setDoc(doc(firebaseDb, "conversations", `${book.id}`), {
         messages: newArr,
@@ -106,6 +122,31 @@ export const BookDetails = (): JSX.Element => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const docRef = doc(firebaseDb, "Rating", `${book.id}`);
+    const unsubscribe = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const data = doc.data();
+        setRatesList(data.values);
+        const sumOfRates = ratesList.reduce((a, b) => a + b, 0);
+        const average = sumOfRates / Number(ratesList.length);
+        setRatesListAverage(Number(average.toFixed(0)));
+      }
+    });
+    return () => unsubscribe();
+  }, [book.id, ratesList.length]);
+
+  useEffect(() => {
+    const docRef = doc(firebaseDb, "conversations", `${book.id}`);
+    const unsubscribe = onSnapshot(docRef, (doc) => {
+      if (doc.exists()) {
+        const data = doc.data();
+        setmyMessagesList(data.messages);
+      }
+    });
+    return () => unsubscribe();
+  }, [book.id]);
 
   useEffect(() => {
     const docRef = doc(firebaseDb, "conversations", `${book.id}`);

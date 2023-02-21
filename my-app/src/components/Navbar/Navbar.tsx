@@ -10,7 +10,7 @@ import { AppContext } from '../../providers/AppProvider';
 import bar from '../../Graphics/Hamburger-icon.png';
 
 export const Navbar = (): JSX.Element => {
-	const { isLogged, setIsLogged, username, myBookList } =
+	const { isLogged, setIsLogged, username, myBookList, ratesList } =
 		useContext(AppContext);
 	const [toggleMenu, setToggleMenu] = useState(false);
 	const [pandaAnime, setPandaAnime] = useState(false);
@@ -40,7 +40,7 @@ export const Navbar = (): JSX.Element => {
 		return () => {
 			clearTimeout(timer);
 		};
-	}, [myBookList]);
+	}, [myBookList, ratesList.length]);
 
 	const pandaClasses = `${classes['logo-user']} ${
 		pandaAnime ? classes.bump : ''

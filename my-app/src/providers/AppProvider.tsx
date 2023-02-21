@@ -41,6 +41,8 @@ type AppContextState = {
 	removeFromFav: (bookId: string) => void;
 	resultMyBooks: string | null;
 	setResultMyBooks: (param: string) => void;
+	ratesList: number[];
+	setRatesList: (numbers: number[]) => void
 };
 
 type AppProviderProps = {
@@ -59,6 +61,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [listSum, setlistSum] = useState<number>(0);
 	const [myBookList, setmyBookList] = useState([] as BookToFav[]);
 	const [isLogged, setIsLogged] = useState(false);
+	const [ratesList, setRatesList] = useState<number[]>([]);
 
 	const addToFav = async (product: BookToFav): Promise<void> => {
 		try {
@@ -167,6 +170,8 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 				removeFromFav,
 				resultMyBooks,
 				setResultMyBooks,
+				ratesList, 
+				setRatesList
 			}}>
 			{children}
 		</AppContext.Provider>
