@@ -13,7 +13,7 @@ const Slider = ():JSX.Element => {
   ];
 
   return (
-    <div className={classes.sliderWrapper}>
+    <div className={classes.sliderWrapper} >
       <Slide arrows={false}>
           <div className="each-slide-effect">
               <div>
