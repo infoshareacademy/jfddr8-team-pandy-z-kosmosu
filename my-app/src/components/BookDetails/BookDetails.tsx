@@ -22,22 +22,26 @@ export type MyComment = {
 };
 
 export const BookDetails = (): JSX.Element => {
-	const { isLogged, addToFav, myBookList, username, ratesList, setRatesList } = useContext(AppContext);
+	const { isLogged, addToFav, myBookList, username, ratesList, setRatesList } =
+		useContext(AppContext);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
 	const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
 	const [commentValue, setCommentValue] = useState('');
 	const [ratesListAverage, setRatesListAverage] = useState(0);
+	const [emptyMessegesList, setEmptyMessegesList] = useState('');
 
 	const handleRating = async (rate: number) => {
-		try {
-			await setDoc(doc(firebaseDb, 'Rating', `${book.id}`), {
-				values: [...ratesList, rate],
-			});
-			setRatesList([...ratesList, rate]);
-		} catch (error) {
-			console.log(error);
+		if (isLogged) {
+			try {
+				await setDoc(doc(firebaseDb, 'Rating', `${book.id}`), {
+					values: [...ratesList, rate],
+				});
+				setRatesList([...ratesList, rate]);
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	};
 
@@ -123,7 +127,7 @@ export const BookDetails = (): JSX.Element => {
 				setRatesList(data.values);
 				const sumOfRates = ratesList.reduce((a, b) => a + b, 0);
 				const average = sumOfRates / Number(ratesList.length);
-				setRatesListAverage(Number(average.toFixed(0)));
+				setRatesListAverage(Number(average.toFixed(1)));
 			}
 		});
 		return () => unsubscribe();
@@ -135,23 +139,20 @@ export const BookDetails = (): JSX.Element => {
 			if (doc.exists()) {
 				const data = doc.data();
 				setmyMessagesList(data.messages);
+				if (myMessagesList.length === 0) {
+					setEmptyMessegesList('No comments yet.');
+				} else {
+					setEmptyMessegesList('');
+				}
+			} else {
+				setEmptyMessegesList('No comments yet.');
 			}
 		});
 		return () => unsubscribe();
-	}, [book.id]);
-
-	useEffect(() => {
-		const docRef = doc(firebaseDb, 'conversations', `${book.id}`);
-		const unsubscribe = onSnapshot(docRef, (doc) => {
-			if (doc.exists()) {
-				const data = doc.data();
-				setmyMessagesList(data.messages);
-			}
-		});
-		return () => unsubscribe();
-	}, [book.id]);
+	}, [book.id, myMessagesList.length]);
 
 	if (loading) return <Loader />;
+
 	return (
 		<section className={classes['all-page']}>
 			<div className={classes['card-book']}>
@@ -197,15 +198,6 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
-							<div className={classes.ratingContainer}>
-								<Rating
-									onClick={handleRating}
-									fillIcon={FillIcon}
-									initialValue={ratesListAverage}
-									transition={true}
-									emptyIcon={EmptyIcon}
-								/>
-							</div>
 						</div>
 					)}
 					{!isLogged && (
@@ -214,7 +206,7 @@ export const BookDetails = (): JSX.Element => {
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span> to add to favorites :)</span>
+								<span> to add to favorites and rate :)</span>
 							</div>
 							<div>
 								<span>See comments or </span>
@@ -225,6 +217,16 @@ export const BookDetails = (): JSX.Element => {
 							</div>
 						</div>
 					)}
+					<div className={classes.ratingContainer}>
+						<Rating
+							onClick={handleRating}
+							fillIcon={FillIcon}
+							initialValue={ratesListAverage}
+							transition={true}
+							emptyIcon={EmptyIcon}
+						/>
+						<span>({ratesListAverage})</span>
+					</div>
 				</div>
 			</div>
 			<section className={classes.commentsection}>
@@ -254,6 +256,7 @@ export const BookDetails = (): JSX.Element => {
 						</div>
 					)}
 					<div className={classes['comment-box']}>
+						<p>{emptyMessegesList}</p>
 						<div>
 							{myMessagesList.map((item) => (
 								<Comment
