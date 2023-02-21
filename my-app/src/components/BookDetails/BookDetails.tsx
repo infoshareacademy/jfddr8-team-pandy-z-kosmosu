@@ -155,91 +155,82 @@ export const BookDetails = (): JSX.Element => {
   if (loading) return <Loader />;
   return (
     <section className={classes["all-page"]}>
-      <div className={classes["cardbookwrapper"]}>
-        <button className={classes.backBtn}>
-          <Link to="/">
-            Back to Home
-            <br />
-            <span className={classes.arrow}>⟻</span>
-          </Link>
-        </button>
-        <div className={classes["card-book"]}>
-          <div className={classes["cover-img"]}>
-            <img
-              className={classes["main-img"]}
-              src={book.cover_img}
-              alt="cover img"
-            />
+      <div className={classes["card-book"]}>
+        <div className={classes["cover-img"]}>
+          <img
+            className={classes["main-img"]}
+            src={book.cover_img}
+            alt="cover img"
+          />
+        </div>
+        <div className={classes["content"]}>
+          <div className={classes.infobook}>
+            <span>
+              <b>Title:</b>{" "}
+            </span>
+            <span>{book.title}</span>
           </div>
-          <div className={classes["content"]}>
-            <div className={classes.infobook}>
-              <span>
-                <b>Title:</b>{" "}
-              </span>
-              <span>{book.title}</span>
-            </div>
-            <div>
-              <span>
-                <b>Description:</b>{" "}
-              </span>
-              <span>{book.description || book.description}</span>
-            </div>
-            <div>
-              <span>
-                <b>Subject Places:</b>{" "}
-              </span>
-              <span>{book.subject_places}</span>
-            </div>
-            <div>
-              <span>
-                <b>Subject Times:</b>{" "}
-              </span>
-              <span>{book.subject_times}</span>
-            </div>
-            {isLogged && (
-              <div>
-                <button
-                  className={classes["btn-add-to-fav"]}
-                  disabled={myBookList.some(
-                    (singleBook) => singleBook.id === book.id
-                  )}
-                  onClick={() =>
-                    addToFav({
-                      title: book.title,
-                      cover_img: book.cover_img,
-                      id: book.id,
-                    })
-                  }
-                ></button>
-                <div className={classes.ratingContainer}>
-                  <Rating
-                    onClick={handleRating}
-                    fillIcon={FillIcon}
-                    initialValue={ratesListAverage}
-                    transition={true}
-                    emptyIcon={EmptyIcon}
-                  />
-                </div>
-              </div>
-            )}
-            {!isLogged && (
-              <div>
-                <div>
-                  <Link className={classes.links} to="/login">
-                    Log in
-                  </Link>
-                  <span> to add to favorites :)</span>
-                </div>
-                <div>
-                  <span>See comments or </span>
-                  <Link className={classes.links} to="/login">
-                    Log in
-                  </Link>
-                  <span> to add one!</span>
-                </div>
-              </div>
-            )}
+          <div>
+            <span>
+              <b>Description:</b>{" "}
+            </span>
+            <span>{book.description}</span>
           </div>
+          <div>
+            <span>
+              <b>Subject Places:</b>{" "}
+            </span>
+            <span>{book.subject_places}</span>
+          </div>
+          <div>
+            <span>
+              <b>Subject Times:</b>{" "}
+            </span>
+            <span>{book.subject_times}</span>
+          </div>
+          {isLogged && (
+            <div>
+              <button
+                className={classes["btn-add-to-fav"]}
+                disabled={myBookList.some(
+                  (singleBook) => singleBook.id === book.id
+                )}
+                onClick={() =>
+                  addToFav({
+                    title: book.title,
+                    cover_img: book.cover_img,
+                    id: book.id,
+                  })
+                }
+              ></button>
+              <div className={classes.ratingContainer}>
+                <Rating
+                  onClick={handleRating}
+                  fillIcon={FillIcon}
+                  initialValue={ratesListAverage}
+                  transition={true}
+                  emptyIcon={EmptyIcon}
+                />
+              </div>
+            </div>
+          )}
+          {!isLogged && (
+            <div>
+              <div>
+                <Link className={classes.links} to="/login">
+                  Log in
+                </Link>
+                <span> to add to favorites :)</span>
+              </div>
+              <div>
+                <span>See comments or </span>
+                <Link className={classes.links} to="/login">
+                  Log in
+                </Link>
+                <span> to add one!</span>
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <section className={classes.commentSectionWrapper}>

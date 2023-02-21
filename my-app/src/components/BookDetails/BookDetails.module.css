@@ -1,7 +1,8 @@
 .card-book {
   display: flex;
   padding: 2rem 2rem;
-  max-width: 900px;
+  width: 900px;
+  max-width: 100%;
   background-color: white;
   border: none;
   border-radius: 20px;
@@ -69,6 +70,10 @@ img.panda-img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content {
+  width: 70%;
 }
 
 .recommendations {
@@ -275,6 +280,8 @@ img.panda-img {
 }
 .cardbookwrapper {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 /* .comment-box {
   font-style: italic;
@@ -290,6 +297,13 @@ img.panda-img {
   height: 50px;
   margin: 30px 0;
 }
+
+.backBtnWrapper {
+  display: flex;
+  width: 100px;
+  max-width: 20%;
+}
+
 .backBtn {
   width: 75px;
   height: 75px;
