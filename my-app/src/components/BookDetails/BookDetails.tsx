@@ -184,6 +184,14 @@ export const BookDetails = (): JSX.Element => {
 						</span>
 						<span>{book.subject_times}</span>
 					</div>
+					<div>
+						<b>
+							<a target='_blank' href={`https://amazon.com/s?k=${book.title}`}>
+								Go to buy...
+							</a>
+						</b>
+					</div>
+
 					{isLogged && (
 						<div>
 							<button
