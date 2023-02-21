@@ -7,7 +7,8 @@
       "esnext"
     ],
     "types":[
-      "cypress"
+      "cypress",
+      "node"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -24,7 +25,6 @@
     "jsx": "react-jsx",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": [
-    "**/*.ts"
-  ]
+  "include": 
+  ["src", "src/components", "src/custom.d.ts"]
 }
