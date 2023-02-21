@@ -1,3 +1,5 @@
+import type {} from "cypress"
+
 describe('wrong data', () => {
   it('show message about wrong email', () => {
     cy.visit('http://localhost:3000/register#/register')
