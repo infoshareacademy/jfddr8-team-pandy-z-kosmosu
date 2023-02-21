@@ -5,6 +5,8 @@ import { firebaseAuth } from "../../App";
 import classes from './Register.module.css';
 import userIcon from '../../Graphics/User-icon.png';
 
+
+
 export const Register = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -56,13 +58,13 @@ export const Register = (): JSX.Element => {
     <>
     <br />
     <br />
-      <h1><img className={classes.userIcon} src={userIcon}></img>Please Sign in:</h1>
+      <h1><img className={classes.userIcon} src={userIcon} />Please Sign in:</h1>
       <form>
       <div className={classes.login}>
         <div className={classes.item}>
         <label><b>E-mail:</b></label>
         <br />
-        <input 
+        <input data-cy="email-input"
           className={isUsernameError ? classes.wrongInput : classes.login}
           name="login"
           type="email"
@@ -78,7 +80,7 @@ export const Register = (): JSX.Element => {
         <div className={classes.item}>
         <label><b>Password:</b></label>
         <br />
-        <input
+        <input data-cy="password-input"
           className={isPasswordError ? classes.wrongInput : classes.login}
           name="password"
           type="password"
@@ -93,7 +95,7 @@ export const Register = (): JSX.Element => {
         <div className={classes.item}>
         <label><b>Repeat password:</b></label>
         <br />
-        <input
+        <input data-cy="repeat-password-input"
           className={isPasswordError ? classes.wrongInput : classes.login}
           name="Repeat password"
           type="password"
@@ -105,8 +107,8 @@ export const Register = (): JSX.Element => {
         />
         </div>
         <br />
-        <p className={classes.error}>{error}</p>
-        <button className={classes.regBtn} onClick={handleSubmit}>Sign in</button>
+        <p data-cy="empty-email" className={classes.error}>{error}</p>
+        <button data-cy='submit' className={classes.regBtn} onClick={handleSubmit}>Sign in</button>
         </div>
         <div className={classes.positionBtn}>
           <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>
