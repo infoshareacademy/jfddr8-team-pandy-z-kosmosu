@@ -4,13 +4,13 @@ import classes from "./BookDetails.module.css";
 import { Loader } from "../Loader/Loader";
 import coverImg from "../../Graphics/cover_not_found.jpg";
 import { AppContext } from "../../providers/AppProvider";
-import { Link } from "react-router-dom";
 import { firebaseDb } from "../../App";
 import { doc, setDoc, onSnapshot } from "firebase/firestore";
 import { Comment } from "./Comment";
 import icon from "../../Graphics/User-icon.png";
 import { Rating } from "react-simple-star-rating";
 import { EmptyIcon, FillIcon } from "../Rating/FillIcon";
+import { Link, NavigateFunction, useNavigate } from "react-router-dom";
 
 const URL = "https://openlibrary.org/works/";
 
@@ -19,9 +19,6 @@ export type MyComment = {
   CreatedAt: number;
   message: string;
   user: string | null;
-};
-export type NewMessageProps = {
-  id: MyComment[];
 };
 
 export const BookDetails = (): JSX.Element => {
@@ -91,10 +88,6 @@ export const BookDetails = (): JSX.Element => {
     getBookDetails();
   }, [id]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCommentValue(e.target.value);
-  };
-
   const addToComment = async (product: MyComment): Promise<void> => {
     try {
       await setDoc(doc(firebaseDb, "conversations", `${book.id}`), {
@@ -162,87 +155,95 @@ export const BookDetails = (): JSX.Element => {
   if (loading) return <Loader />;
   return (
     <section className={classes["all-page"]}>
-      {/* <button className={classes.backBtn2} onClick={() => navigate("/")}>
-        Back to Home
-        <br />
-        <span className={classes.arrow}>⟻</span>
-      </button> */}
-      <div className={classes["card-book"]}>
-        <div className={classes["cover-img"]}>
-          <img src={book.cover_img} alt="cover img" />
-        </div>
-        <div className={classes["content"]}>
-          <div className={classes.infobook}>
-            <span>
-              <b>Title:</b>{" "}
-            </span>
-            <span>{book.title}</span>
+      <div className={classes["cardbookwrapper"]}>
+        <button className={classes.backBtn}>
+          <Link to="/">
+            Back to Home
+            <br />
+            <span className={classes.arrow}>⟻</span>
+          </Link>
+        </button>
+        <div className={classes["card-book"]}>
+          <div className={classes["cover-img"]}>
+            <img
+              className={classes["main-img"]}
+              src={book.cover_img}
+              alt="cover img"
+            />
           </div>
-          <div>
-            <span>
-              <b>Description:</b>{" "}
-            </span>
-            <span>{book.description || book.description}</span>
-          </div>
-          <div>
-            <span>
-              <b>Subject Places:</b>{" "}
-            </span>
-            <span>{book.subject_places}</span>
-          </div>
-          <div>
-            <span>
-              <b>Subject Times:</b>{" "}
-            </span>
-            <span>{book.subject_times}</span>
-          </div>
-
-          {isLogged && (
-            <div>
-              <button
-                className={classes["btn-add-to-fav"]}
-                disabled={myBookList.some(
-                  (singleBook) => singleBook.id === book.id
-                )}
-                onClick={() =>
-                  addToFav({
-                    title: book.title,
-                    cover_img: book.cover_img,
-                    id: book.id,
-                  })
-                }
-              ></button>
-              <div className={classes["box-panda"]}>
-                <img className={classes["panda-img"]} src={pandaFull} alt="" />
-                <img className={classes["panda-img"]} src={pandaFull} alt="" />
-                <img className={classes["panda-img"]} src={pandaFull} alt="" />
-                <img className={classes["panda-img"]} src={pandaFull} alt="" />
-                <img className={classes["panda-img"]} src={pandaHalf} alt="" />
-              </div>
+          <div className={classes["content"]}>
+            <div className={classes.infobook}>
+              <span>
+                <b>Title:</b>{" "}
+              </span>
+              <span>{book.title}</span>
             </div>
-          )}
-
-          {!isLogged && (
             <div>
-              <div>
-                <Link className={classes.links} to="/login">
-                  Log in
-                </Link>
-                <span> to add to favorites :)</span>
-              </div>
-              <div>
-                <span>See comments or </span>
-                <Link className={classes.links} to="/login">
-                  Log in
-                </Link>
-                <span> to add one!</span>
-              </div>
+              <span>
+                <b>Description:</b>{" "}
+              </span>
+              <span>{book.description || book.description}</span>
             </div>
-          )}
+            <div>
+              <span>
+                <b>Subject Places:</b>{" "}
+              </span>
+              <span>{book.subject_places}</span>
+            </div>
+            <div>
+              <span>
+                <b>Subject Times:</b>{" "}
+              </span>
+              <span>{book.subject_times}</span>
+            </div>
+            {isLogged && (
+              <div>
+                <button
+                  className={classes["btn-add-to-fav"]}
+                  disabled={myBookList.some(
+                    (singleBook) => singleBook.id === book.id
+                  )}
+                  onClick={() =>
+                    addToFav({
+                      title: book.title,
+                      cover_img: book.cover_img,
+                      id: book.id,
+                    })
+                  }
+                ></button>
+                <div className={classes.ratingContainer}>
+                  <Rating
+                    onClick={handleRating}
+                    fillIcon={FillIcon}
+                    initialValue={ratesListAverage}
+                    transition={true}
+                    emptyIcon={EmptyIcon}
+                  />
+                </div>
+              </div>
+            )}
+            {!isLogged && (
+              <div>
+                <div>
+                  <Link className={classes.links} to="/login">
+                    Log in
+                  </Link>
+                  <span> to add to favorites :)</span>
+                </div>
+                <div>
+                  <span>See comments or </span>
+                  <Link className={classes.links} to="/login">
+                    Log in
+                  </Link>
+                  <span> to add one!</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      <section className={classes.commentsection}>
-        <div>
+      <section className={classes.commentSectionWrapper}>
+        <div className={classes.commentSection}>
           {isLogged && (
             <div className={classes["typecomment"]}>
               <img className={classes["pandacomment"]} src={icon} alt="" />
