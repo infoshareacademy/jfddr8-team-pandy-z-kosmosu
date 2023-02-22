@@ -215,7 +215,7 @@ export const BookDetails = (): JSX.Element => {
 				<div>
 				<span>Average panda ({ratesListAverage})</span>
 				<br></br>
-				<span>Number of ratings ({myMessagesList.length})</span>
+				<span>Number of ratings ({ratesList.length})</span>
 				</div>
               </div>
             </div>
