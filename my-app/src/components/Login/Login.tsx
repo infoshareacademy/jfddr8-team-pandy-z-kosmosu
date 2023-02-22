@@ -4,6 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseAuth } from '../../App';
 import classes from './Login.module.css';
 import userIcon from '../../Graphics/User-icon.png';
+import React from 'react';
 
 export const Login = (): JSX.Element => {
 	const [username, setUsername] = useState<string>('');

@@ -23,7 +23,7 @@ export const SearchForm = ({height}:SearchFormProps) => {
 			window.scrollTo(0,height);
 			if (tempSearchTerm?.replace(/[^\w\s]/gi, '').length === 0) {
 				setSearchTerm('Harry Potter');
-				setResultTitle('Please Enter Something ...');
+				// setResultTitle('Please Enter Something ...');
 			} else {
 				setSearchTerm(searchText.current.value);
 			}
