@@ -24,7 +24,7 @@ describe('Login component', () => {
 		signInWithEmailAndPasswordMock.mockResolvedValueOnce({});
 
 		render(<Login />);
-        
+
 		await act(async () => {
 			fireEvent.change(screen.getByLabelText(/e-mail:/i), {
 				target: { value: email },

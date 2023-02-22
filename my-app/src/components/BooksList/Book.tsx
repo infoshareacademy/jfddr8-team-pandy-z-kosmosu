@@ -7,11 +7,13 @@ export const Book = (book: any) => {
   const { addToFav, isLogged, myBookList } = useContext(AppContext);
 
   return (
-    <Link to={`/book/${book.id}`} {...book}>
+    
       <div className={classes.book}>
+        <Link to={`/book/${book.id}`} {...book}>
         <div>
           <img className={classes.cover} src={book.cover_img} alt="cover" />
         </div>
+        </Link>
         <div>
           <div>
             <span>Title: </span>
@@ -43,6 +45,6 @@ export const Book = (book: any) => {
           )}
         </div>
       </div>
-    </Link>
+    
   );
 };
