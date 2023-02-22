@@ -1,10 +1,10 @@
 import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
-import SliderImg1 from '../../Graphics/slider-desktop-photo-1.jpg'
-import SliderImg2 from '../../Graphics/slider-desktop-photo-2.jpg'
-import SliderImg3 from '../../Graphics/slider-desktop-photo-3.jpg'
-import SliderImg4 from '../../Graphics/slider-desktop-photo-4.jpg'
-import classes from './Slider.module.css'
+import 'react-slideshow-image/dist/styles.css';
+import SliderImg1 from '../../Graphics/slider-desktop-photo-1.jpg';
+import SliderImg2 from '../../Graphics/slider-desktop-photo-2.jpg';
+import SliderImg3 from '../../Graphics/slider-desktop-photo-3.jpg';
+import SliderImg4 from '../../Graphics/slider-desktop-photo-4.jpg';
+import classes from './Slider.module.css';
 
 const Slider = ():JSX.Element => {
   const images:string[] = [
