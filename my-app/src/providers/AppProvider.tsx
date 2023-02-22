@@ -4,7 +4,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { firebaseDb } from '../App';
 import { Book } from '../components/BooksList/Book';
 
-const URL = 'http://openlibrary.org/search.json?title=';
+const URL = 'https://openlibrary.org/search.json?title=';
 
 export type BookToFav = {
 	id: string;
