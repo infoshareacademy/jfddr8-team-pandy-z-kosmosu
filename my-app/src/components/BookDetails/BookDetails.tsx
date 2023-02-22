@@ -45,6 +45,33 @@ export const BookDetails = (): JSX.Element => {
 		}
 	};
 
+	// const cleanDescription = (x: string | undefined) => {
+	// 	console.log(x);
+	// 	let startIndex = x?.indexOf("[Source][1]" || "----------" || "([");
+	// 	const cleanedData = startIndex === -1 ? x : x?.substring(0, startIndex);
+	// 	console.log(cleanedData);
+	// 	return cleanedData;
+	// };
+
+	const cleanDescription = (x: string | undefined) => {
+        console.log(x);
+        let startIndex;
+        if (x?.indexOf("([") !== -1) {
+            startIndex = x?.indexOf("([");
+			console.log(startIndex);
+		}
+        else if (x?.indexOf("----------") !== -1) {
+            startIndex = x?.indexOf("----------");
+		}
+		else if (x?.indexOf("[Source][1]") !== -1) {
+            startIndex = x?.indexOf("[Source][1]");
+        };
+        const cleanedData = startIndex === -1 ? x : x?.substring(0, startIndex);
+        console.log(cleanedData);
+        return cleanedData;
+    };
+
+
 	useEffect(() => {
 		setLoading(true);
 		async function getBookDetails() {
@@ -63,7 +90,7 @@ export const BookDetails = (): JSX.Element => {
 					const newBook = {
 						description:
 							description?.value || description
-								? description.value || description
+								? description?.value ? cleanDescription(description.value) : cleanDescription(description)
 								: 'No description found',
 						title: title,
 						cover_img: covers
@@ -170,7 +197,9 @@ export const BookDetails = (): JSX.Element => {
 						<span>
 							<b>Description:</b>{' '}
 						</span>
-						<span>{book.description || book.description}</span>
+						<span>
+							{book.description}
+						</span>
 					</div>
 					<div>
 						<span>
