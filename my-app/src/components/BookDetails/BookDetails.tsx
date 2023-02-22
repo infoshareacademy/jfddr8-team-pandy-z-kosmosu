@@ -151,7 +151,7 @@ export const BookDetails = (): JSX.Element => {
       
     });
     return () => unsubscribe();
-  }, [book.id]);
+  }, [book.id, myMessagesList.length]);
 
   if (loading) return <Loader />;
   return (
