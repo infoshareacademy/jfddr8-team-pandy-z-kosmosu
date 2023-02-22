@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/css/main.a3099b01.css",
+    "main.js": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/js/main.69f9f3a0.js",
+    "static/media/slider-desktop-photo-2.jpg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/slider-desktop-photo-2.5f00760b1ae2edc7982d.jpg",
+    "static/media/slider-desktop-photo-1.jpg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/slider-desktop-photo-1.0b2eaf05021a67ddfd7a.jpg",
+    "static/media/slider-desktop-photo-3.jpg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/slider-desktop-photo-3.13bffca18c2feede8502.jpg",
+    "static/media/my_books.jpg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/my_books.780e7dcfba666e8778c0.jpg",
+    "static/media/cover_not_found.jpg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/cover_not_found.69846940c7af3e651508.jpg",
+    "static/media/slider-desktop-photo-4.jpg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/slider-desktop-photo-4.974d1dd4a47814b38c11.jpg",
+    "static/media/Logo.png": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/Logo.dbe0d038a071899526c3.png",
+    "static/media/logout-panda.png": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/logout-panda.c610a1f6a390336b5049.png",
+    "static/media/Mark-yellow.svg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/Mark-yellow.068505a5902c94061e456e055fdce4dc.svg",
+    "static/media/Mark-white.svg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/Mark-white.ecfa333097df57f8b8e5ea4488222283.svg",
+    "static/media/logo-no-img.png": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/logo-no-img.e45760e3df440667ddea.png",
+    "static/media/User-icon.png": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/User-icon.51fb693445ffd78c2bd7.png",
+    "static/media/github-logo.png": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/github-logo.14320fe675c81a9ac02f.png",
+    "index.html": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/index.html",
+    "static/media/loader.svg": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/media/loader.4b28d59abfe95fab7640537cecfe300a.svg",
+    "main.a3099b01.css.map": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/css/main.a3099b01.css.map",
+    "main.69f9f3a0.js.map": "/infoshareacademy.github.io/jfddr8-team-pandy-z-kosmosu/static/js/main.69f9f3a0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a3099b01.css",
+    "static/js/main.69f9f3a0.js"
+  ]
+}
