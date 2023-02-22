@@ -4,13 +4,13 @@ import classes from './BookDetails.module.css';
 import { Loader } from '../Loader/Loader';
 import coverImg from '../../Graphics/cover_not_found.jpg';
 import { AppContext } from '../../providers/AppProvider';
-import { Link } from 'react-router-dom';
 import { firebaseDb } from '../../App';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
 import icon from '../../Graphics/User-icon.png';
 import { Rating } from 'react-simple-star-rating';
 import { EmptyIcon, FillIcon } from '../Rating/FillIcon';
+import { Link } from 'react-router-dom';
 
 const URL = 'https://openlibrary.org/works/';
 
@@ -179,12 +179,15 @@ export const BookDetails = (): JSX.Element => {
 	}, [book.id, myMessagesList.length]);
 
 	if (loading) return <Loader />;
-
 	return (
 		<section className={classes['all-page']}>
 			<div className={classes['card-book']}>
 				<div className={classes['cover-img']}>
-					<img src={book.cover_img} alt='cover img' />
+					<img
+						className={classes['main-img']}
+						src={book.cover_img}
+						alt='cover img'
+					/>
 				</div>
 				<div className={classes['content']}>
 					<div className={classes.infobook}>
@@ -197,9 +200,7 @@ export const BookDetails = (): JSX.Element => {
 						<span>
 							<b>Description:</b>{' '}
 						</span>
-						<span>
-							{book.description}
-						</span>
+						<span>{book.description}</span>
 					</div>
 					<div>
 						<span>
@@ -214,13 +215,12 @@ export const BookDetails = (): JSX.Element => {
 						<span>{book.subject_times}</span>
 					</div>
 					<div>
-						<b>
+						<button>
 							<a target='_blank' href={`https://amazon.com/s?k=${book.title}`}>
 								Go to buy...
 							</a>
-						</b>
+						</button>
 					</div>
-
 					{isLogged && (
 						<div>
 							<button
@@ -235,6 +235,20 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
+							<div className={classes.ratingContainer}>
+								<Rating
+									onClick={handleRating}
+									fillIcon={FillIcon}
+									initialValue={ratesListAverage}
+									transition={true}
+									emptyIcon={EmptyIcon}
+								/>
+								<div>
+									<span>Average panda ({ratesListAverage})</span>
+									<br></br>
+									<span>Number of ratings ({ratesList.length})</span>
+								</div>
+							</div>
 						</div>
 					)}
 					{!isLogged && (
@@ -243,7 +257,7 @@ export const BookDetails = (): JSX.Element => {
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span> to add to favorites and rate :)</span>
+								<span> to add to favorites :)</span>
 							</div>
 							<div>
 								<span>See comments or </span>
@@ -254,22 +268,15 @@ export const BookDetails = (): JSX.Element => {
 							</div>
 						</div>
 					)}
-					<div className={classes.ratingContainer}>
-						<Rating
-							onClick={handleRating}
-							fillIcon={FillIcon}
-							initialValue={ratesListAverage}
-							transition={true}
-							emptyIcon={EmptyIcon}
-						/>
-						<span>({ratesListAverage})</span>
-					</div>
 				</div>
 			</div>
-			<section className={classes.commentsection}>
-				<div>
+      
+			<section className={classes.commentSectionWrapper}>
+      <h2>Comments:</h2>
+				<div className={classes.commentSection}>
 					{isLogged && (
 						<div className={classes['typecomment']}>
+             
 							<img className={classes['pandacomment']} src={icon} alt='' />
 							<textarea
 								className={classes['typecommentarea']}
@@ -287,7 +294,7 @@ export const BookDetails = (): JSX.Element => {
 											id: Date.now(),
 										});
 									}}>
-									Add comment
+									Add
 								</button>
 							</div>
 						</div>
