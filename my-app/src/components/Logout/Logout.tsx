@@ -5,7 +5,6 @@ import Timer from "../Timer/Timer";
 import useTimeout from "../useTimeout/useTimeout";
 
 export const Logout = (): JSX.Element => {
-
       const navigate: NavigateFunction = useNavigate();
       useTimeout(() => navigate('/'), 5000)
 

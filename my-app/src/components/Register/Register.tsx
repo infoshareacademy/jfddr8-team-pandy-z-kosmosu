@@ -5,8 +5,6 @@ import { firebaseAuth } from "../../App";
 import classes from './Register.module.css';
 import userIcon from '../../Graphics/User-icon.png';
 
-
-
 export const Register = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
