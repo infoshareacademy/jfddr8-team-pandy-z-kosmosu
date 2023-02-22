@@ -243,10 +243,13 @@ export const BookDetails = (): JSX.Element => {
 					)}
 				</div>
 			</div>
+      
 			<section className={classes.commentSectionWrapper}>
+      <h2>Comments:</h2>
 				<div className={classes.commentSection}>
 					{isLogged && (
 						<div className={classes['typecomment']}>
+             
 							<img className={classes['pandacomment']} src={icon} alt='' />
 							<textarea
 								className={classes['typecommentarea']}
@@ -264,7 +267,7 @@ export const BookDetails = (): JSX.Element => {
 											id: Date.now(),
 										});
 									}}>
-									Add comment
+									Add
 								</button>
 							</div>
 						</div>

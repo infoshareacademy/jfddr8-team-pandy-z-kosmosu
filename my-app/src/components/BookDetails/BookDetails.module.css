@@ -239,6 +239,7 @@ img.panda-img {
 
 .commentSectionWrapper {
   display: flex;
+  flex-direction: column;
   padding: 2rem 2rem;
   width: 900px;
   max-width: 100%;
@@ -343,7 +344,6 @@ img.panda-img {
   }
 
   .commentSectionWrapper {
-    flex-direction: column;
     justify-content: center;
     margin: 1rem;
     align-items: center;
@@ -362,3 +362,4 @@ img.panda-img {
     max-width: 200px;
   }
 }
+
