@@ -10,7 +10,7 @@ import { Comment } from "./Comment";
 import icon from "../../Graphics/User-icon.png";
 import { Rating } from "react-simple-star-rating";
 import { EmptyIcon, FillIcon } from "../Rating/FillIcon";
-import { Link, NavigateFunction, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const URL = "https://openlibrary.org/works/";
 
@@ -128,7 +128,7 @@ export const BookDetails = (): JSX.Element => {
         setRatesList(data.values);
         const sumOfRates = ratesList.reduce((a, b) => a + b, 0);
         const average = sumOfRates / Number(ratesList.length);
-        setRatesListAverage(Number(average.toFixed(0)));
+        setRatesListAverage(Number(average.toFixed(1)));
       }
     });
     return () => unsubscribe();
