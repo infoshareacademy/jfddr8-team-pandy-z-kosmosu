@@ -10,7 +10,7 @@
         <rect id="Signature" width="50" height="50" transform="translate(996 551)" fill="url(#pattern)"/>
       </g>
       <g id="Group_15" data-name="Group 15">
-        <ellipse id="Ellipse_12" data-name="Ellipse 12" cx="25" cy="24" rx="25" ry="24" transform="translate(996 551)" fill="rgba(0,0,0,0.41)" style="mix-blend-mode: darken;isolation: isolate"/>
+        <ellipse id="Ellipse_12" data-name="Ellipse 12" cx="25" cy="24" rx="25" ry="24" transform="translate(996 551)" fill="rgba(255,235,1,0.41)" style="mix-blend-mode: darken;isolation: isolate"/>
       </g>
     </g>
   </g>
