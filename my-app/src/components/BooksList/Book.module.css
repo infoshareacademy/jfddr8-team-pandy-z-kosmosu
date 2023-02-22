@@ -52,3 +52,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.overflowEllipsis {
+  color: gray;
+  font-style: oblique;
+  font-family: serif;
+}
