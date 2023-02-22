@@ -13,10 +13,15 @@ export const Comment = ({
 	removeComment,
 }: MyCommentProps): JSX.Element => {
 	const { username } = useContext(AppContext);
+	const dateString = new Date(item.CreatedAt);
+	const date = dateString.toLocaleDateString();
 
 	return (
 		<div className={classes['single-comment']}>
-			<p className={classes['comment-author-p']}>{item.user} wrote on: {new Intl.DateTimeFormat('pl-PL').format(new Date(Date.now()))}: </p>
+			<p className={classes['comment-author-p']}>
+				{item.user} wrote on:
+				{date}
+			</p>
 			<p className={classes['comment-message']}>"{item.message}"</p>
 			{username === item.user && (
 				<button onClick={() => removeComment(item.id)}>Remove</button>
