@@ -16,12 +16,8 @@ export const Comment = ({
 
 	return (
 		<div className={classes['single-comment']}>
-			<p>
-				Created at:
-				{new Intl.DateTimeFormat('pl-PL').format(new Date(Date.now()))}
-			</p>
-			<p>You are commenting as: {item.user}</p>
-			<p>Comment:{item.message}</p>
+			<p className={classes['comment-author-p']}>{item.user} wrote on: {new Intl.DateTimeFormat('pl-PL').format(new Date(Date.now()))}: </p>
+			<p className={classes['comment-message']}>"{item.message}"</p>
 			{username === item.user && (
 				<button onClick={() => removeComment(item.id)}>Remove</button>
 			)}
