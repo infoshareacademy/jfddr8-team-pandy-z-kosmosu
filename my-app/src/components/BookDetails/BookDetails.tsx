@@ -45,32 +45,20 @@ export const BookDetails = (): JSX.Element => {
 		}
 	};
 
-	// const cleanDescription = (x: string | undefined) => {
-	// 	console.log(x);
-	// 	let startIndex = x?.indexOf("[Source][1]" || "----------" || "([");
-	// 	const cleanedData = startIndex === -1 ? x : x?.substring(0, startIndex);
-	// 	console.log(cleanedData);
-	// 	return cleanedData;
-	// };
-
 	const cleanDescription = (x: string | undefined) => {
-        console.log(x);
-        let startIndex;
-        if (x?.indexOf("([") !== -1) {
-            startIndex = x?.indexOf("([");
-			console.log(startIndex);
+		// console.log(x);
+		let startIndex;
+		if (x?.indexOf('([') !== -1) {
+			startIndex = x?.indexOf('([');
+		} else if (x?.indexOf('----------') !== -1) {
+			startIndex = x?.indexOf('----------');
+		} else if (x?.indexOf('[Source][1]') !== -1) {
+			startIndex = x?.indexOf('[Source][1]');
 		}
-        else if (x?.indexOf("----------") !== -1) {
-            startIndex = x?.indexOf("----------");
-		}
-		else if (x?.indexOf("[Source][1]") !== -1) {
-            startIndex = x?.indexOf("[Source][1]");
-        };
-        const cleanedData = startIndex === -1 ? x : x?.substring(0, startIndex);
-        console.log(cleanedData);
-        return cleanedData;
-    };
-
+		const cleanedData = startIndex === -1 ? x : x?.substring(0, startIndex);
+		// console.log(cleanedData);
+		return cleanedData;
+	};
 
 	useEffect(() => {
 		setLoading(true);
@@ -90,7 +78,9 @@ export const BookDetails = (): JSX.Element => {
 					const newBook = {
 						description:
 							description?.value || description
-								? description?.value ? cleanDescription(description.value) : cleanDescription(description)
+								? description?.value
+									? cleanDescription(description.value)
+									: cleanDescription(description)
 								: 'No description found',
 						title: title,
 						cover_img: covers
@@ -270,13 +260,12 @@ export const BookDetails = (): JSX.Element => {
 					)}
 				</div>
 			</div>
-      
+
 			<section className={classes.commentSectionWrapper}>
-      <h2>Comments:</h2>
+				<h2>Comments:</h2>
 				<div className={classes.commentSection}>
 					{isLogged && (
 						<div className={classes['typecomment']}>
-             
 							<img className={classes['pandacomment']} src={icon} alt='' />
 							<textarea
 								className={classes['typecommentarea']}
