@@ -1,7 +1,8 @@
 .card-book {
   display: flex;
   padding: 2rem 2rem;
-  max-width: 900px;
+  width: 900px;
+  max-width: 100%;
   background-color: white;
   border: none;
   border-radius: 20px;
@@ -9,6 +10,7 @@
   font-size: revert;
   /* margin-left: 100px; */
   box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
+  margin-top: 2rem;
 }
 
 .cover-img img {
@@ -25,7 +27,7 @@ img.panda-img {
 }
 
 .bookdetalis {
-  width: 800px;
+  min-width: 400px;
   background-color: white;
   border: none;
   border-radius: 20px;
@@ -68,6 +70,10 @@ img.panda-img {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content {
+  width: 70%;
 }
 
 .recommendations {
@@ -169,10 +175,10 @@ img.panda-img {
 
 .typecomment {
   /* margin-left: 70px; */
+  align-items: center;
   display: flex;
-  /* justify-content: space-around; */
-  width: 600px;
-  text-decoration: underline;
+  justify-content: space-around;
+  max-width: 100%;
 }
 
 .buttonadd {
@@ -206,7 +212,6 @@ img.panda-img {
 
 .btn-add-to-fav:disabled:hover {
   background-color: rgb(189, 184, 184);
-
 }
 .booksection {
   background-color: aquamarine;
@@ -232,10 +237,11 @@ img.panda-img {
   cursor: pointer;
 } */
 
-.commentsection {
+.commentSectionWrapper {
   display: flex;
   padding: 2rem 2rem;
   width: 900px;
+  max-width: 100%;
   background-color: white;
   border: none;
   border-radius: 20px;
@@ -244,6 +250,11 @@ img.panda-img {
   justify-content: space-around;
   box-shadow: 0 0 1px 1px rgba(128, 128, 128, 0.279);
 }
+
+.commentSection {
+  width: 100%;
+}
+
 .pComment {
   font-style: italic;
   color: gray;
@@ -255,22 +266,23 @@ img.panda-img {
 
 .typecommentarea {
   margin-left: 7px;
+  margin-right: 7px;
   display: flex;
-  width: 700px;
-  /* justify-content: space-around; */
-  text-decoration: underline;
+  width: 600px;
   border: none;
-  margin-bottom: 70px;
-}
-
-.typecomment {
-  display: flex;
+  border-bottom: solid 1px;
+  font-family: "EB Garamond";
+  height: 2em;
 }
 
 .addcomment {
   min-width: 140px;
 }
-
+.cardbookwrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 /* .comment-box {
   font-style: italic;
   color: gray;
@@ -281,9 +293,72 @@ img.panda-img {
 } */
 
 .ratingContainer {
-  background-color: beige;
   width: 250px;
   height: 50px;
   margin: 30px 0;
 }
 
+.backBtnWrapper {
+  display: flex;
+  width: 100px;
+  max-width: 20%;
+}
+
+.backBtn {
+  width: 75px;
+  height: 75px;
+  border-radius: 20px;
+  margin: auto;
+  background-color: white;
+  color: black;
+  border: black 2px solid;
+  margin-right: 30px;
+  margin-left: 30px;
+}
+.backBtn:hover {
+  background-color: black;
+  color: white;
+  transition: 10;
+  cursor: pointer;
+}
+@media (max-width: 768px) {
+  .all-page {
+    background-color: white;
+    display: flex;
+    padding: 20px;
+  }
+  .card-book {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .card-book > div {
+    max-width: 100%;
+  }
+
+  .main-img {
+    margin-bottom: 30px;
+  }
+
+  .commentSectionWrapper {
+    flex-direction: column;
+    justify-content: center;
+    margin: 1rem;
+    align-items: center;
+    width: 100%;
+  }
+
+  .cover-img img {
+    padding-right: 0;
+  }
+
+  .typecomment {
+    width: 100%;
+  }
+  .typecommentarea {
+    margin-left: 7px;
+    max-width: 200px;
+  }
+}
