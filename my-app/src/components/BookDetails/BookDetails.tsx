@@ -212,6 +212,11 @@ export const BookDetails = (): JSX.Element => {
                   transition={true}
                   emptyIcon={EmptyIcon}
                 />
+				<div>
+				<span>Average panda ({ratesListAverage})</span>
+				<br></br>
+				<span>Number of ratings ({myMessagesList.length})</span>
+				</div>
               </div>
             </div>
           )}
