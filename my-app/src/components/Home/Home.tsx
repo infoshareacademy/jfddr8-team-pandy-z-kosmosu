@@ -11,7 +11,6 @@ export const Home = (): JSX.Element => {
 	useLayoutEffect(() => {
 		if (ref && ref.current && ref.current.clientHeight) {
 		  const height = ref.current.clientHeight;
-		  console.log(height);
 		  setHeight(height);
 		}
 	  });

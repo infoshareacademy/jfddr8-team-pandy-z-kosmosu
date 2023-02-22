@@ -22,25 +22,29 @@ export type MyComment = {
 };
 
 export const BookDetails = (): JSX.Element => {
-  const { isLogged, addToFav, myBookList, username, ratesList, setRatesList } =
-    useContext(AppContext);
-  const { id } = useParams();
-  const [loading, setLoading] = useState(false);
-  const [book, setBook] = useState<any>("");
-  const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
-  const [commentValue, setCommentValue] = useState("");
-  const [ratesListAverage, setRatesListAverage] = useState(0);
+	const { isLogged, addToFav, myBookList, username, ratesList, setRatesList } =
+		useContext(AppContext);
+	const { id } = useParams();
+	const [loading, setLoading] = useState(false);
+	const [book, setBook] = useState<any>('');
+	const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
+	const [commentValue, setCommentValue] = useState('');
+	const [ratesListAverage, setRatesListAverage] = useState(0);
+	const [emptyMessegesList, setEmptyMessegesList] = useState('');
 
-  const handleRating = async (rate: number) => {
-    try {
-      await setDoc(doc(firebaseDb, "Rating", `${book.id}`), {
-        values: [...ratesList, rate],
-      });
-      setRatesList([...ratesList, rate]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+	const handleRating = async (rate: number) => {
+		if (isLogged) {
+			try {
+				await setDoc(doc(firebaseDb, 'Rating', `${book.id}`), {
+					values: [...ratesList, rate],
+				});
+				setRatesList([...ratesList, rate]);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
 
   useEffect(() => {
     setLoading(true);
@@ -136,18 +140,15 @@ export const BookDetails = (): JSX.Element => {
       if (doc.exists()) {
         const data = doc.data();
         setmyMessagesList(data.messages);
-      }
-    });
-    return () => unsubscribe();
-  }, [book.id]);
-
-  useEffect(() => {
-    const docRef = doc(firebaseDb, "conversations", `${book.id}`);
-    const unsubscribe = onSnapshot(docRef, (doc) => {
-      if (doc.exists()) {
-        const data = doc.data();
-        setmyMessagesList(data.messages);
-      }
+        if (myMessagesList.length === 0) {
+					setEmptyMessegesList('No comments yet.');
+				} else {
+					setEmptyMessegesList('');
+				}
+      } else {
+				setEmptyMessegesList('No comments yet.');
+			}
+      
     });
     return () => unsubscribe();
   }, [book.id]);
@@ -262,6 +263,7 @@ export const BookDetails = (): JSX.Element => {
             </div>
           )}
           <div className={classes["comment-box"]}>
+            <p>{emptyMessegesList}</p>
             <div>
               {myMessagesList.map((item) => (
                 <Comment
@@ -276,4 +278,5 @@ export const BookDetails = (): JSX.Element => {
       </section>
     </section>
   );
+
 };
