@@ -19,12 +19,10 @@ const classesTitle = `${classes.title} ${classes.overflowEllipsis}`
         </Link>
         <div>
           <div>
-            {/* <span>Title: </span> */}
             <span className={classesTitle}>{book.title}</span>
           </div>
 
           <div>
-            {/* <span>Author: </span> */}
             <span className={classes.overflowEllipsis}>{book.author}</span>
           </div>
 
@@ -41,6 +39,7 @@ const classesTitle = `${classes.title} ${classes.overflowEllipsis}`
                 addToFav({
                   title: book.title,
                   cover_img: book.cover_img,
+                  author: book.author,
                   id: book.id,
                 })
               }

@@ -1,7 +1,7 @@
 .cover-img {
 	margin-bottom: 0.3rem;
 	width: 200px;
-	height: 300px;
+	height: 290px;
 }
 
 .single-book {
@@ -46,4 +46,11 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-style: oblique;
+  font-family: serif;
+  margin: .1rem;
+}
+
+.title {
+  font-weight: bold;
 }

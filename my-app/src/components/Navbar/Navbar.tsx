@@ -57,7 +57,7 @@ export const Navbar = (): JSX.Element => {
 			<Link className={classes['links-desktop']} to='/' onClick={handleLogout}>
 				Log out
 			</Link>
-			<img src={logoUser} className={pandaClasses} alt='' />
+			<img src={logoUser} className={pandaClasses} alt='logoUser' />
 			<span className={classes['span-username']}>Hello, {username}!</span>
 		</div>
 	);
@@ -81,7 +81,7 @@ export const Navbar = (): JSX.Element => {
 			<img
 				className={classes['logo-img']}
 				src={logoImg}
-				alt=''
+				alt='logo'
 				onClick={() => {
 					navigate('/');
 				}}></img>
@@ -91,7 +91,7 @@ export const Navbar = (): JSX.Element => {
 				<button
 					onClick={() => setToggleMenu(!toggleMenu)}
 					className={classes['bar-button']}>
-					<img className={classes['bar-icon']} src={bar} alt='' />
+					<img className={classes['bar-icon']} src={bar} alt='menu' />
 				</button>
 
 				<div

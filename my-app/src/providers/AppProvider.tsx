@@ -10,6 +10,7 @@ export type BookToFav = {
 	id: string;
 	title: string;
 	cover_img: string;
+	author: string;
 };
 
 export type Book = {
