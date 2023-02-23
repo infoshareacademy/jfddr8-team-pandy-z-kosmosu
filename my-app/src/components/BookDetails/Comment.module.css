@@ -19,4 +19,16 @@
 
 .comment-message {
   font-style: italic;
+  word-wrap:break-word;
+  width: auto;
+}
+
+.comment-conatiner {
+  display: flex;
+}
+
+.comment-button {
+  justify-content: end;
+  align-self: flex-end;
+ 
 }
