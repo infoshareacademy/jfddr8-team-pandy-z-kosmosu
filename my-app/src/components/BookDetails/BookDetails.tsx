@@ -190,7 +190,7 @@ export const BookDetails = (): JSX.Element => {
 						<span>
 							<b>Description:</b>{' '}
 						</span>
-						<span>{book.description}</span>
+						<span className={classes['description']}>{book.description}</span>
 					</div>
 					<div>
 						<span>
@@ -235,14 +235,7 @@ export const BookDetails = (): JSX.Element => {
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span> to add to favorites :)</span>
-							</div>
-							<div>
-								<span>See comments or </span>
-								<Link className={classes.links} to='/login'>
-									Log in
-								</Link>
-								<span> to add one!</span>
+								<span> to add to favorites or add comment</span>
 							</div>
 						</div>
 					)}
@@ -272,7 +265,7 @@ export const BookDetails = (): JSX.Element => {
 							<textarea
 								className={classes['typecommentarea']}
 								onChange={handleInputChange}
-								placeholder='Your comment...'
+								placeholder='Type comment as User 🖋...'
 								value={commentValue}></textarea>
 							<div className={classes['pComment']}>
 								<button
