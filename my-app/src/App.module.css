@@ -8,6 +8,7 @@ h3,
 h4 {
   margin-top: 20px;
   margin-bottom: 20px;
+  margin-left: 20px;
 }
 
 button {
@@ -40,4 +41,11 @@ button:hover {
 button:disabled:hover {
   background-color: black;
   cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+  h2 {
+    margin: 20px;
+    text-align: center;
+  }
 }
