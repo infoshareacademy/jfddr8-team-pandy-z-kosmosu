@@ -47,14 +47,20 @@
 
 .overflowEllipsis {
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.overflowEllipsis {
-  color: #767474;
+  color: black;
   font-style: oblique;
   font-family: serif;
+  margin: 0.5rem;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.publishYear {
+  color:#767474
 }
