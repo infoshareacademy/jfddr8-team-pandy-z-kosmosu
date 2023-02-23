@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import classes from './BookDetails.module.css';
 import { Loader } from '../Loader/Loader';
-import coverImg from '../../Graphics/cover_not_found.jpg';
+import coverImg from '../../Graphics/cover_not_found.webp';
 import { AppContext } from '../../providers/AppProvider';
 import { firebaseDb } from '../../App';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
