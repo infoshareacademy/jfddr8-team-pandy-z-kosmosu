@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../../providers/AppProvider';
-import coverImg from '../../Graphics/cover_not_found.jpg';
+import coverImg from '../../Graphics/cover_not_found.webp';
 import { Book } from './Book';
 import { Loader } from '../Loader/Loader';
 import classes from './BooksList.module.css';
