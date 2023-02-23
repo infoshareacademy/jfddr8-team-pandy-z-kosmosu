@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import classes from './BookDetails.module.css';
 import { Loader } from '../Loader/Loader';
-import coverImg from '../../Graphics/cover_not_found.jpg';
+import coverImg from '../../Graphics/cover_not_found.webp';
 import { AppContext } from '../../providers/AppProvider';
 import { firebaseDb } from '../../App';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
@@ -190,7 +190,7 @@ export const BookDetails = (): JSX.Element => {
 						<span>
 							<b>Description:</b>{' '}
 						</span>
-						<span>{book.description}</span>
+						<span className={classes['description']}>{book.description}</span>
 					</div>
 					<div>
 						<span>
@@ -235,14 +235,7 @@ export const BookDetails = (): JSX.Element => {
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span> to add to favorites :)</span>
-							</div>
-							<div>
-								<span>See comments or </span>
-								<Link className={classes.links} to='/login'>
-									Log in
-								</Link>
-								<span> to add one!</span>
+								<span> to add to favorites or add comment</span>
 							</div>
 						</div>
 					)}
@@ -272,7 +265,7 @@ export const BookDetails = (): JSX.Element => {
 							<textarea
 								className={classes['typecommentarea']}
 								onChange={handleInputChange}
-								placeholder='Your comment...'
+								placeholder='Type comment as User 🖋...'
 								value={commentValue}></textarea>
 							<div className={classes['pComment']}>
 								<button

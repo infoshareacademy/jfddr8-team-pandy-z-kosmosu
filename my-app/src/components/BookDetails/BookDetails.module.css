@@ -179,11 +179,9 @@ img.panda-img {
 
 .btn-add-to-fav:disabled {
   background-color: rgb(189, 184, 184);
+  margin-bottom: 10px;
 }
 
-.btn-add-to-fav:disabled:hover {
-  background-color: rgb(189, 184, 184);
-}
 
 .booksection {
   background-color: aquamarine;
@@ -230,6 +228,11 @@ img.panda-img {
   border-bottom: solid 1px;
   font-family: "EB Garamond";
   height: 2em;
+  font-style:italic;
+}
+
+::-webkit-input-placeholder {
+  color: black;
 }
 
 .addcomment {
@@ -244,8 +247,10 @@ img.panda-img {
 
 .ratingContainer {
   width: 250px;
-  height: 50px;
-  margin: 30px 0;
+}
+span.react-simple-star-rating {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .backBtnWrapper {
@@ -272,6 +277,19 @@ img.panda-img {
   transition: 10;
   cursor: pointer;
 }
+
+.links {
+  color: blue;
+}
+
+.content > div {
+  margin-bottom: 10px;
+}
+
+.infobook {
+  margin-bottom: 1px;
+}
+
 
 @media (max-width: 768px) {
   .all-page {
@@ -313,5 +331,13 @@ img.panda-img {
   .typecommentarea {
     margin-left: 7px;
     max-width: 200px;
+  }
+
+  .description {
+    word-wrap: break-word;
+  }
+
+  .content {
+    width: 90%;
   }
 }

@@ -12,7 +12,7 @@
 	margin-bottom: 50px;
 	min-height: 75vh;
 	color: white;
-	background: url(../../Graphics/my_books.jpg);
+	background: url(../../Graphics/my_books.webp);
 	background-position: center;
 	background-size: cover;
 }
@@ -44,11 +44,13 @@ p {
 .search-form-elem {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	margin: auto;
 	padding: 0.5rem 2.8rem;
 	max-width: 510px;
 	border-radius: 3.8rem;
 	background-color: white;
+	border: 1px gray solid;
 }
 
 .input {

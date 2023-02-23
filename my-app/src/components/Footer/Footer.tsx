@@ -6,7 +6,7 @@ import liLogo from "../../Graphics/LI-logo.png";
 export const Footer = () => {
   return (
     <footer>
-      <a>
+      <a href="#">
         <img
           className={classes["footer-logo"]}
           src={logoNoImg}

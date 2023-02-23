@@ -19,13 +19,13 @@ export const Comment = ({
   return (
     <div className={classes["single-comment"]}>
       <p className={classes["comment-author-p"]}>
-        {item.user} wrote on:
+        {item.user} wrote on:&nbsp;
         {date}
       </p>
-      <div className={classes.rowBtn}>
+      <div className={classes["comment-conatiner"]}>
       <p className={classes["comment-message"]}>"{item.message}"</p>
       {username === item.user && (
-        <button onClick={() => removeComment(item.id)}>Remove</button>
+        <button className={classes["comment-button"]} onClick={() => removeComment(item.id)}>Remove</button>
       )}
       </div>
     </div>

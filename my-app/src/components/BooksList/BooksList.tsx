@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../../providers/AppProvider';
-import coverImg from '../../Graphics/cover_not_found.jpg';
+import coverImg from '../../Graphics/cover_not_found.webp';
 import { Book } from './Book';
 import { Loader } from '../Loader/Loader';
 import classes from './BooksList.module.css';
@@ -22,7 +22,7 @@ export const BookList = () => {
 		<section>
 			<div>
 				<div>
-					<h3>{resultTitle}</h3>
+					<h2>{resultTitle}</h2>
 				</div>
 				<div className={classes['books-list']}>
 					{booksWithCovers.slice(0, 30).map((item, index) => {
