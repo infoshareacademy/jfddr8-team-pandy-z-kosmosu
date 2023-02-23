@@ -43,6 +43,10 @@ button:disabled:hover {
   cursor: default;
 }
 
+span {
+  line-height: 1.3;
+}
+
 @media screen and (max-width: 768px) {
   h2 {
     margin: 20px;

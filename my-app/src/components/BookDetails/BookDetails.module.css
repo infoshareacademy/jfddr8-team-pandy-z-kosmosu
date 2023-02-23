@@ -179,11 +179,9 @@ img.panda-img {
 
 .btn-add-to-fav:disabled {
   background-color: rgb(189, 184, 184);
+  margin-bottom: 10px;
 }
 
-.btn-add-to-fav:disabled:hover {
-  background-color: rgb(189, 184, 184);
-}
 
 .booksection {
   background-color: aquamarine;
@@ -249,8 +247,10 @@ img.panda-img {
 
 .ratingContainer {
   width: 250px;
-  height: 50px;
-  margin: 30px 0;
+}
+span.react-simple-star-rating {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .backBtnWrapper {
@@ -280,6 +280,14 @@ img.panda-img {
 
 .links {
   color: blue;
+}
+
+.content > div {
+  margin-bottom: 10px;
+}
+
+.infobook {
+  margin-bottom: 1px;
 }
 
 
@@ -326,6 +334,10 @@ img.panda-img {
   }
 
   .description {
-    word-wrap:break-word;
+    word-wrap: break-word;
+  }
+
+  .content {
+    width: 90%;
   }
 }
