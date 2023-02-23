@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState} from "react";
 import { Home } from "./components/Home/Home";
 import { MyBookList } from "./components/MyBooks/MyBooksList";
 import { Login } from "./components/Login/Login";
@@ -15,6 +15,7 @@ import { firebaseConfig } from "./firebase";
 import { BookDetails } from "./components/BookDetails/BookDetails";
 import { AppContext } from "./providers/AppProvider";
 import { Logout } from "./components/Logout/Logout";
+import {Admin} from './components/Admin/Admin';
 import "./App.module.css";
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -24,6 +25,7 @@ export const firebaseDb = getFirestore(firebaseApp);
 function App() {
   const { setUsername, myBookList, setmyBookList, setIsLogged, books } =
     useContext(AppContext);
+    const [isAdmin, setAdmin] = useState<boolean>(false);
 
   useEffect((): void => {
     onAuthStateChanged(firebaseAuth, async (user) => {
@@ -33,6 +35,10 @@ function App() {
         setIsLogged(true);
         const docRef = doc(firebaseDb, "MyList", `${user.email}`);
         const docSnap = await getDoc(docRef);
+        if (user.email  === "admin@admin.pl") {
+          setAdmin(true);
+          } 
+
         if (docSnap.exists()) {
           const data = docSnap.data();
           setmyBookList(data.books);
@@ -40,14 +46,16 @@ function App() {
       } else {
         setUsername("");
         setmyBookList([]);
+    
       }
     });
-  }, [setmyBookList, setUsername, setIsLogged, books]);
+  }, [setmyBookList, setUsername, setIsLogged, books, isAdmin, setAdmin]);
 
   return (
     <div>
       <Navbar />
       <Routes>
+      <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/mybooks"
