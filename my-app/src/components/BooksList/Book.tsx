@@ -39,6 +39,7 @@ const classesTitle = `${classes.title} ${classes.overflowEllipsis}`
                 addToFav({
                   title: book.title,
                   cover_img: book.cover_img,
+                  author: book.author,
                   id: book.id,
                 })
               }

@@ -223,6 +223,7 @@ export const BookDetails = (): JSX.Element => {
 										title: book.title,
 										cover_img: book.cover_img,
 										id: book.id,
+										author: book.author
 									})
 								}></button>
 							
