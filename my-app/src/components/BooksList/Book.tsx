@@ -5,9 +5,12 @@ import { AppContext } from "../../providers/AppProvider";
 
 export const Book = (book: any) => {
   const { addToFav, isLogged, myBookList } = useContext(AppContext);
+const classesTitle = `${classes.title} ${classes.overflowEllipsis}`
+
 
   return (
-    
+  
+
       <div className={classes.book}>
         <Link to={`/book/${book.id}`} {...book}>
         <div>
@@ -16,16 +19,16 @@ export const Book = (book: any) => {
         </Link>
         <div>
           <div>
-            <span>Title: </span>
-            <span className={classes.overflowEllipsis}>{book.title}</span>
+            {/* <span>Title: </span> */}
+            <span className={classesTitle}>{book.title}</span>
           </div>
 
           <div>
-            <span>Author: </span>
+            {/* <span>Author: </span> */}
             <span className={classes.overflowEllipsis}>{book.author}</span>
           </div>
 
-          <div>
+          <div className={classes.publishYear}>
             <span>First Publish Year: </span>
             <span>{book.first_publish_year}</span>
           </div>
