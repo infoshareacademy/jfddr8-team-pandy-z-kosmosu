@@ -22,10 +22,12 @@ export const Comment = ({
         {item.user} wrote on:
         {date}
       </p>
+      <div className={classes.rowBtn}>
       <p className={classes["comment-message"]}>"{item.message}"</p>
       {username === item.user && (
         <button onClick={() => removeComment(item.id)}>Remove</button>
       )}
+      </div>
     </div>
   );
 };

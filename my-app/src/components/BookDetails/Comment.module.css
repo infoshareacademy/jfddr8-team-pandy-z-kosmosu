@@ -9,6 +9,7 @@
   border-radius: 25px;
   box-shadow: 0 0 3px 3px rgba(155, 155, 155, 0.279);
   word-wrap: break-word;
+  text-align: left;
 }
 
 .comment-author-p {
@@ -19,4 +20,17 @@
 
 .comment-message {
   font-style: italic;
+  word-break: break-word;
+  text-align: left;
+  width: 100%;
+  justify-content: flex-start;
 }
+
+.rowBtn {
+  display: flex;
+  width: 100%;  
+}
+
+
+
+
