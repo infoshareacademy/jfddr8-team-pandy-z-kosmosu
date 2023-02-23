@@ -16,7 +16,6 @@ export const MyBook = ({ item }: MyBookProps): JSX.Element => {
 				<img className={classes['cover-img']} src={item.cover_img} alt='' />
 			</Link>
 			<div className={classes.content}>
-				{/* <span className={classes.title}>Title: </span> */}
 				<span className={classes.overflowEllipsis}>{item.title}</span>
 				<button onClick={() => removeFromFav(item.id)}>Delete ❌</button>
 			</div>
