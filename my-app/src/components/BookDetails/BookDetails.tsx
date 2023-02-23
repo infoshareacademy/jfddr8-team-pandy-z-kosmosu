@@ -225,20 +225,7 @@ export const BookDetails = (): JSX.Element => {
 										id: book.id,
 									})
 								}></button>
-							<div className={classes.ratingContainer}>
-								<Rating
-									onClick={handleRating}
-									fillIcon={FillIcon}
-									initialValue={ratesListAverage}
-									transition={true}
-									emptyIcon={EmptyIcon}
-								/>
-								<div>
-									<span>Average panda ({ratesListAverage})</span>
-									<br></br>
-									<span>Number of ratings ({ratesList.length})</span>
-								</div>
-							</div>
+							
 						</div>
 					)}
 					{!isLogged && (
@@ -258,6 +245,20 @@ export const BookDetails = (): JSX.Element => {
 							</div>
 						</div>
 					)}
+					<div className={classes.ratingContainer}>
+								<Rating
+									onClick={handleRating}
+									fillIcon={FillIcon}
+									initialValue={ratesListAverage}
+									transition={true}
+									emptyIcon={EmptyIcon}
+								/>
+								<div>
+									<span>Average panda ({ratesListAverage})</span>
+									<br></br>
+									<span>Number of ratings ({ratesList.length})</span>
+								</div>
+							</div>
 				</div>
 			</div>
 
