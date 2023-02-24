@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword} from 'firebase/auth';
 import { firebaseAuth } from '../../App';
 import classes from './Login.module.css';
 import userIcon from '../../Graphics/User-icon.png';
@@ -12,7 +12,7 @@ export const Login = (): JSX.Element => {
 	const [error, setError] = useState<string>('');
 	const navigate = useNavigate();
 	const [isInputError, setIsInputError] = useState<boolean>(false);
-
+	
 	const signIn = async (e: React.FormEvent): Promise<void> => {
 		e.preventDefault();
 		try {

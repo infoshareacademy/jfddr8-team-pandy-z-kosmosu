@@ -62,6 +62,26 @@ export const Navbar = (): JSX.Element => {
 		</div>
 	);
 
+	const contentIsAdmin = (
+		<div className={classes['nav-link-container']}>
+			<Link className={classes['links-desktop']} to='admin'>
+				Admin
+			</Link>
+			<Link className={classes['links-desktop']} to='/'>
+				Home
+			</Link>
+			<Link className={classes['links-desktop']} to='mybooks'>
+				MyBooks
+			</Link>
+			<Link className={classes['links-desktop']} to='/' onClick={handleLogout}>
+				Log out
+			</Link>
+			<img src={logoUser} className={pandaClasses} alt='logoUser' />
+			<span className={classes['span-username']}>Hello, {username}!</span>
+		</div>
+	);
+
+
 	const contentIsNotLogged = (
 		<div>
 			<Link className={classes['links-desktop']} to='/'>
@@ -87,7 +107,9 @@ export const Navbar = (): JSX.Element => {
 				}}></img>
 			<div>
 				{!isLogged && contentIsNotLogged}
-				{isLogged && contentIsLogged}
+				{username ==='admin@admin.pl' && contentIsAdmin}
+				{isLogged && username !=='admin@admin.pl' && contentIsLogged}
+			
 				<button
 					onClick={() => setToggleMenu(!toggleMenu)}
 					className={classes['bar-button']}>
@@ -100,9 +122,41 @@ export const Navbar = (): JSX.Element => {
 							? classes['show-navbar-collapse']
 							: classes['navbar-collapse']
 					}>
-					{isLogged && toggleMenu && (
+					{isLogged && username !=='admin@admin.pl'&& toggleMenu && (
 						<ul className={classes['navbar-nav']}>
 							<li className={classes['nav-item']}>
+								<Link
+									className={classes.links}
+									to='/'
+									onClick={() => setToggleMenu(!toggleMenu)}>
+									Home
+								</Link>
+							</li>
+							<li>
+								<Link
+									className={classes.links}
+									to='mybooks'
+									onClick={() => setToggleMenu(!toggleMenu)}>
+									MyBooks
+								</Link>
+							</li>
+							<li>
+								<Link className={classes.links} to='/' onClick={handleLogout}>
+									Log out
+								</Link>
+							</li>
+						</ul>
+					)}
+	
+{username ==='admin@admin.pl' && toggleMenu && (
+						<ul className={classes['navbar-nav']}>
+							<li className={classes['nav-item']}>
+							<Link
+									className={classes.links}
+									to='admin'
+									onClick={() => setToggleMenu(!toggleMenu)}>
+									Admin
+								</Link>
 								<Link
 									className={classes.links}
 									to='/'
