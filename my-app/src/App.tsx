@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useContext, useEffect, useState} from "react";
 import { Home } from "./components/Home/Home";
 import { MyBookList } from "./components/MyBooks/MyBooksList";
@@ -26,6 +26,7 @@ function App() {
   const { setUsername, myBookList, setmyBookList, setIsLogged, books } =
     useContext(AppContext);
     const [isAdmin, setAdmin] = useState<boolean>(false);
+    const {pathname} = useLocation();
 
   useEffect((): void => {
     onAuthStateChanged(firebaseAuth, async (user) => {
@@ -50,6 +51,10 @@ function App() {
       }
     });
   }, [setmyBookList, setUsername, setIsLogged, books, isAdmin, setAdmin]);
+
+  useEffect((): void => {
+window.scrollTo(0,0);
+  }, [pathname])
 
   return (
     <div>

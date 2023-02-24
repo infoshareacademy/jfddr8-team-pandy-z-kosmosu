@@ -44,9 +44,10 @@
     border-style: hidden;
   }
 
-  label {
-    margin-left: 250px;
-}
+  /* label {
+    margin-left: auto;
+
+} */
 
 .regBtn {
     width: 100px;
