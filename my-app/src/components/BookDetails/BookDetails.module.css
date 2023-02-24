@@ -341,3 +341,9 @@ span.react-simple-star-rating {
     width: 90%;
   }
 }
+
+@media (max-width:460px) {
+  .addcomment {
+    min-width: 80px;
+  }
+}

@@ -29,7 +29,7 @@
 
 .cover {
   width: 200px;
-  height: 290px;
+  height: 280px;
 }
 
 .book button:disabled::after {

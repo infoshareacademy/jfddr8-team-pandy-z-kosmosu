@@ -91,7 +91,7 @@ export const Navbar = (): JSX.Element => {
 				Log in
 			</Link>
 			<Link className={classes['links-desktop']} to='register'>
-				Sign in
+				Sign up
 			</Link>
 		</div>
 	);
@@ -205,7 +205,7 @@ export const Navbar = (): JSX.Element => {
 									className={classes.links}
 									to='register'
 									onClick={() => setToggleMenu(!toggleMenu)}>
-									Sign in
+									Sign up
 								</Link>
 							</li>
 						</ul>

@@ -56,7 +56,7 @@ export const Register = (): JSX.Element => {
     <>
     <br />
     <br />
-      <h1><img className={classes.userIcon} src={userIcon} />Please Sign in:</h1>
+      <h1><img className={classes.userIcon} src={userIcon} />Please Sign up:</h1>
       <form>
       <div className={classes.login}>
         <div className={classes.item}>
@@ -106,7 +106,7 @@ export const Register = (): JSX.Element => {
         </div>
         <br />
         <p data-cy="empty-email" className={classes.error}>{error}</p>
-        <button data-cy='submit' className={classes.regBtn} onClick={handleSubmit}>Sign in</button>
+        <button data-cy='submit' className={classes.regBtn} onClick={handleSubmit}>Sign up</button>
         </div>
         <div className={classes.positionBtn}>
           <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>

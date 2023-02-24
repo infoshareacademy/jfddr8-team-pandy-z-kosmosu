@@ -31,3 +31,9 @@
   width: 100%;  
 }
 
+@media (max-width: 375px) {
+  .comment-conatiner {
+    flex-direction: column;
+  }
+}
+
