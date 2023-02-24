@@ -33,13 +33,13 @@
 }
 
 input.login {
-	margin-right: 200px;
+	margin-left: 10px;
 	background-color: #eee;
 	border-style: hidden;
 }
 
 label {
-	margin-left: 250px;
+	margin-left: auto;
 }
 
 .logBtn {
