@@ -18,17 +18,17 @@
 }
 
 .login {
-    max-width: 750px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    box-shadow: 0 0 10px #ccc;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
+	max-width: 750px;
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	box-shadow: 0 0 10px #ccc;
+	border-radius: 20px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	gap: 30px;
 }
 
 .item {
@@ -39,7 +39,7 @@
  }
 
  input.login {
-    margin-right: 150px;
+    margin-left: 10px;
     background-color: #eee;
     border-style: hidden;
   }

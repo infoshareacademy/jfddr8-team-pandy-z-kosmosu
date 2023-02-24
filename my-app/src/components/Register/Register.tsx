@@ -56,7 +56,7 @@ export const Register = (): JSX.Element => {
     <>
     <br />
     <br />
-      <h1><img className={classes.userIcon} src={userIcon} />Please Sign up:</h1>
+      <h1><img className={classes.userIcon} src={userIcon} />&nbsp;Please Sign up:</h1>
       <form>
       <div className={classes.login}>
         <div className={classes.item}>
@@ -73,8 +73,6 @@ export const Register = (): JSX.Element => {
           }}
         />
         </div>
-
-        <br />
         <div className={classes.item}>
         <label><b>Password:</b></label>
         <br />
@@ -89,7 +87,6 @@ export const Register = (): JSX.Element => {
           }}
         />
         </div>
-        <br />
         <div className={classes.item}>
         <label><b>Repeat password:</b></label>
         <br />
