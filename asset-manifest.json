@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/jfddr8-team-pandy-z-kosmosu/static/css/main.d29894eb.css",
-    "main.js": "/jfddr8-team-pandy-z-kosmosu/static/js/main.15947597.js",
+    "main.css": "/jfddr8-team-pandy-z-kosmosu/static/css/main.7bf79018.css",
+    "main.js": "/jfddr8-team-pandy-z-kosmosu/static/js/main.74b3021f.js",
     "static/media/slider-desktop-photo-2.webp": "/jfddr8-team-pandy-z-kosmosu/static/media/slider-desktop-photo-2.9cefcdb11c61cb5dbc33.webp",
     "static/media/Logo.png": "/jfddr8-team-pandy-z-kosmosu/static/media/Logo.dbe0d038a071899526c3.png",
     "static/media/logout-panda.png": "/jfddr8-team-pandy-z-kosmosu/static/media/logout-panda.c610a1f6a390336b5049.png",
@@ -17,11 +17,11 @@
     "static/media/cover_not_found.webp": "/jfddr8-team-pandy-z-kosmosu/static/media/cover_not_found.39c11d0b6544dfbf1fef.webp",
     "index.html": "/jfddr8-team-pandy-z-kosmosu/index.html",
     "static/media/loader.svg": "/jfddr8-team-pandy-z-kosmosu/static/media/loader.4b28d59abfe95fab7640537cecfe300a.svg",
-    "main.d29894eb.css.map": "/jfddr8-team-pandy-z-kosmosu/static/css/main.d29894eb.css.map",
-    "main.15947597.js.map": "/jfddr8-team-pandy-z-kosmosu/static/js/main.15947597.js.map"
+    "main.7bf79018.css.map": "/jfddr8-team-pandy-z-kosmosu/static/css/main.7bf79018.css.map",
+    "main.74b3021f.js.map": "/jfddr8-team-pandy-z-kosmosu/static/js/main.74b3021f.js.map"
   },
   "entrypoints": [
-    "static/css/main.d29894eb.css",
-    "static/js/main.15947597.js"
+    "static/css/main.7bf79018.css",
+    "static/js/main.74b3021f.js"
   ]
 }
