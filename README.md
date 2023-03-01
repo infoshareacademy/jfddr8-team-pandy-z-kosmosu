@@ -1,4 +1,4 @@
-# Welcome to Pandoteka, the cutest book search app in the universe :panda_face:
+# Welcome to Pandoteka, the cutest book search app in the universe
 
 ## Team members
 
@@ -32,4 +32,4 @@
 - Scrum
 - Jira
 
-## May the panda be with you
+## May the panda be with you :panda_face:
