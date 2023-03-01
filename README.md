@@ -3,10 +3,10 @@
 ## Team members
 
 - **Maja Karwacka-Frank [GitHub](https://github.com/maja-karwacka-frank)**
+- **Olga Kacała [GitHub](https://github.com/olga-kacala)**
+- **Weronika Niekludow [GitHub](https://github.com/weronika-niekludow)**
 - **Łukasz Śmigiel [GitHub](https://github.com/L-Smigiel)**
 - **Szymon Chiczewski [GitHub](https://github.com/szymon-chiczewski)**
-- **Weronika Niekludow [GitHub](https://github.com/weronika-niekludow)**
-- **Olga Kacała [GitHub](https://github.com/olga-kacala)**
 
 ## Our project's website can be found below
 
@@ -27,9 +27,9 @@
 - Jest
 - Adobe XD
   
-## Methodology
+## Methodology and project tools
 
 - Scrum
-- Jira
+- Jira project management tool
 
 ## May the panda be with you :panda_face:
