@@ -17,17 +17,19 @@ export const Comment = ({
   const date = dateString.toLocaleDateString();
 
   return (
-    <div className={classes["single-comment"]}>
+    <div className={classes["single-comment-wrapper"]}>
+      <div className={classes["single-comment"]}>
       <p className={classes["comment-author-p"]}>
         {item.user} wrote on:&nbsp;
         {date}
       </p>
         <div className={classes["comment-conatiner"]}>
           <p className={classes["comment-message"]}>"{item.message}"</p>
-          {username === item.user && (
+        </div>
+      </div> 
+      {username === item.user && (
             <button className={classes["comment-button"]} onClick={() => removeComment(item.id)}>Remove</button>
           )}
-        </div>
     </div>
     
   );

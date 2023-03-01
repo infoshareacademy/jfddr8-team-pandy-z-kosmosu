@@ -35,7 +35,7 @@ export const Login = (): JSX.Element => {
 			<br />
 			<br />
 			<h1>
-				<img className={classes.userIcon} src={userIcon}></img>Log in:
+				<img className={classes.userIcon} src={userIcon}></img>&nbsp;Log in:
 			</h1>
 			<form>
 				<div className={classes.login}>

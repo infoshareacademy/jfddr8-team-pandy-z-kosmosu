@@ -31,7 +31,7 @@ export const MyBookList = ({ myBooksList }: MyBooksProps): JSX.Element => {
 				<input
 					className={styles.input}
 					placeholder='Search by title'
-					onChange={(event) => setSearchPhrase(event.target.value)}></input>
+					onChange={(event) => setSearchPhrase(event.target.value)} />
 				<FaSearch className={styles['search-loop']} size={32} />
 			</div>
 			<div className={styles.searching}></div>
