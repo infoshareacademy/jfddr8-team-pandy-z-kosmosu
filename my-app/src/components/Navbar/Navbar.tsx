@@ -98,6 +98,14 @@ export const Navbar = (): JSX.Element => {
 		</div>
 	);
 
+	useEffect(() => {
+		// Use a third-party ad network or your own logic to determine
+		// whether or not to display the ad.
+		// For example, you can use a random number generator to show the ad 50% of the time.
+		const shouldShowAd = Math.random() >= 0.5;
+		setShowAd(shouldShowAd);
+	  }, []);
+
 	return (
 		<div className={classes.navbar}>
 			<img
