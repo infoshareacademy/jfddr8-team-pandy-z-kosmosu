@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { firebaseAuth } from "../../index";
+import { firebaseAuth } from "../../App";
 import classes from './Register.module.css';
+import userIcon from '../../Graphics/User-icon.png';
 
 export const Register = (): JSX.Element => {
   const [username, setUsername] = useState<string>("");
@@ -51,13 +52,18 @@ export const Register = (): JSX.Element => {
   };
 
   return (
+  
     <>
-      <h1>Please register:</h1>
+    <br />
+    <br />
+      <h1><img className={classes.userIcon} src={userIcon} />&nbsp;Please Sign up:</h1>
       <form>
-        <label>Login:</label>
+      <div className={classes.login}>
+        <div className={classes.item}>
+        <label><b>E-mail:</b></label>
         <br />
-        <input
-          className={isUsernameError ? classes.wrongInput : ''}
+        <input data-cy="email-input"
+          className={isUsernameError ? classes.wrongInput : classes.login}
           name="login"
           type="email"
           value={username}
@@ -66,11 +72,12 @@ export const Register = (): JSX.Element => {
             setIsUsernameError(false)
           }}
         />
+        </div>
+        <div className={classes.item}>
+        <label><b>Password:</b></label>
         <br />
-        <label>Password:</label>
-        <br />
-        <input
-          className={isPasswordError ? classes.wrongInput : ''}
+        <input data-cy="password-input"
+          className={isPasswordError ? classes.wrongInput : classes.login}
           name="password"
           type="password"
           value={password}
@@ -79,11 +86,12 @@ export const Register = (): JSX.Element => {
             setIsPasswordError(false);
           }}
         />
+        </div>
+        <div className={classes.item}>
+        <label><b>Repeat password:</b></label>
         <br />
-        <label>Repeat password:</label>
-        <br />
-        <input
-          className={isPasswordError ? classes.wrongInput : ''}
+        <input data-cy="repeat-password-input"
+          className={isPasswordError ? classes.wrongInput : classes.login}
           name="Repeat password"
           type="password"
           value={repeatPassword}
@@ -92,10 +100,15 @@ export const Register = (): JSX.Element => {
             setIsPasswordError(false)
           }}
         />
+        </div>
         <br />
+        <p data-cy="empty-email" className={classes.error}>{error}</p>
+        <button data-cy='submit' className={classes.regBtn} onClick={handleSubmit}>Sign up</button>
+        </div>
+        <div className={classes.positionBtn}>
+          <button className={classes.backBtn} onClick={() => navigate('/')}>Back to Home<br/><span className={classes.arrow}>⟻</span></button>
+        </div>
         <br />
-        <button onClick={handleSubmit}>Register</button>
-        <p>{error}</p>
       </form>
     </>
   );

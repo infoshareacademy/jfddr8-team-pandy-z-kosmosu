@@ -10,15 +10,17 @@ type MyBookProps = {
 export const MyBook = ({ item }: MyBookProps): JSX.Element => {
 	const { removeFromFav } = useContext(AppContext);
 
+	const classesTitle = `${classes.overflowEllipsis} ${classes.title}`
 	return (
 		<div className={classes['single-book']}>
-			<img className={classes['cover-img']} src={item.cover_img} alt='' />
-			<Link to={`/book/${item.id}`} {...item}>
-						<span>Title: </span>
-						<span>{item.title}</span>
-					</Link>
-			{/* <p>{item.title}</p> */}
-			<button onClick={() => removeFromFav(item.id)}>Delete ❌</button>
+			<Link className={classes.link} to={`/book/${item.id}`} {...item}>
+				<img className={classes['cover-img']} src={item.cover_img} alt='' />
+			</Link>
+			<div className={classes.content}>
+				<span className={classesTitle}>{item.title}</span>
+				<span className={classes.overflowEllipsis}>{item.author}</span>
+				<button onClick={() => removeFromFav(item.id)}>Delete ❌</button>
+			</div>
 		</div>
 	);
 };

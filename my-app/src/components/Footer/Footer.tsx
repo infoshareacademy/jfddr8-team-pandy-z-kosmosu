@@ -6,7 +6,7 @@ import liLogo from "../../Graphics/LI-logo.png";
 export const Footer = () => {
   return (
     <footer>
-      <a>
+      <a href="#">
         <img
           className={classes["footer-logo"]}
           src={logoNoImg}
@@ -17,14 +17,14 @@ export const Footer = () => {
       <ul>
         <li>
           <span>Maja Karwacka-Frank</span>
-          <a href="https://github.com/maja-karwacka-frank">
+          <a target='_blank' href="https://github.com/maja-karwacka-frank">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/maja-karwacka-frank/">
+          <a target='_blank' href="https://www.linkedin.com/in/maja-karwacka-frank/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
@@ -34,14 +34,14 @@ export const Footer = () => {
         </li>
         <li>
           <span>Łukasz Śmigiel</span>
-          <a href="https://github.com/L-Smigiel">
+          <a target='_blank' href="https://github.com/L-Smigiel">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/lukasz-smigiel/">
+          <a target='_blank' href="https://www.linkedin.com/in/lukasz-smigiel/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
@@ -51,14 +51,14 @@ export const Footer = () => {
         </li>
         <li>
           <span>Szymon Chiczewski</span>
-          <a href="https://github.com/olga-kacala">
+          <a target='_blank' href="https://github.com/szymon-chiczewski">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/olga-kaca%C5%82a-7b402b140/">
+          <a target='_blank' href="https://www.linkedin.com/in/szymon-chiczewski/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
@@ -68,14 +68,14 @@ export const Footer = () => {
         </li>
         <li>
           <span>Weronika Niekludow</span>
-          <a href="https://github.com/olga-kacala">
+          <a target='_blank' href="https://github.com/weronika-niekludow">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/olga-kaca%C5%82a-7b402b140/">
+          <a target='_blank' href="https://www.linkedin.com/in/weronika-niekludow/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}
@@ -85,14 +85,14 @@ export const Footer = () => {
         </li>
         <li>
           <span>Olga Kacała</span>
-          <a href="https://github.com/olga-kacala">
+          <a target='_blank' href="https://github.com/olga-kacala">
             <img
               className={classes["footer-small-logos"]}
               src={githubLogo}
               alt="github"
             />
           </a>
-          <a href="https://www.linkedin.com/in/olga-kaca%C5%82a-7b402b140/">
+          <a target='_blank' href="https://www.linkedin.com/in/olga-kacala/">
             <img
               className={classes["footer-small-logos"]}
               src={liLogo}

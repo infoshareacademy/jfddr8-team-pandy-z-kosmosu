@@ -1,19 +1,21 @@
 import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css'
-import SliderImg1 from '../../Graphics/slider-desktop-photo-1.jpg'
-import SliderImg2 from '../../Graphics/slider-desktop-photo-2.jpg'
-import SliderImg3 from '../../Graphics/slider-desktop-photo-3.jpg'
-import classes from './Slider.module.css'
+import 'react-slideshow-image/dist/styles.css';
+import SliderImg1 from '../../Graphics/slider-desktop-photo-1.webp';
+import SliderImg2 from '../../Graphics/slider-desktop-photo-2.webp';
+import SliderImg3 from '../../Graphics/slider-desktop-photo-3.webp';
+import SliderImg4 from '../../Graphics/slider-desktop-photo-4.webp';
+import classes from './Slider.module.css';
 
 const Slider = ():JSX.Element => {
   const images:string[] = [
     SliderImg1,
     SliderImg2,
-    SliderImg3
+    SliderImg3,
+    SliderImg4,
   ];
 
   return (
-    <div className={classes.sliderWrapper}>
+    <div className={classes.sliderWrapper} >
       <Slide arrows={false}>
           <div className="each-slide-effect">
               <div>
@@ -27,10 +29,16 @@ const Slider = ():JSX.Element => {
           </div>
           <div className="each-slide-effect">
           <div>
-              <img className={classes.sliderImage} src={images[2]} alt=""/>
+          <img className={classes.sliderImage} src={images[2]} alt=""/>
+              </div>
+          </div>
+          <div className="each-slide-effect">
+          <div>
+              <img className={classes.sliderImage} src={images[3]} alt=""/>
               </div>
           </div>
       </Slide>
+      
     </div>
   );
 };

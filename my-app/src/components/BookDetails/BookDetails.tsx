@@ -2,16 +2,16 @@ import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import classes from './BookDetails.module.css';
 import { Loader } from '../Loader/Loader';
-import coverImg from '../../Graphics/cover_not_found.jpg';
-import pandaFull from '../../Graphics/panda-full-mark.jpg';
-import pandaHalf from '../../Graphics/panda-half-mark.jpg';
+import coverImg from '../../Graphics/cover_not_found.webp';
 import { AppContext } from '../../providers/AppProvider';
-import { Link } from 'react-router-dom';
-import { collection, addDoc, getDoc } from 'firebase/firestore';
-import { useRef } from 'react';
-import { firebaseDb } from '../../index';
+import { firebaseDb } from '../../App';
 import { doc, setDoc, onSnapshot } from 'firebase/firestore';
 import { Comment } from './Comment';
+import icon from '../../Graphics/User-icon.png';
+import { Rating } from 'react-simple-star-rating';
+import { EmptyIcon, FillIcon } from '../Rating/FillIcon';
+import { Link } from 'react-router-dom';
+
 const URL = 'https://openlibrary.org/works/';
 
 export type MyComment = {
@@ -20,16 +20,45 @@ export type MyComment = {
 	message: string;
 	user: string | null;
 };
-export type NewMessageProps = {
-	id: MyComment[];
-};
+
 export const BookDetails = (): JSX.Element => {
-	const { isLogged, addToFav, myBookList, username } = useContext(AppContext);
+	const { isLogged, addToFav, myBookList, username, ratesList, setRatesList } =
+		useContext(AppContext);
 	const { id } = useParams();
 	const [loading, setLoading] = useState(false);
 	const [book, setBook] = useState<any>('');
 	const [myMessagesList, setmyMessagesList] = useState([] as MyComment[]);
 	const [commentValue, setCommentValue] = useState('');
+	const [ratesListAverage, setRatesListAverage] = useState(0);
+	const [emptyMessegesList, setEmptyMessegesList] = useState('');
+
+	const handleRating = async (rate: number) => {
+		if (isLogged) {
+			try {
+				await setDoc(doc(firebaseDb, 'Rating', `${book.id}`), {
+					values: [...ratesList, rate],
+				});
+				setRatesList([...ratesList, rate]);
+			} catch (error) {
+				console.log(error);
+			}
+		}
+	};
+
+	const cleanDescription = (x: string | undefined) => {
+		// console.log(x);
+		let startIndex;
+		if (x?.indexOf('([') !== -1) {
+			startIndex = x?.indexOf('([');
+		} else if (x?.indexOf('----------') !== -1) {
+			startIndex = x?.indexOf('----------');
+		} else if (x?.indexOf('[Source][1]') !== -1) {
+			startIndex = x?.indexOf('[Source][1]');
+		}
+		const cleanedData = startIndex === -1 ? x : x?.substring(0, startIndex);
+		// console.log(cleanedData);
+		return cleanedData;
+	};
 
 	useEffect(() => {
 		setLoading(true);
@@ -47,7 +76,12 @@ export const BookDetails = (): JSX.Element => {
 						subjects,
 					} = data;
 					const newBook = {
-						description: description ? description : 'No description found',
+						description:
+							description?.value || description
+								? description?.value
+									? cleanDescription(description.value)
+									: cleanDescription(description)
+								: 'No description found',
 						title: title,
 						cover_img: covers
 							? `https://covers.openlibrary.org/b/id/${covers[0]}-L.jpg`
@@ -74,19 +108,20 @@ export const BookDetails = (): JSX.Element => {
 		getBookDetails();
 	}, [id]);
 
-	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		setCommentValue(e.target.value);
-	};
-
 	const addToComment = async (product: MyComment): Promise<void> => {
 		try {
 			await setDoc(doc(firebaseDb, 'conversations', `${book.id}`), {
 				messages: [...myMessagesList, product],
 			});
 			setmyMessagesList([...myMessagesList, product]);
+			setCommentValue('');
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setCommentValue(e.target.value);
 	};
 
 	const removeComment = async (commId: number): Promise<void> => {
@@ -102,39 +137,79 @@ export const BookDetails = (): JSX.Element => {
 	};
 
 	useEffect(() => {
+		const docRef = doc(firebaseDb, 'Rating', `${book.id}`);
+		const unsubscribe = onSnapshot(docRef, (doc) => {
+			if (doc.exists()) {
+				const data = doc.data();
+				setRatesList(data.values);
+				const sumOfRates = ratesList.reduce((a, b) => a + b, 0);
+				const average = sumOfRates / Number(ratesList.length);
+				setRatesListAverage(Number(average.toFixed(1)));
+			}
+		});
+		return () => unsubscribe();
+	}, [book.id, ratesList.length]);
+
+	useEffect(() => {
 		const docRef = doc(firebaseDb, 'conversations', `${book.id}`);
 		const unsubscribe = onSnapshot(docRef, (doc) => {
 			if (doc.exists()) {
 				const data = doc.data();
 				setmyMessagesList(data.messages);
+				if (myMessagesList.length === 0) {
+					setEmptyMessegesList('No comments yet.');
+				} else {
+					setEmptyMessegesList('');
+				}
+			} else {
+				setEmptyMessegesList('No comments yet.');
 			}
 		});
 		return () => unsubscribe();
-	}, [book.id]);
+	}, [book.id, myMessagesList.length]);
 
 	if (loading) return <Loader />;
 	return (
-		<section>
+		<section className={classes['all-page']}>
 			<div className={classes['card-book']}>
 				<div className={classes['cover-img']}>
-					<img src={book.cover_img} alt='cover img' />
+					<img
+						className={classes['main-img']}
+						src={book.cover_img}
+						alt='cover img'
+					/>
 				</div>
-				<div className={classes.content}>
-					<div>
-						<span>Title: </span>
+				<div className={classes['content']}>
+					<div className={classes.infobook}>
+						<span>
+							<b>Title:</b>{' '}
+						</span>
 						<span>{book.title}</span>
 					</div>
 					<div>
-						<span>Description: </span>
-						<span>{book.description}</span>
+						<span>
+							<b>Description:</b>{' '}
+						</span>
+						<span className={classes['description']}>{book.description}</span>
 					</div>
 					<div>
-						<span>Subject Places: </span>
+						<span>
+							<b>Subject Places:</b>{' '}
+						</span>
 						<span>{book.subject_places}</span>
 					</div>
 					<div>
-						<span>Subject Times: </span>
+						<span>
+							<b>Subject Times:</b>{' '}
+						</span>
 						<span>{book.subject_times}</span>
+					</div>
+					<div>
+						<button>
+							<a target='_blank' href={`https://amazon.com/s?k=${book.title}`}>
+								Go to buy...
+							</a>
+						</button>
 					</div>
 					{isLogged && (
 						<div>
@@ -148,40 +223,10 @@ export const BookDetails = (): JSX.Element => {
 										title: book.title,
 										cover_img: book.cover_img,
 										id: book.id,
+										author: book.author
 									})
 								}></button>
-							<textarea
-								onChange={handleInputChange}
-								placeholder='Your comment...'></textarea>
-							<button
-								onClick={() => {
-									addToComment({
-										CreatedAt: Date.now(),
-										message: commentValue,
-										user: username,
-										id: Date.now(),
-									});
-								}}>
-								Add comment
-							</button>
-							<div className={classes['box-panda']}>
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaFull} alt='' />
-								<img className={classes['panda-img']} src={pandaHalf} alt='' />
-							</div>
-							<div className={classes['comment-box']}>
-								<div>
-									{myMessagesList.map((item) => (
-										<Comment
-											key={item.id}
-											item={item}
-											removeComment={removeComment}
-										/>
-									))}
-								</div>
-							</div>
+							
 						</div>
 					)}
 					{!isLogged && (
@@ -190,19 +235,68 @@ export const BookDetails = (): JSX.Element => {
 								<Link className={classes.links} to='/login'>
 									Log in
 								</Link>
-								<span>to add to favorites :)</span>
-							</div>
-							<div>
-								<span>See comments or </span>
-								<Link className={classes.links} to='/login'>
-									Log in
-								</Link>
-								<span>to add one!</span>
+								<span> to add to favorites or add comment</span>
 							</div>
 						</div>
 					)}
+					<div className={classes.ratingContainer}>
+								<Rating
+									onClick={handleRating}
+									fillIcon={FillIcon}
+									initialValue={ratesListAverage}
+									transition={true}
+									emptyIcon={EmptyIcon}
+								/>
+								<div>
+									<span>Average panda ({ratesListAverage})</span>
+									<br></br>
+									<span>Number of ratings ({ratesList.length})</span>
+								</div>
+							</div>
 				</div>
 			</div>
+
+			<section className={classes.commentSectionWrapper}>
+				<h2>Comments:</h2>
+				<div className={classes.commentSection}>
+					{isLogged && (
+						<div className={classes['typecomment']}>
+							<img className={classes['pandacomment']} src={icon} alt='' />
+							<textarea
+								className={classes['typecommentarea']}
+								onChange={handleInputChange}
+								placeholder='Type comment as User 🖋...'
+								value={commentValue}></textarea>
+							<div className={classes['pComment']}>
+								<button
+									className={classes['addcomment']}
+									onClick={() => {
+										addToComment({
+											CreatedAt: Date.now(),
+											message: commentValue,
+											user: username,
+											id: Date.now(),
+										});
+									}}>
+									Add
+								</button>
+							</div>
+						</div>
+					)}
+					<div className={classes['comment-box']}>
+						<p>{emptyMessegesList}</p>
+						<div>
+							{myMessagesList.map((item) => (
+								<Comment
+									key={item.id}
+									item={item}
+									removeComment={removeComment}
+								/>
+							))}
+						</div>
+					</div>
+				</div>
+			</section>
 		</section>
 	);
 };
