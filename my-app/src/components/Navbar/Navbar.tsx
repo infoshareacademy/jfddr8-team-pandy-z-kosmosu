@@ -83,7 +83,7 @@ export const Navbar = (): JSX.Element => {
     // Use a third-party ad network or your own logic to determine
     // whether or not to display the ad.
     // For example, you can use a random number generator to show the ad 50% of the time.
-    const shouldShowAd = Math.random() >= 0.1;
+    const shouldShowAd = Math.random() >= 0.9;
     setShowAd(shouldShowAd);
   }, []);
 
