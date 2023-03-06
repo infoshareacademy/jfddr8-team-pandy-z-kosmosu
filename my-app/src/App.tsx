@@ -18,7 +18,6 @@ import { Logout } from "./components/Logout/Logout";
 import {Admin} from './components/Admin/Admin';
 import "./App.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addTopping } from "./pizzaSlice";
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
@@ -60,13 +59,13 @@ function App() {
 window.scrollTo(0,0);
   }, [pathname])
 
+  function addTopping(arg0: string): any {
+    throw new Error("Function not implemented.");
+  }
+
   return (
     <div>
       <Navbar />
-      <p>Pizza</p>
-      {pizza.toppings.map((topping: boolean) => (
-        <div>{topping}</div>
-      ))}
       <button onClick={() => dispatch(addTopping('pepperoni'))}>Add Pepperroni</button>
       <Routes>
       <Route path="/admin" element={<Admin />} />
