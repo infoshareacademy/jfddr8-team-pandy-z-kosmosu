@@ -57,7 +57,7 @@ label {
     text-align: right;
 }
 
-.pizza {
+div.pizza {
   display: none;
 }
 
