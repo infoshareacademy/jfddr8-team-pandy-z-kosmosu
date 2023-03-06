@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     toppings: ['pepperoni'],
@@ -15,7 +15,7 @@ export const pizzaSlice = createSlice({
         addTopping: (state, action) => {
             state.toppings = [...state.toppings, action.payload]
         }
-    }
+    },
 })
 
 export const { toggleGluten, addTopping } = pizzaSlice.actions

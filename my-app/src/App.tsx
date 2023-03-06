@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, useContext, useEffect, useState} from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useContext, useEffect, useState} from "react";
 import { Home } from "./components/Home/Home";
 import { MyBookList } from "./components/MyBooks/MyBooksList";
 import { Login } from "./components/Login/Login";
@@ -18,6 +18,7 @@ import { Logout } from "./components/Logout/Logout";
 import {Admin} from './components/Admin/Admin';
 import "./App.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { Pizza } from "./components/Pizza/Pizza";
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const firebaseAuth = getAuth(firebaseApp);
@@ -28,8 +29,6 @@ function App() {
     useContext(AppContext);
     const [isAdmin, setAdmin] = useState<boolean>(false);
     const {pathname} = useLocation();
-    const pizza: any = useSelector<any>(state => state.pizza);
-    const dispatch = useDispatch();
 
   useEffect((): void => {
     onAuthStateChanged(firebaseAuth, async (user) => {
@@ -59,14 +58,10 @@ function App() {
 window.scrollTo(0,0);
   }, [pathname])
 
-  function addTopping(arg0: string): any {
-    throw new Error("Function not implemented.");
-  }
-
   return (
     <div>
       <Navbar />
-      <button onClick={() => dispatch(addTopping('pepperoni'))}>Add Pepperroni</button>
+      <Pizza/>
       <Routes>
       <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Home />} />
