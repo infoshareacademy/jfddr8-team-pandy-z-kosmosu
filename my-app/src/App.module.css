@@ -57,6 +57,10 @@ label {
     text-align: right;
 }
 
+.pizza {
+  display: none;
+}
+
 @media screen and (max-width: 768px) {
   h2 {
     margin: 20px;

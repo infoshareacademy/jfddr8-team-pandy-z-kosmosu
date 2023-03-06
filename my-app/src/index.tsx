@@ -5,6 +5,8 @@ import './index.css';
 import App from './App';
 
 import { AppProvider } from './providers/AppProvider';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 
 
@@ -13,8 +15,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<HashRouter>
-		<AppProvider>
-			<App />
-		</AppProvider>
+		<Provider store={store}>
+			<AppProvider>
+				<App />
+			</AppProvider>
+		</Provider>
 	</HashRouter>
 );
