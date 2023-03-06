@@ -8,14 +8,12 @@ import { useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../../App";
 import { AppContext } from "../../providers/AppProvider";
 import bar from "../../Graphics/Hamburger-icon.png";
-import pobrane from '../../Graphics/pobrane.jpeg';
 
 export const Navbar = (): JSX.Element => {
   const { isLogged, setIsLogged, username, myBookList, ratesList } =
     useContext(AppContext);
   const [toggleMenu, setToggleMenu] = useState(false);
   const [pandaAnime, setPandaAnime] = useState(false);
-  const [showAd, setShowAd] = useState(false);
 
   const navigate = useNavigate();
 
@@ -98,13 +96,6 @@ export const Navbar = (): JSX.Element => {
 		</div>
 	);
 
-	useEffect(() => {
-		// Use a third-party ad network or your own logic to determine
-		// whether or not to display the ad.
-		// For example, you can use a random number generator to show the ad 50% of the time.
-		const shouldShowAd = Math.random() >= 0.5;
-		setShowAd(shouldShowAd);
-	  }, []);
 
 	return (
 		<div className={classes.navbar}>
@@ -223,14 +214,6 @@ export const Navbar = (): JSX.Element => {
             </ul>
           )}
         </div>
-      </div>
-      <div>
-        {showAd && (
-          <div className="ad-placement">
-            <img src={pobrane} />
-            <a href={'https://www.youtube.com/watch?v=NHTTdk58z7g'}>{'https://www.youtube.com/watch?v=NHTTdk58z7g'}</a>
-          </div>
-        )}
       </div>
     </div>
   );
