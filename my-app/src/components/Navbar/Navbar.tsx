@@ -1,21 +1,21 @@
-import { Link } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import classes from './Navbar.module.css';
-import logoImg from '../../Graphics/Logo.png';
-import logoUser from '../../Graphics/User-icon.png';
-import { signOut } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import { firebaseAuth } from '../../App';
-import { AppContext } from '../../providers/AppProvider';
-import bar from '../../Graphics/Hamburger-icon.png';
+import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import classes from "./Navbar.module.css";
+import logoImg from "../../Graphics/Logo.png";
+import logoUser from "../../Graphics/User-icon.png";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { firebaseAuth } from "../../App";
+import { AppContext } from "../../providers/AppProvider";
+import bar from "../../Graphics/Hamburger-icon.png";
 
 export const Navbar = (): JSX.Element => {
-	const { isLogged, setIsLogged, username, myBookList, ratesList } =
-		useContext(AppContext);
-	const [toggleMenu, setToggleMenu] = useState(false);
-	const [pandaAnime, setPandaAnime] = useState(false);
+  const { isLogged, setIsLogged, username, myBookList, ratesList } =
+    useContext(AppContext);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [pandaAnime, setPandaAnime] = useState(false);
 
-	const navigate = useNavigate();
+  const navigate = useNavigate();
 
 	const handleLogout = async (): Promise<void> => {
 		setToggleMenu(!toggleMenu);
@@ -28,23 +28,23 @@ export const Navbar = (): JSX.Element => {
 		navigate('/logout');
 	};
 
-	useEffect(() => {
-		if (myBookList.length === 0) {
-			return;
-		}
-		setPandaAnime(true);
-		const timer = setTimeout(() => {
-			setPandaAnime(false);
-		}, 300);
+  useEffect(() => {
+    if (myBookList.length === 0) {
+      return;
+    }
+    setPandaAnime(true);
+    const timer = setTimeout(() => {
+      setPandaAnime(false);
+    }, 300);
 
 		return () => {
 			clearTimeout(timer);
 		};
 	}, [myBookList, ratesList.length]);
 
-	const pandaClasses = `${classes['logo-user']} ${
-		pandaAnime ? classes.bump : ''
-	}`;
+  const pandaClasses = `${classes["logo-user"]} ${
+    pandaAnime ? classes.bump : ""
+  }`;
 
 	const contentIsLogged = (
 		<div className={classes['nav-link-container']}>
@@ -95,6 +95,7 @@ export const Navbar = (): JSX.Element => {
 			</Link>
 		</div>
 	);
+
 
 	return (
 		<div className={classes.navbar}>
@@ -191,27 +192,29 @@ export const Navbar = (): JSX.Element => {
 								</Link>
 							</li>
 
-							<li>
-								<Link
-									className={classes.links}
-									to='login'
-									onClick={() => setToggleMenu(!toggleMenu)}>
-									Log in
-								</Link>
-							</li>
+              <li>
+                <Link
+                  className={classes.links}
+                  to="login"
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                >
+                  Log in
+                </Link>
+              </li>
 
-							<li>
-								<Link
-									className={classes.links}
-									to='register'
-									onClick={() => setToggleMenu(!toggleMenu)}>
-									Sign up
-								</Link>
-							</li>
-						</ul>
-					)}
-				</div>
-			</div>
-		</div>
-	);
+              <li>
+                <Link
+                  className={classes.links}
+                  to="register"
+                  onClick={() => setToggleMenu(!toggleMenu)}
+                >
+                  Sign up
+                </Link>
+              </li>
+            </ul>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 };
